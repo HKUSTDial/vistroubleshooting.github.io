@@ -1,0 +1,278 @@
+[
+    {
+        "question_id": "77408117",
+        "vegalite": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "values": [
+              {
+                "id": "123",
+                "a": "Wed, 09 Aug 2023 06:00:00 GMT",
+                "b": "Wed, 09 Aug 2023 17:00:23 GMT",
+                "c": "A1",
+                "d": "B1",
+                "start_time": "Sat, 30 Dec 1899 06:00:00 GMT",
+                "Date": "Wed, 09 Aug 2023"
+              },
+              {
+                "id": "124",
+                "a": "Wed, 09 Aug 2023 10:00:00 GMT",
+                "b": "Wed, 09 Aug 2023 18:02:31 GMT",
+                "c": "A2",
+                "d": "B2",
+                "start_time": "Sat, 30 Dec 1899 14:00:00 GMT",
+                "Date": "Wed, 09 Aug 2023"
+              },
+              {
+                "id": "125",
+                "a": "Wed, 09 Aug 2023 19:01:07 GMT",
+                "b": "Wed, 09 Aug 2023 22:01:17 GMT",
+                "c": "A1",
+                "d": "B2",
+                "start_time": "Sat, 30 Dec 1899 22:00:00 GMT",
+                "Date": "Wed, 09 Aug 2023"
+              },
+              {
+                "id": "126",
+                "a": "Wed, 07 Aug 2023 06:00:00 GMT",
+                "b": "Wed, 07 Aug 2023 17:00:23 GMT",
+                "c": "A4",
+                "d": "B3",
+                "start_time": "Sat, 30 Dec 1899 06:00:00 GMT",
+                "Date": "Wed, 07 Aug 2023"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "filter": {
+                "field": "Date",
+                "range": [
+                  {"year": 2023, "month": "Aug", "date": 8},
+                  {"year": 2023, "month": "Aug", "date": 10}
+                ]
+              }
+            },
+            {
+              "groupby": ["d"],
+              "window": [{"op": "count", "field": "id", "as": "count_id"}],
+              "sort": [{"field": "d"}]
+            },
+            {"calculate": "datum.count_id + 'x: ' + datum['d']", "as": "grouping"}
+          ],
+          "spacing": 5,
+          "vconcat": [
+            {
+              "width": 300,
+              "encoding": {
+                "y": {
+                  "field": "c",
+                  "type": "ordinal",
+                  "title": null,
+                  "axis": {"labelColor": "black"}
+                }
+              },
+        
+              "layer": [
+                
+                {
+                  "params": [
+                    {
+                      "name": "highlight",
+                      "select": {"type": "point", "on": "mouseover"}
+                    },
+                    {
+                      "name": "opicomp",
+                      "select": {"type": "point", "fields": ["d"]},
+                      "bind": "legend"
+                    }
+                  ],
+                  "mark": {"type": "bar", "stroke": "black"},
+                  "encoding": {
+                    "x": {
+                      "field": "a",
+                      "type": "temporal",
+                      "axis": {
+                        "labelExpr": "datum.label",
+                        "labelColor": "black",
+                        "grid": true,
+                        "gridDash": [5.5],
+                        "gridColor": "grey",
+                        "zindex": 1,
+                        "orient": "bottom",
+                        "format": "%H:%M:%S"
+                      },
+                      "title": "Time/Duration"
+                    },
+                    "x2": {"field": "b"},
+                    "color": {
+                      "condition": [
+                        {"test": "datum.d == 'B1'", "value": "red"},
+                        {"test": "datum.d == 'B2'", "value": "blue"},
+                        {"test": "datum.d == 'B3'", "value": "green"}
+                      ],
+                      "legend": null
+                    },
+                    "strokeWidth": {
+                      "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                      "value": 0
+                    },
+                    "opacity": {
+                      "condition": [
+                        {
+                          "test": {"field": "__selected__", "equal": "off"},
+                          "value": 0.5
+                        },
+                        {"param": "opicomp", "value": 1}
+                      ],
+                      "value": 0.5
+                    },
+                    "tooltip": [
+                      {
+                        "field": "a",
+                        "title": "Start",
+                        "type": "temporal",
+                        "format": "%d-%b-%y %H:%M"
+                      },
+                      {
+                        "field": "b",
+                        "title": "End",
+                        "type": "temporal",
+                        "format": "%d-%b-%y %H:%M"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "mark": {"type": "tick", "stroke": "black"},
+                  "encoding": {
+                    "x": {
+                      "field": "Date",
+                      "type": "temporal",
+                      "title": null,
+                      "axis": {
+                        "labelColor": "black",
+                        "grid": true,
+                        "gridDash": [5.5],
+                        "zindex": 1,
+                        "orient": "top",
+                        "format": "%d-%b-%y",
+                        "labelExpr": "hours(datum['value']) == 0 ? datum['label'] : ''"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "width": 300,
+              "layer": [
+                
+                {         
+                  "params": [
+                    {
+                      "name": "highlight",
+                      "select": {"type": "point", "on": "mouseover"}
+                    }
+                  ],
+                  "mark": {"type": "square", "stroke": "black", "size": 100},
+                  "encoding": {
+                    "x": {
+                      "field": "grouping",
+                      "title": null,
+                      "axis": {
+                         "labelAngle": 0,
+                        "orient": "bottom",
+                        "title": null,
+                        "domain": false,
+                        "ticks": false,
+                        "labelLimit": 50
+    
+                      },
+                      "sort": {"field": "d", "order": "ascending"}
+                    },
+                    "color": {
+                      "condition": [
+                        {"test": "datum.d == 'B1'", "value": "red"},
+                        {"test": "datum.d == 'B2'", "value": "blue"},
+                        {"test": "datum.d == 'B3'", "value": "green"}
+                      ],
+                      "legend": null
+                    },
+                    "strokeWidth": {
+                      "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "config": {"axis": {"titleColor": "black"}, "view": {"stroke": "transparent"}}
+        }
+            },
+    
+    {
+        "question_id": "61928545",
+        "vegalite": {
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "data": {"url": "data/seattle-weather.csv"},
+      "transform": [
+        {
+          "calculate": "if(datum.weather === 'sun', 0,if(datum.weather === 'fog', 1,if(datum.weather === 'drizzle', 2,if(datum.weather === 'rain', 3,if(datum.weather === 'snow', 4, 5)))))",
+          "as": "order"
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "timeUnit": "month",
+          "field": "date",
+          "type": "ordinal",
+          "axis": {"title": "Month of the year"}
+        },
+        "y": {"aggregate": "count", "type": "quantitative"},
+        "color": {
+          "field": "weather",
+          "type": "nominal",
+          "scale": {
+            "domain": ["sun", "fog", "drizzle", "rain", "snow"],
+            "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4", "#9467bd"]
+          },
+          "legend": {"title": "Weather type"}
+        },
+        "order": {"field": "order", "type": "ordinal"}
+      }
+    }},
+    {
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "transform": [
+        { "calculate": "1", "as": "one" }
+      ],
+      "layer": [
+        {
+          "mark": { "type": "bar" },
+          "encoding": {
+            "x": { "field": "diff", "type": "quantitative" },
+            "y": { "field": "diff", "type": "quantitative" }
+          }
+        },
+        {
+          "mark": { "type": "rule" },
+          "encoding": {
+            "y": { "datum": 2 }
+          }
+        }
+      ],
+      "data": {
+        "values": [
+          { "diff": 1 },
+          { "diff": 2 },
+          { "diff": 3 }
+        ]
+      }
+    }
+      
+
+    
+    ]

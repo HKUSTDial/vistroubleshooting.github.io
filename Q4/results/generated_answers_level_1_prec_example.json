@@ -1,0 +1,772 @@
+[
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a continuous line chart with a vertical rule at x=0. However, adding '0' as a key in the data creates a discontinuity in the line marks, breaking the desired visualization. The goal is to ensure the line remains continuous while maintaining the vertical rule at x=0.",
+      "visualization_requirements": [
+        "Maintain a continuous line for each data type ('Apple' and 'Mango').",
+        "Add a vertical rule at x=0 to separate the 'pre' and 'post' periods.",
+        "Avoid altering the data structure or removing the x=0 key."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "mark properties and encoding",
+            "relevance": "The mark properties define how the line is drawn, and the encoding determines how x and y values are interpreted. Adjustments here can fix discontinuities.",
+            "key_information": "Ensure the data values for x are sorted correctly and properly handled to prevent gaps in the line."
+          },
+          {
+            "section": "use of rules",
+            "relevance": "The vertical rule at x=0 is necessary for the user's visualization.",
+            "key_information": "The rule's implementation must not interfere with the continuity of the line mark."
+          }
+        ]
+      },
+      "approach": "To solve the issue, we will use a transformation step to handle the x-axis sorting explicitly and ensure that the line mark connects correctly across the '0' key. This involves interpolating the values at '0' rather than relying on direct input data. We will layer the rule mark separately to avoid conflicts.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Transform the data to interpolate values for the '0' key if necessary.",
+          "code_snippet": "No specific code required as the data already includes '0'. Ensure proper sorting."
+        },
+        {
+          "step_number": 2,
+          "action": "Adjust the x-axis encoding to treat '0' correctly and connect lines continuously.",
+          "code_snippet": "\"x\": {\"field\": \"key\", \"type\": \"ordinal\", \"sort\": [\"pre_120\", \"pre_90\", \"pre_60\", \"0\", \"post_60\", \"post_90\", \"post_120\"]}"
+        },
+        {
+          "step_number": 3,
+          "action": "Layer the vertical rule mark to avoid interference with the line mark.",
+          "code_snippet": "\"mark\": {\"type\": \"rule\", \"color\": \"maroon\", \"size\": 3, \"strokeDash\": [6, 4]}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": 800,
+          "height": 200,
+          "data": {
+            "values": [
+              {
+                "pre_120": 0,
+                "pre_90": 0,
+                "pre_60": 0,
+                "post_60": 100,
+                "post_90": 150,
+                "post_120": 200,
+                "type": "Mango",
+                "count": "twenty"
+              },
+              {
+                "pre_120": 0,
+                "pre_90": 0,
+                "pre_60": 0,
+                "post_60": 90,
+                "post_90": 140,
+                "post_120": 190,
+                "type": "Apple",
+                "count": "ten"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "fold": [
+                "pre_120",
+                "pre_90",
+                "pre_60",
+                "0",
+                "post_60",
+                "post_90",
+                "post_120"
+              ],
+              "as": [
+                "key",
+                "value"
+              ]
+            }
+          ],
+          "layer": [
+            {
+              "mark": "line",
+              "encoding": {
+                "x": {
+                  "field": "key",
+                  "type": "ordinal",
+                  "sort": [
+                    "pre_120",
+                    "pre_90",
+                    "pre_60",
+                    "0",
+                    "post_60",
+                    "post_90",
+                    "post_120"
+                  ]
+                },
+                "y": {
+                  "field": "value",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "type",
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "rule",
+                "color": "maroon",
+                "size": 3,
+                "strokeDash": [
+                  6,
+                  4
+                ]
+              },
+              "encoding": {
+                "x": {
+                  "datum": "0"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "73273219"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is trying to create a normalized stacked bar chart, similar to the example linked from the Vega-Lite editor, and wants to overlay the percentages as text on the bar segments. The goal is to show the percentages for each bar segment (representing age and gender) in the stacked chart.",
+      "visualization_requirements": [
+        "Create a normalized stacked bar chart.",
+        "Overlay the percentages of each segment as text on the bar segments."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Example from Github 'Vega-lite: Horizontal Stacked Bar Chart with Labels'",
+            "relevance": "This example demonstrates how to add text labels to stacked bar chart segments, which is similar to the user's requirement of displaying percentages on the chart.",
+            "key_information": "The key information here is the use of the 'text' mark to display text labels over stacked bars, and the use of 'stack: zero' and 'aggregate' to compute the size of each stack segment."
+          },
+          {
+            "section": "Example for calculating percentages (Activity chart)",
+            "relevance": "This example shows how to compute percentages of a total for each bar segment, which directly addresses the user's need to calculate and display percentages in the stacked bar chart.",
+            "key_information": "The calculation step where `datum.Time / datum.TotalTime * 100` is used to generate percentage values for each segment, and the 'text' encoding is used to display these percentages on the chart."
+          }
+        ]
+      },
+      "approach": "The approach is to first normalize the stacked bar chart by stacking the data based on the age and gender groups. Then, the percentages for each bar segment will be computed using a calculation transform. Finally, text marks will be used to overlay the percentages on the bars.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Normalize the stacked bar chart using the 'stack' transform with 'normalize' offset.",
+          "code_snippet": "{\"stack\": \"people\", \"offset\": \"normalize\", \"as\": [\"v1\", \"v2\"], \"groupby\": [\"age\"], \"sort\": [{\"field\": \"gender\", \"order\": \"descending\"}]} "
+        },
+        {
+          "step_number": 2,
+          "action": "Calculate the percentage for each segment (relative to the total for each bar).",
+          "code_snippet": "{\"calculate\": \"datum.v1 / (datum.v2 - datum.v1) * 100\", \"as\": \"percentage\"}"
+        },
+        {
+          "step_number": 3,
+          "action": "Overlay the calculated percentage as text on the bar segments.",
+          "code_snippet": "{\"mark\": {\"type\": \"text\", \"dx\": 0, \"dy\": 0}, \"encoding\": {\"color\": {\"value\": \"black\"}, \"text\": {\"field\": \"percentage\", \"type\": \"quantitative\", \"format\": \".1f\"}}}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "A bar chart showing the US population distribution of age groups and gender in 2000, with percentages displayed on each stacked segment.",
+          "data": {
+            "url": "data/population.json"
+          },
+          "transform": [
+            {
+              "filter": "datum.year == 2000"
+            },
+            {
+              "calculate": "datum.sex == 2 ? 'Female' : 'Male'",
+              "as": "gender"
+            },
+            {
+              "stack": "people",
+              "offset": "normalize",
+              "as": [
+                "v1",
+                "v2"
+              ],
+              "groupby": [
+                "age"
+              ],
+              "sort": [
+                {
+                  "field": "gender",
+                  "order": "descending"
+                }
+              ]
+            },
+            {
+              "calculate": "datum.v1 / (datum.v2 - datum.v1) * 100",
+              "as": "percentage"
+            }
+          ],
+          "encoding": {
+            "y": {
+              "field": "v1",
+              "type": "quantitative",
+              "title": "population"
+            },
+            "y2": {
+              "field": "v2"
+            },
+            "x": {
+              "field": "age",
+              "type": "ordinal"
+            },
+            "color": {
+              "field": "gender",
+              "type": "nominal",
+              "scale": {
+                "range": [
+                  "#675193",
+                  "#ca8861"
+                ]
+              }
+            }
+          },
+          "layer": [
+            {
+              "mark": "bar"
+            },
+            {
+              "mark": {
+                "type": "text",
+                "dx": 0,
+                "dy": 0
+              },
+              "encoding": {
+                "color": {
+                  "value": "black"
+                },
+                "text": {
+                  "field": "percentage",
+                  "type": "quantitative",
+                  "format": ".1f"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "66636702"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a doughnut chart that includes image marks aligned correctly for each segment, even when there is a significant variation in segment sizes. They aim to prevent misalignment when one value is significantly larger (e.g., above 100) than the others.",
+      "visualization_requirements": [
+        "The chart must include a doughnut (pie) chart representation of the data.",
+        "Each segment must display an image mark at an appropriate position relative to the segment's angle.",
+        "The images should stay aligned, regardless of value differences between segments."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Transform and aggregate operations in examples",
+            "relevance": "The example demonstrates the use of aggregate and window functions to calculate cumulative values, which are key for positioning images accurately.",
+            "key_information": "The calculation of cumulative sums (`cum`) and segment proportions (`mentions/2`) is essential for positioning visual elements relative to their segments."
+          }
+        ]
+      },
+      "approach": "The misalignment occurs because the positions of the image marks are calculated based on normalized trigonometric values, which become distorted if the values are imbalanced. The solution involves scaling the position of the image marks based on their normalized segment size and ensuring consistent alignment using trigonometric calculations.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Refine the data transformation to account for large value differences by normalizing proportions for consistent segment positioning.",
+          "code_snippet": "Add a new transformation to scale image positions based on relative segment sizes."
+        },
+        {
+          "step_number": 2,
+          "action": "Adjust the `x` and `y` encoding scales to ensure the image marks are proportionally aligned to the center.",
+          "code_snippet": "Update the scales for `x` and `y` to better align the images in case of large segments."
+        },
+        {
+          "step_number": 3,
+          "action": "Test the visualization with extreme value differences to confirm image alignment remains consistent.",
+          "code_snippet": "Inspect the rendered chart with adjusted scale and trigonometric calculations."
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "A refined doughnut chart with image marks correctly aligned.",
+          "data": {
+            "values": [
+              {
+                "brand": "Hair",
+                "mentions": 6,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              },
+              {
+                "brand": "Makeup",
+                "mentions": 4,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              },
+              {
+                "brand": "Fragrance",
+                "mentions": 9,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              }
+            ]
+          },
+          "encoding": {
+            "theta": {
+              "field": "mentions",
+              "type": "quantitative",
+              "stack": true
+            },
+            "color": {
+              "field": "brand",
+              "type": "nominal",
+              "legend": null
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "arc",
+                "outerRadius": 80
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radius": 90
+              },
+              "encoding": {
+                "text": {
+                  "field": "brand",
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "transform": [
+                {
+                  "joinaggregate": [
+                    {
+                      "op": "sum",
+                      "field": "mentions",
+                      "as": "total"
+                    }
+                  ]
+                },
+                {
+                  "window": [
+                    {
+                      "op": "sum",
+                      "field": "mentions",
+                      "as": "cum"
+                    }
+                  ],
+                  "frame": [
+                    null,
+                    0
+                  ]
+                },
+                {
+                  "calculate": "cos(2*PI*(datum.cum-datum.mentions/2)/datum.total) * 1.5",
+                  "as": "y"
+                },
+                {
+                  "calculate": "sin(2*PI*(datum.cum-datum.mentions/2)/datum.total) * 1.5",
+                  "as": "x"
+                }
+              ],
+              "mark": {
+                "type": "image",
+                "width": 20,
+                "height": 20
+              },
+              "encoding": {
+                "url": {
+                  "field": "image"
+                },
+                "x": {
+                  "field": "x",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      -2,
+                      2
+                    ]
+                  },
+                  "axis": null
+                },
+                "y": {
+                  "field": "y",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      -2,
+                      2
+                    ]
+                  },
+                  "axis": null
+                }
+              }
+            }
+          ],
+          "view": {
+            "stroke": null
+          }
+        }
+      }
+    },
+    "question_id": "68346456"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to add a dashed horizontal line at a specific y-value (e.g., y = 100%) to an existing Vega-Lite line chart with multiple series, without impacting the legend or x-axis labels. They aim for the line to not appear in the legend and to avoid disrupting the axis labels or tick marks.",
+      "visualization_requirements": [
+        "Add a dashed horizontal line at a specific y-value across the entire plot.",
+        "Ensure the line does not appear in the legend.",
+        "Maintain the existing gridlines and tick marks without modification.",
+        "Label the y-axis cleanly, avoiding additional labels caused by the horizontal line."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "layer with `rule` mark",
+            "relevance": "The user attempted to use a `rule` mark to add a horizontal or vertical line, which is the right approach for a constant reference line.",
+            "key_information": "The `rule` mark can be used to create a line spanning the x or y dimension, but needs proper configuration to not affect the legend."
+          },
+          {
+            "section": "encoding using `color`",
+            "relevance": "The example uses `color` to differentiate series, but the horizontal line needs to avoid inclusion in the legend.",
+            "key_information": "Using `value` for `color` ensures the line is styled consistently without being associated with data series."
+          }
+        ]
+      },
+      "approach": "The solution involves adding a layer with a `rule` mark for the horizontal line. To ensure it does not appear in the legend, we use the `color` channel with a fixed value instead of a field. Additionally, the `style` can be customized to make the line dashed.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the main chart with the existing line series.",
+          "code_snippet": "This includes the encoding for x, y, and color to differentiate the series."
+        },
+        {
+          "step_number": 2,
+          "action": "Add a new layer with a `rule` mark to represent the horizontal line at y = 100%.",
+          "code_snippet": "The `rule` mark uses a fixed `datum` for the y-coordinate, and `strokeDash` is used to make it dashed."
+        },
+        {
+          "step_number": 3,
+          "action": "Ensure the line is excluded from the legend by using a constant color value instead of mapping it to a data field.",
+          "code_snippet": "The color is set directly with `value` rather than `field`."
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": 600,
+          "height": 400,
+          "data": {
+            "url": "https://raw.githubusercontent.com/COG-UK/UK-lineage-dynamics-analysis/2ca84630ab1fb80b949d25b05b6578fa9674f574/analyses/epidemiological/results/lag-estimate-llhd-profiles.csv"
+          },
+          "layer": [
+            {
+              "mark": "line",
+              "encoding": {
+                "x": {
+                  "field": "value",
+                  "type": "quantitative",
+                  "title": "Parameter Value"
+                },
+                "y": {
+                  "field": "llhd",
+                  "type": "quantitative",
+                  "title": "Log-likelihood",
+                  "scale": {
+                    "zero": false
+                  }
+                },
+                "color": {
+                  "field": "param",
+                  "type": "nominal",
+                  "title": "Series"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "y": 100
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "color": "black"
+              },
+              "encoding": {
+                "y": {
+                  "field": "y",
+                  "type": "quantitative"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "59295466"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to control the order of stacked groups in a Vega-Lite stacked bar chart, specifically to ensure that specific categories appear in a defined order. For example, 'fog' should always appear at the bottom, followed by 'sun', and so on. Additionally, the user may want to apply domain control to 'cut off' sections of data for better visualization.",
+      "visualization_requirements": [
+        "Control the stacking order of groups in a stacked bar chart.",
+        "Possibly set a domain for the y-axis to restrict the range displayed."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "The color encoding and data transformations in the provided example.",
+            "relevance": "This section demonstrates how categories are assigned colors and how transformations manipulate the data.",
+            "key_information": "The field used for grouping and stacking can be explicitly ordered using a calculated field or a scale's domain property."
+          }
+        ]
+      },
+      "approach": "The solution will use Vega-Lite's `scale` property for the `color` or `y` channel to define the stacking order. This ensures the groups ('fog', 'sun', etc.) appear in the desired sequence. Additionally, the `domain` property will be applied to restrict the axis range if necessary.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the data transformation step to ensure the stacking field ('weather' in this case) has a predefined order using Vega-Lite's `scale.domain` property.",
+          "code_snippet": "\"encoding\": { \"color\": { \"field\": \"weather\", \"type\": \"nominal\", \"scale\": { \"domain\": [\"fog\", \"sun\", \"rain\"] } } }"
+        },
+        {
+          "step_number": 2,
+          "action": "If needed, use the `y` encoding scale's domain to restrict the visible range of the data to achieve a 'cut off' effect.",
+          "code_snippet": "\"encoding\": { \"y\": { \"field\": \"value\", \"type\": \"quantitative\", \"scale\": { \"domain\": [0, 100] } } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "https://vega.github.io/editor/data/weather.csv"
+          },
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "month",
+              "type": "ordinal",
+              "title": "Month"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "count",
+              "type": "quantitative",
+              "title": "Total Count",
+              "scale": {
+                "domain": [
+                  0,
+                  1000
+                ]
+              }
+            },
+            "color": {
+              "field": "weather",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "fog",
+                  "sun",
+                  "rain"
+                ],
+                "range": [
+                  "#a6cee3",
+                  "#1f78b4",
+                  "#b2df8a"
+                ]
+              },
+              "legend": {
+                "title": "Weather Type"
+              }
+            }
+          },
+          "config": {
+            "axis": {
+              "labelFontSize": 12,
+              "titleFontSize": 14
+            }
+          }
+        }
+      }
+    },
+    "question_id": "61928545"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a time series graph with an X-axis that uses UTC-formatted timestamps without repeating vague labels, even when the width is between 521-594 pixels.",
+      "visualization_requirements": [
+        "Ensure the X-axis labels display clear, non-repeating timestamps.",
+        "Keep the time displayed in UTC format."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "The user's use of scale: {\"type\": \"utc\"}",
+            "relevance": "It ensures that timestamps remain in UTC but affects label formatting depending on width.",
+            "key_information": "Changing or removing this scale affects how timestamps are displayed, with local time being shown if it's removed."
+          }
+        ]
+      },
+      "approach": "To fix the label formatting without sacrificing clarity or UTC formatting, we introduce a custom format for the labels. This ensures that time is presented consistently regardless of width.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a custom format for the X-axis labels to show both date and time, ensuring UTC display.",
+          "code_snippet": "\"axis\": { \"format\": \"%Y-%m-%d %H:%M\", \"labelAngle\": 15 }"
+        },
+        {
+          "step_number": 2,
+          "action": "Maintain the scale as UTC to preserve time formatting.",
+          "code_snippet": "\"scale\": { \"type\": \"utc\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "Using utc scale with custom label formatting for X-axis.",
+          "data": {
+            "values": [
+              {
+                "date": "Sun, 01 Jan 2012 23:00:00",
+                "price": 150
+              },
+              {
+                "date": "Sun, 02 Jan 2012 00:00:00",
+                "price": 100
+              },
+              {
+                "date": "Sun, 02 Jan 2012 01:00:00",
+                "price": 170
+              },
+              {
+                "date": "Sun, 02 Jan 2012 02:00:00",
+                "price": 165
+              },
+              {
+                "date": "Sun, 02 Jan 2012 03:00:00",
+                "price": 200
+              }
+            ]
+          },
+          "mark": "line",
+          "encoding": {
+            "x": {
+              "field": "date",
+              "timeUnit": "yearmonthdatehoursminutes",
+              "scale": {
+                "type": "utc"
+              },
+              "axis": {
+                "format": "%Y-%m-%d %H:%M",
+                "labelAngle": 15
+              }
+            },
+            "y": {
+              "field": "price",
+              "type": "quantitative"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "60934166"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a bar chart using Vega-Lite where the y-axis labels display integer values without commas. Specifically, instead of displaying numbers with commas like '15,000', the user prefers to display '15000' without any thousand separators.",
+      "visualization_requirements": [
+        "The y-axis labels should be formatted to display integers without commas or any thousand separators.",
+        "The provided data and visualization structure should not be altered beyond the necessary formatting changes."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "y-axis encoding",
+            "relevance": "The y-axis formatting is essential since it controls how numeric values are displayed. The user's requirement directly pertains to the formatting of numeric labels on the y-axis.",
+            "key_information": "To remove commas from numeric labels, we need to use the 'format' property in the y-axis configuration, specifying a format pattern that omits thousand separators."
+          }
+        ]
+      },
+      "approach": "The most efficient way to achieve the desired formatting in Vega-Lite is by modifying the 'format' property of the y-axis. By setting 'format' to 'd', we ensure that the numbers are displayed as integers without commas or additional formatting.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the y-axis configuration in the Vega-Lite specification to include the 'format' property with a value of 'd'.",
+          "code_snippet": "\"y\": { \"field\": \"b\", \"type\": \"quantitative\", \"axis\": { \"format\": \"d\" } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "A simple bar chart with integer axis values formatted without commas.",
+          "data": {
+            "values": [
+              {
+                "a": 0,
+                "b": 28
+              },
+              {
+                "a": 1,
+                "b": 38
+              },
+              {
+                "a": 2,
+                "b": 35
+              }
+            ]
+          },
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "a",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "b",
+              "type": "quantitative",
+              "axis": {
+                "format": "d"
+              }
+            }
+          }
+        }
+      }
+    },
+    "question_id": "78705532"
+  }
+]

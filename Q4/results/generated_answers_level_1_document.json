@@ -1,0 +1,2645 @@
+[
+  {
+    "problem_analysis": {
+      "user_needs": "The user needs to create a Vega-Lite visualization where the bars are centered horizontally on the category names, but without the unwanted line at the top of the chart. The problem arises from the negative bandPosition, which results in an additional, undesired grid line appearing at the top of the chart.",
+      "visualization_requirements": [
+        "Bars centered horizontally on the category names.",
+        "No additional grid lines at the top of the chart."
+      ]
+    },
+    "solution": {
+      "approach": "Adjust the bandPosition to prevent an additional line at the top without losing the centered alignment of the bars on the category labels.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "bandPosition",
+            "relevance": "This property affects where grid lines and ticks are positioned relative to bands, which is crucial for adjusting the appearance of the unwanted line at the top.",
+            "key_information": "bandPosition can be negative, which will move the bands and associated grid lines upwards on the chart, but needs fine-tuning to avoid unwanted lines."
+          },
+          {
+            "section": "grid",
+            "relevance": "Grid settings are important for controlling the visibility and placement of grid lines in conjunction with bandPosition adjustments.",
+            "key_information": "Using gridColor similar to the chart's background or adjusting its visibility might help in controlling undesired grid lines."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Set bandPosition to slightly less negative than -0.35 to avoid the bar's grid line moving out of the visible chart area, specifically to -0.33 as previously tested by the user.",
+          "code_snippet": "\"bandPosition\": -0.33"
+        },
+        {
+          "step_number": 2,
+          "action": "Fine-tune the grid properties to ensure no unwanted grid lines appear while maintaining necessary ones for visual structure.",
+          "code_snippet": "\"gridColor\": \"#E2E8F0\", \"grid\": true"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\\n    \\\"$schema\\\": \\\"https://vega.github.io/schema/vega-lite/v5.json\\\",\\n    \\\"description\\\": \\\"bar-chart\\\",\\n    \\\"config\\\": {\\n        \\\"style\\\": {\\n            \\\"cell\\\": {\\n                \\\"stroke\\\": \\\"#E2E8F0\\\"\\n            }\\n        }\\n    },\\n    \\\"data\\\": {\\n        \\\"values\\\": []\\n    },\\n    \\\"mark\\\": {\\\"type\\\": \\\"bar\\\"},\\n    \\\"encoding\\\": {\\n        \\\"x\\\": {\\n            \\\"field\\\": \\\"b\\\",\\n            \\\"type\\\": \\\"quantitative\\\",\\n            \\\"axis\\\": {\\n                \\\"labels\\\": true,\\n                \\\"labelAngle\\\": 0,\\n                \\\"title\\\": null,\\n                \\\"labelFontSize\\\": 10,\\n                \\\"labelColor\\\": \\\"#94A3B8\\\",\\n                \\\"ticks\\\": false,\\n                \\\"domain\\\": false,\\n                \\\"gridColor\\\": \\\"#E2E8F0\\\",\\n                \\\"labelPadding\\\": 10,\\n                \\\"grid\\\": true\\n            },\\n            \\\"scale\\\": {\\n                \\\"paddingInner\\\": 0.2,\\n                \\\"paddingOuter\\\": 0.1\\n            },\\n            \\\"sort\\\": {\\\"field\\\": \\\"c\\\"}\\n        },\\n        \\\"y\\\": {\\n            \\\"field\\\": \\\"a\\\",\\n            \\\"type\\\": \\\"nominal\\\",\\n            \\\"axis\\\": {\\n                \\\"title\\\": null,\\n                \\\"labelFontSize\\\": 10,\\n                \\\"labelColor\\\": \\\"#94A3B8\\\",\\n                \\\"ticks\\\": false,\\n                \\\"domain\\\": false,\\n                \\\"gridColor\\\": \\\"#E2E8F0\\\",\\n                \\\"labelPadding\\\": 16,\\n                \\\"labelOffset\\\": 3,\\n                \\\"grid\\\": true,\\n                \\\"bandPosition\\\": -0.33\\n            },\\n            \\\"scale\\\": {\\n                \\\"paddingInner\\\": 0.4,\\n                \\\"paddingOuter\\\": 0.2\\n            }\\n        },\\n        \\\"color\\\": {\\\"field\\\": \\\"c\\\", \\\"scale\\\": {\\\"range\\\": [\\\"${this.color}\\\"]}, \\\"legend\\\": null},\\n        \\\"tooltip\\\": {\\\"field\\\": \\\"d\\\", \\\"type\\\": \\\"ordinal\\\"}\\n    },\\n    \\\"width\\\": \\\"container\\\",\\n    \\\"height\\\": +this.height\\n}"
+      }
+    },
+    "question_id": "75114788"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create a Vega-Lite visualization that includes a maroon rule (line) indicating a specific point along the x-axis, labeled '0'. However, the inclusion of this rule causes the preceding data lines (representing 'Apple' and 'Mango' types) to be discontinuous.",
+      "visualization_requirements": [
+        "Continuity in the line graphs representing different types across the x-axis",
+        "Inclusion of a distinct rule at x-axis label '0' without disrupting the continuity of line graphs"
+      ]
+    },
+    "solution": {
+      "approach": "To resolve the discontinuity, we can modify the 'fold' transform in the visualization's data processing pipeline. This modification ensures that the point labeled '0' is treated as a continuation rather than a breaking point in the line series. Specifically, we'll add the label '0' properly into the sequence of x-axis values in the 'fold' and adjust the x-axis sorting accordingly.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Fold Transform",
+            "relevance": "This section is crucial as it provides insights into how Vega-Lite handles transformations of array data into tabular form, which is essential for creating line charts with multiple series from complex data structures.",
+            "key_information": "Transformations in Vega-Lite can convert array data into a tabular format, thereby allowing multiple metrics to be plotted on the same graph with the 'fold' transform defining the set of properties to be transformed into the table columns."
+          },
+          {
+            "section": "Scale and Sorting",
+            "relevance": "Understanding how to customize scales and sorting is key to correctly positioning the x-axis values and ensuring the line continuity across a breakpoint.",
+            "key_information": "Vega-Lite allows customization of scales and sorting within the encoding channels, which can be leveraged to maintain continuity and proper order of x-axis values even after inserting new data points."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Update the 'fold' transformation to correctly include '0' in the sequence.",
+          "code_snippet": "\"transform\": [{\"fold\": [\"pre_120\",\"pre_90\",\"pre_60\",\"0\",\"post_60\",\"post_90\",\"post_120\"]}]"
+        },
+        {
+          "step_number": 2,
+          "action": "Ensure correct sorting of x-axis to maintain the intended order and include the '0' point.",
+          "code_snippet": "\"encoding\": {\"x\": {\"field\": \"key\", \"sort\": [\"pre_120\", \"pre_90\", \"pre_60\", \"0\", \"post_60\", \"post_90\", \"post_120\"]}}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\":\"https://vega.github.io/schema/vega-lite/v5.json\",\"width\":800,\"height\":200,\"data\":{\"values\":[{\"pre_120\":0,\"pre_90\":0,\"pre_60\":0,\"0\":0,\"post_60\":100,\"post_90\":150,\"post_120\":200,\"type\":\"Mango\",\"count\":\"twenty\"},{\"pre_120\":0,\"pre_90\":0,\"pre_60\":0,\"0\":0,\"post_60\":90,\"post_90\":140,\"post_120\":190,\"type\":\"Apple\",\"count\":\"ten\"}]},\"transform\":[{\"fold\":[\"pre_120\",\"pre_90\",\"pre_60\",\"0\",\"post_60\",\"post_90\",\"post_120\"]}],\"layer\":[{\"mark\":\"line\",\"encoding\":{\"x\":{\"field\":\"key\",\"sort\":[\"pre_120\",\"pre_90\",\"pre_60\",\"0\",\"post_60\",\"post_90\",\"post_120\"]},\"y\":{\"field\":\"value\",\"type\":\"quantitative\"},\"color\":{\"field\":\"type\",\"type\":\"nominal\"}}},{\"mark\":{\"type\":\"rule\",\"color\":\"maroon\",\"size\":3,\"strokeDash\":[6,4]},\"encoding\":{\"x\":{\"datum\":\"0\"}}}]}\""
+      }
+    },
+    "question_id": "73273219"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is working on a Vega-Lite visualization to display the prices of different types of gasoline from 1996 to 2020 using a multi-series line chart. They aim to make the chart more readable by implementing tooltips that will provide detailed information about the data points when hovered over.",
+      "visualization_requirements": [
+        "Implement tooltips to provide detailed data on hover.",
+        "Ensure that each series in the multi-line chart can display its specific data through tooltips."
+      ]
+    },
+    "solution": {
+      "approach": "To meet the user's needs, tooltips will be added to the visualization to show detailed information for each series. The tooltips will be configured to show data based on the encoding, which automatically displays all fields used in the encoding or specific fields chosen for clarity.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Tooltip Based on Encoding",
+            "relevance": "This section is relevant as it provides guidance on how to automatically generate tooltips that show data for all encoded fields or specific fields relevant to the user's dataset.",
+            "key_information": "By setting the 'tooltip' property of the mark definition to true, Vega-Lite will enable default tooltips which will include all fields specified in the encoding. This can be refined by specifying an array of fields."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add the 'tooltip' encoding to display data from all used fields or specific fields in the tooltips.",
+          "code_snippet": "\"encoding\": { \"tooltip\": [{ \"field\": \"A1\", \"type\": \"quantitative\" }, { \"field\": \"date\", \"type\": \"temporal\" }] }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"description\": \"Multi-series line chart displaying different types of gasoline prices from 1996-2020.\", \"width\": 720, \"height\": 480, \"padding\": 5, \"data\": { \"name\": \"gas_prices\", \"url\": \"data/testInfo.csv\", \"format\": {\"type\": \"csv\", \"parse\": {\"A1\": \"number\", \"date\": \"date\"}} }, \"repeat\": { \"layer\": [\"A1\",\"A2\",\"A3\",\"R1\",\"R2\",\"R3\",\"M1\",\"M2\",\"M3\",\"P1\",\"P2\",\"P3\",\"D1\"] }, \"spec\": { \"mark\": \"line\", \"encoding\": { \"x\": { \"timeUnit\": \"yearmonth\", \"title\": \"Date\", \"field\": \"date\" }, \"y\": { \"field\": {\"repeat\":\"layer\"}, \"title\": \"Gas Prices\", \"type\": \"quantitative\" }, \"color\": { \"datum\": {\"repeat\": \"layer\"}, \"type\": \"nominal\" }, \"tooltip\": [{ \"field\": \"date\", \"title\": \"Date\", \"type\": \"temporal\" }, { \"field\": {\"repeat\": \"layer\"}, \"title\": \"Gas Price\", \"type\": \"quantitative\" }] } } }"
+      }
+    },
+    "question_id": "69230751"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to highlight specific bars in a Vega-Lite bar chart. Specifically, they wish to highlight the bars for 'Documentary' and 'Drama' in red, while the other bars should remain grey.",
+      "visualization_requirements": [
+        "Highlight bars for specific categories ('Documentary' and 'Drama')",
+        "Differentiate these categories using a specific red color",
+        "Maintain a neutral grey color for other categories"
+      ]
+    },
+    "solution": {
+      "approach": "To highlight specific bars in the visualization, we can use conditional encodings based on a selection filter. This will allow us to apply different colors to the bars depending on whether they match the specified categories.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Conditional Encoding",
+            "relevance": "This section is pertinent as it explains how to apply conditional formatting based on data properties, which is essential for highlighting specific bars.",
+            "key_information": "We can conditionally change the color of marks by specifying a condition in the 'color' encoding that checks if the category matches our criteria ('Documentary' or 'Drama')."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the bar's color encoding to include a condition that checks the 'Major Genre' field against the specified categories.",
+          "code_snippet": "\"color\": { \"condition\": {\"test\": \"datum['Major Genre'] == 'Documentary' || datum['Major Genre'] == 'Drama'\", \"value\": \"#dd2525\"}, \"value\": \"#4682b4\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"width\": 200, \"height\": {\"step\": 16}, \"data\": {\"url\": \"data/movies.json\"}, \"encoding\": { \"y\": { \"field\": \"Major Genre\", \"type\": \"nominal\", \"axis\": null } }, \"layer\": [{ \"mark\": {\"type\": \"bar\", \"color\": \"#ddd\"}, \"encoding\": { \"x\": { \"aggregate\": \"mean\", \"field\": \"IMDB Rating\", \"scale\": {\"domain\": [0, 10]}, \"title\": \"Mean IMDB Ratings\" } } }, { \"mark\": {\"type\": \"text\", \"align\": \"left\", \"x\": 5}, \"encoding\": { \"text\": {\"field\": \"Major Genre\"}, \"detail\": {\"aggregate\": \"count\"} } }, { \"mark\": {\"type\": \"bar\"}, \"encoding\": { \"x\": { \"aggregate\": \"mean\", \"field\": \"IMDB Rating\", \"scale\": {\"domain\": [0, 10]}, \"title\": \"Mean IMDB Ratings\" }, \"color\": { \"condition\": {\"test\": \"datum['Major Genre'] == 'Documentary' || datum['Major Genre'] == 'Drama'\", \"value\": \"#dd2525\"}, \"value\": \"#4682b4\" } } }] }"
+      }
+    },
+    "question_id": "68805413"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to implement multiple aggregations within a single Vega-Lite visualization. These aggregations have different 'groupby' conditions, which complicates the setup because typical Vega-Lite aggregation transforms summarize data in a single record per group, not allowing for simultaneous different groupings within the same visualization.",
+      "visualization_requirements": [
+        "Ability to count responses for different API endpoints grouped by response code and endpoint.",
+        "Ability to count total requests per endpoint regardless of response code."
+      ]
+    },
+    "solution": {
+      "approach": "To achieve the desired visualization with multiple aggregations based on different groupings, the 'joinaggregate' transform will be used. This transform allows for extending the input data with aggregated values without reducing the dataset to one record per group, thus supporting the simultaneous application of different aggregations in the context of the same visual representation.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Join Aggregate",
+            "relevance": "This section is crucial because it explains how the 'joinaggregate' transform can be used to add aggregate calculations to data while preserving the original structure of the dataset, which is essential for performing multiple different aggregations.",
+            "key_information": "The 'joinaggregate' transform extends the input data objects with aggregate values in new fields without summarizing the data. This allows for multiple, different aggregate calculations on the same dataset."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the Vega-Lite specification using a 'joinaggregate' transform to count responses per endpoint grouped by response code and a separate count for total requests per endpoint.",
+          "code_snippet": "{\"transform\": [{\"joinaggregate\": [{\"op\": \"count\", \"as\": \"response_count\"}], \"groupby\": [\"response\", \"request\"]}, {\"joinaggregate\": [{\"op\": \"count\", \"as\": \"total_requests\"}], \"groupby\": [\"request\"]}]}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": {\"values\": [{\"response\": 200, \"request\": \"/ST\"}, {\"response\": 500, \"request\": \"/ST\"}, {\"response\": 200, \"request\": \"/PP\"}, {\"response\": 500, \"request\": \"/PP\"}, {\"response\": 200, \"request\": \"/CP\"}, {\"response\": 200, \"request\": \"/CP\"}, {\"response\": 500, \"request\": \"/CP\"}]}, \"transform\": [{\"joinaggregate\": [{\"op\": \"count\", \"as\": \"response_count\"}], \"groupby\": [\"response\", \"request\"]}, {\"joinaggregate\": [{\"op\": \"count\", \"as\": \"total_requests\"}], \"groupby\": [\"request\"]}], \"mark\": \"bar\", \"encoding\": {\"x\": {\"field\": \"response_count\", \"type\": \"quantitative\", \"stack\": \"zero\"}, \"y\": {\"field\": \"request\", \"type\": \"nominal\"}, \"color\": {\"field\": \"response\", \"type\": \"nominal\"}}}"
+      }
+    },
+    "question_id": "60929534"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a Vega-Lite heatmap to visualize the accuracy of binary classification predictions. They wish to overlay text labels (True Positives, False Positives, True Negatives, False Negatives) along with their corresponding values directly on the heatmap cells. Additionally, they seek to turn off the legend for a cleaner visualization.",
+      "visualization_requirements": [
+        "Overlay text labels on heatmap cells to indicate classification outcomes and their counts.",
+        "Turn off the legend to simplify the visualization."
+      ]
+    },
+    "solution": {
+      "approach": "To meet these requirements, a layered Vega-Lite visualization will be constructed. The base layer will be a heatmap, and the overlay will consist of text annotations for the classification counts. Using the 'layer' property in Vega-Lite, these two views can be combined into a single visual output.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Layering views",
+            "relevance": "This section is directly relevant as it describes how to superimpose multiple views (like text over a heatmap) in a single visualization using the 'layer' property.",
+            "key_information": "Layering involves putting multiple specifications into an array under the 'layer' property. This approach allows combining different types of visual representations, such as rect marks for the heatmap and text marks for annotations, in one cohesive chart."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the heatmap layer with rectangles colored by count values.",
+          "code_snippet": "{ \"mark\": {\"type\": \"rect\"}, \"encoding\": { \"y\": { \"field\": \"actual\", \"type\": \"nominal\" }, \"x\": { \"field\": \"predicted\", \"type\": \"nominal\" }, \"color\": { \"field\": \"count\", \"type\": \"quantitative\" } } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Add text annotations for TP, FP, TN, and FN along with their counts.",
+          "code_snippet": "{ \"mark\": {\"type\": \"text\", \"color\": \"white\"}, \"encoding\": { \"y\": {\"field\": \"actual\", \"type\": \"nominal\"}, \"x\": {\"field\": \"predicted\", \"type\": \"nominal\"}, \"text\": {\"field\": \"count\", \"type\": \"quantitative\"} } }"
+        },
+        {
+          "step_number": 3,
+          "action": "Combine the heatmap and text layers using the 'layer' property.",
+          "code_snippet": "{ \"layer\": [ { \"mark\": \"rect\" }, { \"mark\": \"text\" } ] }"
+        },
+        {
+          "step_number": 4,
+          "action": "Turn off the legend by setting the 'legend' property to 'null' within the color channel of the heatmap.",
+          "code_snippet": "\"color\": { \"field\": \"count\", \"type\": \"quantitative\", \"legend\": null }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": { \"values\": [ {\"actual\": \"Good\", \"predicted\": \"Bad\", \"count\": 6386}, {\"actual\": \"Bad\", \"predicted\": \"Good\", \"count\": 1261}, {\"actual\": \"Bad\", \"predicted\": \"Bad\", \"count\": 6386}, {\"actual\": \"Good\", \"predicted\": \"Good\", \"count\": 24030} ] }, \"layer\": [ { \"mark\": {\"type\": \"rect\", \"strokeWidth\": 2}, \"encoding\": { \"y\": { \"field\": \"actual\", \"type\": \"nominal\" }, \"x\": { \"field\": \"predicted\", \"type\": \"nominal\" }, \"color\": { \"field\": \"count\", \"type\": \"quantitative\", \"legend\": null } } }, { \"mark\": {\"type\": \"text\", \"color\": \"white\"}, \"encoding\": { \"y\": { \"field\": \"actual\", \"type\": \"nominal\" }, \"x\": { \"field\": \"predicted\", \"type\": \"nominal\" }, \"text\": { \"field\": \"count\", \"type\": \"quantitative\" } } } ] }"
+      }
+    },
+    "question_id": "63408653"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user aims to create a multi-histogram plot in Vega-Lite, visualizing separate histograms for different datasets ('foo' and 'baz') on a single graphic. Each histogram should represent the frequency of values using bars colored differently for each dataset.",
+      "visualization_requirements": [
+        "Ability to visualize multiple histograms on a single chart",
+        "Different color bars for each dataset to distinguish between them",
+        "Correct usage of Vega-Lite transforms to structure the data appropriately for visualization"
+      ]
+    },
+    "solution": {
+      "approach": "To create a multi-histogram plot with Vega-Lite, we need to properly format the data so each value array ('foo' and 'baz') can be independently counted and visualized. Using the 'fold' transform will allow us to convert these arrays into a format that can be used to create histograms by folding the arrays into key-value pairs where the key is the dataset identifier and the value is the data value. After folding, we will create histograms using layered bar marks.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Fold Transform",
+            "relevance": "The 'fold' transform is crucial for converting our array data into a form that allows for creating separate histograms for each dataset. It collapses fields into key-value pairs, suitable for layered visualization.",
+            "key_information": "The fold transform maps data fields into a 'key' and a 'value', which are then used for aggregative counts in the visualization, aligning perfectly with the histogram requirement."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the data and use the 'fold' transform to prepare it for dual histogram plotting.",
+          "code_snippet": "{\"data\": {\"values\": {\"foo\": [0,0,0,1,1,1,2,2,2], \"baz\": [2,2,2,3,3,3,4,4,4]}}, \"transform\": [{\"fold\": [\"foo\", \"baz\"], \"as\": [\"category\", \"value\"]}]}"
+        },
+        {
+          "step_number": 2,
+          "action": "Set up the encoding for the X and Y axes, utilizing the 'key' and 'value' produced by the fold, and differentiate histograms by color.",
+          "code_snippet": "{\"mark\": \"bar\", \"encoding\": {\"x\": {\"field\": \"value\", \"type\": \"quantitative\", \"bin\": true}, \"y\": {\"aggregate\": \"count\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"category\", \"type\": \"nominal\"}}}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"data\": {\"values\": {\"foo\": [0,0,0,1,1,1,2,2,2], \"baz\": [2,2,2,3,3,3,4,4,4]}}, \"transform\": [{\"fold\": [\"foo\", \"baz\"], \"as\": [\"category\", \"value\"]}], \"mark\": \"bar\", \"encoding\": {\"x\": {\"field\": \"value\", \"type\": \"quantitative\", \"bin\": true}, \"y\": {\"aggregate\": \"count\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"category\", \"type\": \"nominal\"}}}"
+      }
+    },
+    "question_id": "62764869"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create an interactive Vega-Lite line chart where tooltips show data values when the mouse hovers near the lines, not just directly on the exact pixel of a data point. They also want the approach to support multiple layers in a combined chart, such as line+bar visualizations.",
+      "visualization_requirements": [
+        "Enable tooltips to show data when the mouse is near a line, not just directly on a data point.",
+        "Support nearest data point selection for improved interactivity.",
+        "Allow integration with layered charts, such as combining line and bar marks."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Nearest Selection",
+            "relevance": "The nearest property facilitates interaction by creating an invisible voronoi diagram, allowing tooltips to snap to the nearest data point.",
+            "key_information": "Using a point mark with the 'nearest' property ensures tooltips appear for the closest data point under the cursor. However, multi-element marks like 'line' require layering discrete mark types (e.g., 'point') with adjusted opacity."
+          }
+        ]
+      },
+      "approach": "To enable tooltips to appear near a line, we will use a layered approach. A 'point' mark will be added with the 'nearest' property to capture mouseover events on or near the line. This will create a snapping effect for tooltips. Additionally, a 'rule' mark will display across the chart for further clarity. This approach works seamlessly with multiple layers in the chart.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Set up a layered chart structure to handle the line and tooltip interactivity.",
+          "code_snippet": "Add a 'layer' array to the Vega-Lite specification to manage line and interactive elements."
+        },
+        {
+          "step_number": 2,
+          "action": "Add the 'line' mark for the main visualization of stock prices over time.",
+          "code_snippet": "\"mark\": { \"type\": \"line\" },"
+        },
+        {
+          "step_number": 3,
+          "action": "Introduce a 'point' mark with 'nearest' selection to capture mouse hover interactions.",
+          "code_snippet": "\"mark\": { \"type\": \"point\", \"opacity\": 0 }, \"params\": [{ \"name\": \"hover\", \"select\": { \"type\": \"point\", \"nearest\": true, \"on\": \"pointerover\", \"clear\": \"pointerout\" } }]"
+        },
+        {
+          "step_number": 4,
+          "action": "Add a 'rule' mark to visually highlight the hovered point's x-coordinate.",
+          "code_snippet": "\"mark\": \"rule\", \"encoding\": { \"opacity\": { \"condition\": { \"param\": \"hover\", \"value\": 0.3 }, \"value\": 0 }, \"tooltip\": [{ \"field\": \"symbol\", \"type\": \"nominal\" }, { \"field\": \"price\", \"type\": \"quantitative\" }] }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "Interactive line chart with tooltips appearing for the nearest point to the mouse.",
+          "data": {
+            "url": "data/stocks.csv"
+          },
+          "width": 600,
+          "height": 400,
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal"
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "line"
+              },
+              "encoding": {
+                "y": {
+                  "field": "price",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "symbol",
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "opacity": 0
+              },
+              "encoding": {
+                "y": {
+                  "field": "price",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "symbol",
+                  "type": "nominal"
+                }
+              },
+              "params": [
+                {
+                  "name": "hover",
+                  "select": {
+                    "type": "point",
+                    "nearest": true,
+                    "on": "pointerover",
+                    "clear": "pointerout"
+                  }
+                }
+              ]
+            },
+            {
+              "mark": "rule",
+              "encoding": {
+                "x": {
+                  "field": "date",
+                  "type": "temporal"
+                },
+                "opacity": {
+                  "condition": {
+                    "param": "hover",
+                    "value": 0.3
+                  },
+                  "value": 0
+                },
+                "tooltip": [
+                  {
+                    "field": "symbol",
+                    "type": "nominal"
+                  },
+                  {
+                    "field": "price",
+                    "type": "quantitative"
+                  }
+                ]
+              },
+              "transform": [
+                {
+                  "filter": {
+                    "param": "hover",
+                    "empty": false
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "74796097"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create a bar graph in Vega-Lite that aggregates multiple attributes from a dataset into a single derived attribute (Taste_Points), and then displays this derived attribute by country. The visualization is intended to show the sum of scores (out of 50) from different tasting dimensions such as Aroma, Flavor, Aftertaste, Acidity, and Sweetness for each country.",
+      "visualization_requirements": [
+        "Calculate a new 'Taste_Points' column by summing up five specific fields from the dataset.",
+        "Display a bar chart where the y-axis represents different countries and the x-axis represents the calculated 'Taste_Points'."
+      ]
+    },
+    "solution": {
+      "approach": "The solution involves setting up a transformation within Vega-Lite that calculates a new field based on existing data, followed by configuring the bar chart's axes to display the newly calculated 'Taste_Points' against 'Country_of_Origin'. The issue of missing countries suggests potential problems with data parsing or missing data values.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "parse",
+            "relevance": "This section is crucial as it suggests methods to ensure the data types are correctly interpreted by Vega-Lite. Given that the user mentioned many countries are ignored, ensuring that each attribute like 'Aroma', 'Flavor', etc., is correctly parsed as a number is critical for accurate calculations.",
+            "key_information": "The 'parse' object in Vega-Lite allows for explicit specification of data types for each field, ensuring correct data interpretation. This is particularly useful for numerical operations such as summing scores."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the data parsing to handle numerical fields correctly.",
+          "code_snippet": "\"parse\": { \"Aroma\": \"number\", \"Flavor\": \"number\", \"Aftertaste\": \"number\", \"Acidity\": \"number\", \"Sweetness\": \"number\" }"
+        },
+        {
+          "step_number": 2,
+          "action": "Set up the 'calculate' transformation to sum the scores and create the 'Taste_Points'.",
+          "code_snippet": "{\"calculate\": \"datum.Aroma + datum.Flavor + datum.Aftertaste + datum.Acidity + datum.Sweetness\", \"as\": \"Taste_Points\"}"
+        },
+        {
+          "step_number": 3,
+          "action": "Configure the bar chart's encoding to map 'Country_of_Origin' to the y-axis and 'Taste_Points' to the x-axis.",
+          "code_snippet": "\"encoding\": { \"y\": { \"field\": \"Country_of_Origin\", \"type\": \"nominal\" }, \"x\": { \"field\": \"Taste_Points\", \"type\": \"quantitative\" } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": { \"url\": \"https://raw.githubusercontent.com/Anika6138/InfoVis/master/arabica_data_cleaned.csv\", \"format\": { \"type\": \"csv\", \"parse\": { \"Aroma\": \"number\", \"Flavor\": \"number\", \"Aftertaste\": \"number\", \"Acidity\": \"number\", \"Sweetness\": \"number\" } } }, \"transform\": [ { \"calculate\": \"datum.Aroma + datum.Flavor + datum.Aftertaste + datum.Acidity + datum.Sweetness\", \"as\": \"Taste_Points\" } ], \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"Country_of_Origin\", \"type\": \"nominal\" }, \"x\": { \"field\": \"Taste_Points\", \"type\": \"quantitative\" } }, \"config\": {} }"
+      }
+    },
+    "question_id": "60683632"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is creating a Milestone Trend Analysis chart in Vega-Lite and wants to overlay a diagonal line and/or a triangular area on the lower right part of the chart to visually indicate non-valid areas based on milestone and report dates. The challenge is to ensure this overlay adapts dynamically to different data selections.",
+      "visualization_requirements": [
+        "Dynamic scaling of the x and y axes based on the minimum and maximum report dates and milestone finish dates.",
+        "Overlay of a diagonal line and/or triangular area that adapts to changes in the dataset to mark non-valid areas of the chart."
+      ]
+    },
+    "solution": {
+      "approach": "To dynamically overlay the required line and area, we will utilize Vega-Lite's layering and encoding capabilities. The joinaggregate transform will be used to compute the minimum and maximum values for the report and milestone dates, which will then define the scale domains dynamically. An area mark combined with a diagonal line mark will help visually indicate the non-valid chart areas.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Area Chart",
+            "relevance": "The Area Chart section provides guidelines on how to use the 'area' mark, which is essential for creating the triangular area overlay in the chart.",
+            "key_information": "Using an area mark with temporal fields on both x and y axes can create a filled area chart, which in this case will be used to mark non-valid sections."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the dataset and calculate the minimum and maximum dates using joinaggregate transform.",
+          "code_snippet": "transforms: [{ type: 'joinaggregate', fields: ['Report Date', 'Milestone Finish Date'], ops: ['min', 'max'], as: ['Report_Date_min', 'Report_Date_max', 'Milestone_Finish_Date_min', 'Milestone_Finish_Date_max'] }]"
+        },
+        {
+          "step_number": 2,
+          "action": "Set up scale domains dynamically using the calculated minimum and maximum dates.",
+          "code_snippet": "scale: { domainMin: { expr: 'Time_range_min_p' }, domainMax: { expr: 'Time_range_max_p' } }"
+        },
+        {
+          "step_number": 3,
+          "action": "Add the diagonal line and triangular area using layering, referencing the min/max dates for both x and y axes.",
+          "code_snippet": "layer: [{ mark: 'line', encoding: { x: { field: 'Report_Date_max' }, y: { field: 'Milestone_Finish_Date_max' } } }, { mark: 'area', encoding: { x: { field: 'Report_Date_min' }, y: { field: 'Milestone_Finish_Date_min' } } }]"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ width: 500, height: 500, title: { text: 'Milestone Trend Analysis' }, data: { name: 'dataset' }, transform: [{ joinaggregate: [{ op: 'min', field: 'Report Date', as: 'Report_Date_min' }, { op: 'max', field: 'Report Date', as: 'Report_Date_max' }, { op: 'min', field: 'Milestone Finish Date', as: 'Milestone_Finish_Date_min' }, { op: 'max', field: 'Milestone Finish Date', as: 'Milestone_Finish_Date_max' }], calculate: [{ expression: 'datum.Report_Date_min < datum.Milestone_Finish_Date_min ? datum.Report_Date_min : datum.Milestone_Finish_Date_min', as: 'Time_range_min' }, { expression: 'datum.Report_Date_max > datum.Milestone_Finish_Date_max ? datum.Report_Date_max : datum.Milestone_Finish_Date_max', as: 'Time_range_max' }] }, params: [{ name: 'Time_range_min_p', expr: 'data('data_0')[0]['Time_range_min']' }, { name: 'Time_range_max_p', expr: 'data('data_0')[0]['Time_range_max']' }], layer: [{ name: 'milestone_trace', mark: 'line', encoding: { x: { field: 'Report Date', type: 'temporal', axis: { title: 'Report Date', grid: true, orient: 'top' }, scale: { domainMin: { expr: 'Time_range_min_p' }, domainMax: { expr: 'Time_range_max_p' } } }, y: { field: 'Milestone Finish Date', type: 'temporal', axis: { title: 'Milestone Date', grid: true }, scale: { domainMin: { expr: 'Time_range_min_p' }, domainMax: { expr: 'Time_range_max_p' } }, color: { field: 'Task Code', scale: { scheme: 'pbiColorNominal' } } } }, { name: 'milestone_mark', mark: { type: 'circle', opacity: 1, strokeWidth: 1, size: 30, filled: false, tooltip: true }, encoding: { x: { field: 'Report Date', type: 'temporal', axis: { title: 'Report Date', grid: true } }, y: { field: 'Milestone Finish Date', type: 'temporal', axis: { title: 'Milestone Date', grid: true } }, color: { field: 'Task Code', scale: { scheme: 'pbiColorNominal' } }, tooltip: [{ field: 'Task Code', title: 'Milestone Type' }, { field: 'Milestone Finish Date', title: 'Finish Date', type: 'temporal' }, { field: 'Report Date', title: 'Report Date', type: 'temporal' }] } }, { data: { values: [{ a: '2021-12-31', b: '2021-12-31' }, { a: '2024-08-25', b: '2024-08-25' }] }, layer: [{ name: 'date_equity', mark: { type: 'line', strokeDash: [8, 4], strokeWidth: 1, color: 'red' }, encoding: { x: { field: 'a', type: 'temporal' }, y: { field: 'b', type: 'temporal' } } }, { name: 'whitespace', mark: { type: 'area', fill: 'white' }, encoding: { x: { field: 'a', type: 'temporal' }, y: { field: 'b', type: 'temporal' } } }] }, config: { style: { cell: { stroke: 'transparent' } } } }"
+      }
+    },
+    "question_id": "76362013"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is trying to replicate a custom bar chart similar to a provided image using Vega-Lite.",
+      "visualization_requirements": [
+        "Use a bar chart to display distributions.",
+        "Customize the bars similar to a given example in appearance."
+      ]
+    },
+    "solution": {
+      "approach": "Adjust the encoding and mark properties to create a bar chart with the desired appearance, including using the proper binning method and customizing the mark appearance.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Bin Transform",
+            "relevance": "Explains how to apply binning to a field, which is crucial for creating histograms or similar bar charts.",
+            "key_information": "The bin transform properties include bin, field, and as, which define how data is binned and labeled."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the 'x' encoding to ensure correct use of binning for the 'Horsepower' field.",
+          "code_snippet": "\"x\": { \"field\": \"Horsepower\", \"type\": \"quantitative\", \"bin\": true, \"axis\": { \"labelAngle\": 0 } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Set the 'y' encoding to count the number of occurrences (necessary for the bar chart).",
+          "code_snippet": "\"y\": { \"aggregate\": \"count\", \"type\": \"quantitative\" }"
+        },
+        {
+          "step_number": 3,
+          "action": "Change the 'mark' type to 'bar' for a proper bar chart visualization.",
+          "code_snippet": "\"mark\": \"bar\""
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"width\": 800,\n  \"height\": 600,\n  \"autosize\": {\n    \"type\": \"fit\",\n    \"contains\": \"padding\"\n  },\n  \"data\": {\n    \"url\": \"data/cars.json\"\n  },\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"Horsepower\",\n      \"type\": \"quantitative\",\n      \"bin\": true,\n      \"axis\": {\n        \"labelAngle\": 0\n      }\n    },\n    \"y\": {\n      \"aggregate\": \"count\",\n      \"type\": \"quantitative\"\n    }\n  }\n}"
+      }
+    },
+    "question_id": "68658805"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a Vega-Lite visualization that displays the maximum of daily temperatures while filtering based on the mean of daily temperatures. This involves computing two different aggregations on the same dataset and using one of them to filter the visualization.",
+      "visualization_requirements": [
+        "Display the maximum of daily temperatures (aggregated data)",
+        "Filter the displayed data based on another aggregate (mean of daily temperatures)"
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "theK-top example",
+            "relevance": "This example demonstrates the concept of filtering data based on an aggregated field.",
+            "key_information": "Filtering is done by applying a condition on an aggregated value to limit the data shown in the chart."
+          }
+        ]
+      },
+      "approach": "The approach involves first calculating the mean of daily temperatures for filtering purposes, then calculating the maximum of daily temperatures as the primary data to display in the chart. We need to simulate a 'group by' and 'filtering' similar to a database operation.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Preprocess the data to compute both the mean and max of the temperature data, grouping by date or required time unit.",
+          "code_snippet": "transform: [\n  { \"joinaggregate\": [...computations for mean and max] }\n]"
+        },
+        {
+          "step_number": 2,
+          "action": "Filter the computed aggregated data based on the mean value.",
+          "code_snippet": "{ \"filter\": \"datum.mean_temperature > X\" } // where X is the threshold"
+        },
+        {
+          "step_number": 3,
+          "action": "Create a bar chart to display the max of daily temperatures for the filtered data.",
+          "code_snippet": "{ \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"max_temperature\" } } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+          "data": {
+            "url": "data/seattle-weather.csv"
+          },
+          "transform": [
+            {
+              "timeUnit": "month",
+              "field": "date",
+              "as": "month_date"
+            },
+            {
+              "joinaggregate": [
+                {
+                  "op": "mean",
+                  "field": "temperature",
+                  "as": "mean_temperature"
+                },
+                {
+                  "op": "max",
+                  "field": "temperature",
+                  "as": "max_temperature"
+                }
+              ],
+              "groupby": [
+                "month_date"
+              ]
+            },
+            {
+              "filter": "datum.mean_temperature >= 20"
+            }
+          ],
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "month_date",
+              "type": "ordinal",
+              "timeUnit": "month"
+            },
+            "y": {
+              "field": "max_temperature",
+              "type": "quantitative"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "60151507"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to sort the bars in a stacked bar chart based on the size of a specific segment, particularly the 'Crookston' segment.",
+      "visualization_requirements": [
+        "Sort y-axis categories by a specific segment's size",
+        "Retain the stacked bar chart format"
+      ]
+    },
+    "solution": {
+      "approach": "The solution involves using the Vega-Lite sort feature in conjunction with data transformation techniques to first calculate and then sort based on the specified segment.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Sort by Another Encoding Channel",
+            "relevance": "Explains how to sort based on another encoding channel, which is useful for ordering the y-axis by a derived value such as a particular segment size.",
+            "key_information": "Use an encoding channel name with an optional minus prefix to sort by channel ('x' or 'y')."
+          },
+          {
+            "section": "Calculate Transform",
+            "relevance": "Describes how to derive new fields based on expressions, which is crucial for computing the size of a specific segment (e.g., 'Crookston').",
+            "key_information": "Use the 'calculate' transform to create a new field for sorting."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a calculate transform to sum yields for 'Crookston' and create a new field.",
+          "code_snippet": "\"transform\": [{\"filter\": \"datum.site === 'Crookston'\"}, {\"calculate\": \"datum.yield\", \"as\": \"crookstonYield\"}]"
+        },
+        {
+          "step_number": 2,
+          "action": "Use the calculated 'crookstonYield' field to sort the y-axis descending.",
+          "code_snippet": "\"encoding\": { \"y\": { \"field\": \"variety\", \"sort\": \"-crookstonYield\" }}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "data/barley.json"
+          },
+          "transform": [
+            {
+              "filter": "datum.site === 'Crookston'"
+            },
+            {
+              "calculate": "datum.yield",
+              "as": "crookstonYield"
+            }
+          ],
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "aggregate": "sum",
+              "field": "yield"
+            },
+            "y": {
+              "field": "variety",
+              "sort": "-crookstonYield"
+            },
+            "color": {
+              "field": "site"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "70184042"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a horizontal concatenation of bar charts displaying country names and scores with specific countries highlighted. They are encountering issues with applying color highlights outside or consistently across multiple charts.",
+      "visualization_requirements": [
+        "Display multiple bar charts horizontally using hconcat.",
+        "Highlight specific countries by changing the bar color while keeping others the same."
+      ]
+    },
+    "solution": {
+      "approach": "To achieve the highlighting of specific countries across multiple concatenated charts, a consistent color encoding needs to be applied. This can be done using a 'condition' clause within each chart's color encoding, allowing specific countries to be highlighted without affecting the display of other data.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Condition",
+            "relevance": "This section explains how to use the 'condition' clause in encoding, which is necessary to implement conditional highlighting based on specific criteria.",
+            "key_information": "The condition property allows you to define rules based on whether data values satisfy a certain condition, enabling customization of encoding such as color for different categories."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a color encoding with a 'condition' clause to each chart in the hconcat, specifying which countries should be highlighted.",
+          "code_snippet": "\"color\": { \"condition\": { \"test\": \"datum.Country_of_Origin === 'Papua New Guinea' || datum.Country_of_Origin === 'Mauritius'\", \"value\": \"#8101FA\" }, \"value\": \"#4682B4\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v4.json\", \"data\": { \"url\": \"https://raw.githubusercontent.com/DanStein91/Info-vis/master/coffee.csv\", \"format\": { \"type\": \"csv\", \"parse\": { \"Aroma\": \"number\", \"Flavor\": \"number\", \"Aftertaste\": \"number\", \"Acidity\": \"number\", \"Clean_Cup\": \"number\", \"Body\": \"number\", \"Balance\": \"number\", \"Uniformity\": \"number\", \"Cupper_Points\": \"number\", \"Sweetness\": \"number\" } } }, \"transform\": [ { \"filter\": \"datum.Country_of_Origin\" }, { \"calculate\": \"datum.Aroma + datum.Flavor + datum.Aftertaste + datum.Acidity + datum.Sweetness + datum.Balance \", \"as\": \"Taste_Points\" }, { \"calculate\": \"datum.Cupper_Points + datum.Clean_Cup + datum.Uniformity\", \"as\": \"Cup_Points\" } ], \"hconcat\": [ { \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"Country_of_Origin\", \"type\": \"nominal\", \"sort\": \"-x\" }, \"x\": { \"field\": \"Taste_Points\", \"type\": \"quantitative\", \"aggregate\": \"mean\" }, \"color\": { \"condition\": { \"test\": \"datum.Country_of_Origin === 'Papua New Guinea' || datum.Country_of_Origin === 'Mauritius'\", \"value\": \"#8101FA\" }, \"value\": \"#4682B4\" } } }, { \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"Country_of_Origin\", \"type\": \"nominal\", \"sort\": \"-x\" }, \"x\": { \"field\": \"Cup_Points\", \"type\": \"quantitative\", \"aggregate\": \"mean\" }, \"color\": { \"condition\": { \"test\": \"datum.Country_of_Origin === 'Papua New Guinea' || datum.Country_of_Origin === 'Mauritius'\", \"value\": \"#8101FA\" }, \"value\": \"#4682B4\" } } }, { \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"Country_of_Origin\", \"type\": \"nominal\", \"sort\": \"-x\" }, \"x\": { \"field\": \"Total_Cup_Points\", \"type\": \"quantitative\", \"aggregate\": \"mean\" }, \"color\": { \"condition\": { \"test\": \"datum.Country_of_Origin === 'Papua New Guinea' || datum.Country_of_Origin === 'Mauritius'\", \"value\": \"#8101FA\" }, \"value\": \"#4682B4\" } } } ], \"config\": {} }"
+      }
+    },
+    "question_id": "60759255"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to visualize both the average minimum and maximum temperatures from the Seattle weather dataset on the same graph using Vega-Lite, following the tutorial structure.",
+      "visualization_requirements": [
+        "Display avg_min and avg_max temperature on the same Y-axis",
+        "Use a line mark to represent each variable distinctly",
+        "Keep the visualization within the structure of a layered view"
+      ]
+    },
+    "solution": {
+      "approach": "The solution involves using the layering functionality in Vega-Lite to overlay two line charts: one for avg_min temperature and another for avg_max temperature. This approach allows both datasets to be visualized on the same plot while maintaining distinct visual representations for each.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Layering views",
+            "relevance": "This section is essential as it explains how to superimpose multiple charts, which is necessary for showing both temperature variables on the same axis.",
+            "key_information": "The 'layer' property accepts an array of chart specifications. Common properties must be set outside the layer array, while specific encodings for each variable are set within their respective layer objects."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Set up the basic structure of the Vega-Lite specification with the dataset and common properties.",
+          "code_snippet": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": { \"url\": \"https://vega.github.io/vega-lite/data/seattle-weather.csv\" }, \"mark\": \"line\", \"encoding\": { \"x\": { \"timeUnit\": \"month\", \"field\": \"date\", \"type\": \"temporal\" } } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Add layers for avg_min and avg_max temperatures.",
+          "code_snippet": "{ \"layer\": [ { \"encoding\": { \"y\": { \"aggregate\": \"mean\", \"field\": \"temp_min\", \"type\": \"quantitative\" } } }, { \"encoding\": { \"y\": { \"aggregate\": \"mean\", \"field\": \"temp_max\", \"type\": \"quantitative\" } } } ] }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": { \"url\": \"https://vega.github.io/vega-lite/data/seattle-weather.csv\" }, \"mark\": \"line\", \"encoding\": { \"x\": { \"timeUnit\": \"month\", \"field\": \"date\", \"type\": \"temporal\" } }, \"layer\": [ { \"encoding\": { \"y\": { \"aggregate\": \"mean\", \"field\": \"temp_min\", \"type\": \"quantitative\" } } }, { \"encoding\": { \"y\": { \"aggregate\": \"mean\", \"field\": \"temp_max\", \"type\": \"quantitative\" } } } ] }"
+      }
+    },
+    "question_id": "45160007"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is trying to understand why a newly defined 'flag' field in the Vega-Lite specification unexpectedly influences both charts in a concatenated visualization despite being defined only in the context of the first chart.",
+      "visualization_requirements": [
+        "Ensure that each chart in a concatenated visualization can handle scales and legends independently when required.",
+        "Maintain the ability to highlight specific data points (like the 'flag' for Pickup) without impacting unrelated charts."
+      ]
+    },
+    "solution": {
+      "approach": "To address the issue, the user should utilize the 'resolve' property in Vega-Lite, which controls how scales, axes, and legends are shared or made independent across concatenated and layered views.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Scale and Guide Resolution",
+            "relevance": "This section is directly relevant as it discusses how to manage scale and legend resolution across multiple views in Vega-Lite, which is crucial for preventing the 'flag' field from affecting both charts.",
+            "key_information": "The 'resolve' property allows users to specify whether scales and legends should be shared ('shared') or independent ('independent') across concatenated or layered views. By default, Vega-Lite may opt to share these, which is likely causing the observed behavior."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the 'resolve' property at the top level of the specification to ensure independent color scales and legends for each chart in the concatenated visualization.",
+          "code_snippet": "\"resolve\": { \"scale\": { \"color\": \"independent\" }, \"legend\": { \"color\": \"independent\" } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v4.json\", \"data\": { \"values\": [{\"model\":\"Sedan\",\"color\":\"Red\",\"sales\":28},{\"model\":\"Sedan\",\"color\":\"Silver\",\"sales\":17},{\"model\":\"Sedan\",\"color\":\"Black\",\"sales\":34},{\"model\":\"Pickup\",\"color\":\"Red\",\"sales\":20},{\"model\":\"Pickup\",\"color\":\"Silver\",\"sales\":71},{\"model\":\"Pickup\",\"color\":\"Black\",\"sales\":14},{\"model\":\"Minivan\",\"color\":\"Red\",\"sales\":52},{\"model\":\"Minivan\",\"color\":\"Silver\",\"sales\":31},{\"model\":\"Minivan\",\"color\":\"Black\",\"sales\":45}] }, \"concat\": [{ \"mark\": \"bar\", \"transform\": [{ \"calculate\": \"datum.model == 'Pickup'\", \"as\": \"flag\" }], \"encoding\": { \"x\": { \"field\": \"model\" }, \"y\": { \"aggregate\": \"sum\", \"field\": \"sales\" }, \"color\": { \"field\": \"flag\" } } }, { \"mark\": \"arc\", \"encoding\": { \"color\": { \"field\": \"color\" }, \"theta\": { \"aggregate\": \"sum\", \"field\": \"sales\" } } }], \"resolve\": { \"scale\": { \"color\": \"independent\" }, \"legend\": { \"color\": \"independent\" } } }"
+      }
+    },
+    "question_id": "64790338"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a stacked bar chart that mimics the Spanish flag by sorting the colored segments (red-yellow-red) based on a custom order specified by the 'pos' field.",
+      "visualization_requirements": [
+        "Display stacked bar segments with custom colors corresponding to the Spanish flag (red-yellow-red).",
+        "Sort the bar segments in the desired order using the 'pos' attribute."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Sorting Stack Order",
+            "relevance": "This section explains how to control the order of stacked elements using the 'order' channel in Vega-Lite.",
+            "key_information": "To define a custom sort order, use the 'order' channel and map it to a field that specifies the desired stacking order. Alternatively, derive a new field using a calculation transform."
+          }
+        ]
+      },
+      "approach": "To correctly order the bar segments, we will use the 'order' channel in the Vega-Lite specification. This channel will be mapped to the 'pos' field, which specifies the order of the segments. By using this, the stacking will follow the order dictated by the 'pos' field, achieving the desired flag appearance.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add the 'order' channel to the encoding section of the Vega-Lite specification and map it to the 'pos' field. This ensures that the segments are stacked in the desired order.",
+          "code_snippet": "\"order\": { \"field\": \"pos\", \"type\": \"quantitative\" }"
+        },
+        {
+          "step_number": 2,
+          "action": "Ensure that the 'color' scale is set to null so that the specified colors are directly used without interference.",
+          "code_snippet": "\"color\": { \"field\": \"color\", \"scale\": null, \"type\": \"nominal\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+          "description": "Stacked bar chart sorted to mimic the Spanish flag.",
+          "data": {
+            "values": [
+              {
+                "h": 5,
+                "color": "#aa151b",
+                "pos": 6,
+                "country": "spain"
+              },
+              {
+                "h": 5,
+                "color": "#f1bf00",
+                "pos": 4,
+                "country": "spain"
+              },
+              {
+                "h": 5,
+                "color": "#aa152b",
+                "pos": 2,
+                "country": "spain"
+              }
+            ]
+          },
+          "width": {
+            "step": 300
+          },
+          "mark": {
+            "type": "bar"
+          },
+          "encoding": {
+            "x": {
+              "field": "country",
+              "type": "nominal"
+            },
+            "y": {
+              "field": "h",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "color",
+              "scale": null,
+              "type": "nominal"
+            },
+            "order": {
+              "field": "pos",
+              "type": "quantitative"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "61654169"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a scatter matrix in Vega-Lite where the matrices are arranged based on categorical values from a dataset, rather than by column names. This is intended to compare distributions across different categories within the same variable.",
+      "visualization_requirements": [
+        "Ability to create a scatter matrix using a single variable distributed across different categories.",
+        "Faceting the plot by these categorical values to create rows and columns in the matrix."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Original Vega-Lite scatter matrix example",
+            "relevance": "The user refers to the existing Vega-Lite example to create a scatter matrix but needs a modified approach to use categorical values instead of column names.",
+            "key_information": "The standard scatter matrix example uses distinct column names for faceting, not values."
+          }
+        ]
+      },
+      "approach": "The approach involves using a transformation in Vega-Lite to dynamically assign categories to the 'row' and 'column' channels based on the 'coordinate' field. This will allow the creation of a scatter matrix where each category (or coordinate value) is represented as a separate facet.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the encoding to correctly use 'coordinate' for faceting.",
+          "code_snippet": "{ \"row\": { \"field\": \"coordinate\", \"type\": \"ordinal\" }, \"column\": { \"field\": \"coordinate\", \"type\": \"ordinal\" } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Ensure data includes multiple observations per category for proper matrix visualization.",
+          "code_snippet": "N/A"
+        },
+        {
+          "step_number": 3,
+          "action": "Set up 'mark' as 'point' and adjust scales and axes if needed.",
+          "code_snippet": "{ \"mark\": \"point\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"data\": {\n    \"values\": [\n      {\"value\": -0.5600273, \"coordinate\": 1},\n      {\"value\": -0.31220084, \"coordinate\": 2},\n      {\"value\": -0.37932342, \"coordinate\": 1},\n      {\"value\": -0.799277, \"coordinate\": 2},\n      {\"value\": -1.8596855, \"coordinate\": 1},\n      {\"value\": -3.100046, \"coordinate\": 2}\n    ]\n  },\n  \"mark\": \"point\",\n  \"encoding\": {\n    \"x\": { \"field\": \"value\", \"type\": \"quantitative\" },\n    \"y\": { \"field\": \"value\", \"type\": \"quantitative\" },\n    \"row\": { \"field\": \"coordinate\", \"type\": \"ordinal\" },\n    \"column\": { \"field\": \"coordinate\", \"type\": \"ordinal\" }\n  }\n}"
+      }
+    },
+    "question_id": "61738703"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create an interactive visualization where selecting a bar on a main chart will trigger the display of additional related charts. This requires knowledge of interactive features in Vega-Lite, specifically how to use signals and conditional visibility based on user interactions.",
+      "visualization_requirements": [
+        "Ability to detect clicks on individual bars.",
+        "Display of additional charts based on the data corresponding to the clicked bar."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "User's main chart code",
+            "relevance": "The provided code forms the basis of the solution as it includes the main bar chart configuration, which we need to augment with interactivity.",
+            "key_information": "The chart is a layered visualization that combines different marks such as bars and points. It currently lacks any interactivity settings."
+          }
+        ]
+      },
+      "approach": "To achieve the desired functionality, we will introduce a signal in Vega-Lite that monitors for clicks on the bar elements. Upon a click, this signal will update and store the necessary attributes of the clicked element. This will be used to control the visibility and content of the additional charts, leveraging the conditional visibility feature in Vega-Lite.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define a signal to capture the 'Name' field of the clicked bar.",
+          "code_snippet": "\"signals\": [{\"name\": \"selectedName\", \"value\": null, \"on\": [{\"events\": \"@bars:click\", \"update\": \"datum.Name\"}]}]"
+        },
+        {
+          "step_number": 2,
+          "action": "Add conditional visibility to the additional charts based on the signal.",
+          "code_snippet": "\"transform\": [{\"filter\": {\"signal\": \"selectedName === datum.Name\"}}]"
+        },
+        {
+          "step_number": 3,
+          "action": "Modify the layers in the main chart to add an identifier for the bars and apply interaction.",
+          "code_snippet": "\"mark\": {\"type\": \"bar\", \"name\": \"bars\", \"cursor\": \"pointer\"}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n    \"signals\": [{\n        \"name\": \"selectedName\",\n        \"value\": null,\n        \"on\": [{\n            \"events\": \"@bars:click\",\n            \"update\": \"datum.Name\"\n        }]\n    }],\n    \"layer\": [\n        {\n            \"mark\": {\n                \"type\": \"bar\",\n                \"name\": \"bars\",\n                \"cursor\": \"pointer\"\n            },\n            \"encoding\": {\n                \"x\": {\n                    \"field\": \"Name\",\n                    \"type\": \"nominal\"\n                },\n                \"y\": {\n                    \"aggregate\": \"sum\",\n                    \"field\": \"Dl\",\n                    \"type\": \"quantitative\"\n                },\n                \"color\": {\n                    \"datum\": \"Dl\"\n                }\n            }\n        }\n    ],\n    \"config\": {\n        \"axis\": {\n            \"labelFont\": \"arial\",\n            \"titleFont\": \"arial\"\n        },\n        \"header\": {\n            \"labelFont\": \"arial\",\n            \"titleFont\": \"arial\"\n        },\n        \"mark\": {\n            \"font\": \"arial\"\n        },\n        \"title\": {\n            \"font\": \"arial\",\n            \"subtitleFont\": \"arial\"\n        },\n        \"legend\": {\n            \"orient\": \"top\",\n            \"layout\": {\n                \"top\": {\n                    \"anchor\": \"middle\"\n                }\n            },\n            \"labelFont\": \"arial\",\n            \"titleFont\": \"arial\"\n        }\n    }\n}"
+      }
+    },
+    "question_id": "72543952"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to start the X-axis from hour 7 instead of 0 to remove the unnecessary white space caused by the absence of data between hours 0 and 7.",
+      "visualization_requirements": [
+        "Customize the X-axis to start from a specific value instead of 0.",
+        "Use a layered bar and rule chart to represent data between 8 AM and 5 PM."
+      ]
+    },
+    "solution": {
+      "approach": "The approach to solving this problem involves customizing the X-axis scale's domain to begin at hour 7. This will eliminate the empty space on the graph where there is no data.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Scale Domains",
+            "relevance": "This section explains how to set domain values for scales, which is necessary to cut off the X-axis starting from a specific hour.",
+            "key_information": "Scale domain can be set to a two-element array that represents the minimum and maximum values."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a scale domain to the X-axis to customize its start and end values.",
+          "code_snippet": "\"x\": { \"field\": \"start_n\", \"type\": \"quantitative\", \"axis\": { \"title\": \"Hour\" }, \"scale\": { \"domain\": [7, 24] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": \"bar\",\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"datum_s\",\n          \"type\": \"ordinal\",\n          \"axis\": {\"title\": \"Date\"}\n        },\n        \"yOffset\": {\"field\": \"Typ\"},\n        \"color\": {\"field\": \"Typ\"},\n        \"x\": {\n          \"field\": \"start_n\",\n          \"type\": \"quantitative\",\n          \"axis\": {\"title\": \"Hour\"},\n          \"scale\": {\"domain\": [7, 24]}\n        },\n        \"x2\": {\"field\": \"end_n\"}\n      }\n    },\n    {\n      \"mark\": \"rule\",\n      \"encoding\": {\n        \"x\": {\n          \"datum\": 8,\n          \"type\": \"quantitative\"\n        },\n        \"stroke\": {\"value\": \"darkgray\"}\n      }\n    },\n    {\n      \"mark\": \"rule\",\n      \"encoding\": {\n        \"x\": {\n          \"datum\": 17,\n          \"type\": \"quantitative\"\n        },\n        \"stroke\": {\"value\": \"darkgray\"}\n      }\n    }\n  ]\n}"
+      }
+    },
+    "question_id": "75658626"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to draw a horizontal line at y=1 in a Vega-Lite visualization without using a calculated transform field. They are looking for a more concise way to achieve this.",
+      "visualization_requirements": [
+        "Implement a simple, less verbose method to specify a horizontal rule line at a constant y-value.",
+        "Avoid the use of transforms or additional calculated fields if possible."
+      ]
+    },
+    "solution": {
+      "approach": "Instead of using a 'calculate' transform to create a constant field, the rule mark can be directly defined using a 'datum' property within the encoding. This approach simplifies the code and directly sets the value of y to 1 for the rule line.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Highlight a Specific Data Value",
+            "relevance": "This section of the documentation is directly relevant as it discusses how to use 'datum' to highlight a specific data value with a rule mark, which is applicable to the user's need of specifying a constant y-value for the rule line.",
+            "key_information": "'datum' is used to annotate or highlight a specific, static data value within a visualization, which can be directly used in the rule mark's encoding."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the rule mark in the 'layer' property and specify the y-value using the 'datum' property.",
+          "code_snippet": "\"layer\": [{ \"mark\": { \"type\": \"rule\", \"strokeDash\": [2,2], \"size\": 2 }, \"encoding\": { \"y\": { \"datum\": 1 } } }]"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v4.json\", \"layer\": [{ \"mark\": { \"type\": \"bar\" }, \"encoding\": { \"x\": { \"field\": \"diff\", \"type\": \"quantitative\" }, \"y\": { \"field\": \"diff\", \"type\": \"quantitative\" } } }, { \"mark\": { \"type\": \"rule\", \"strokeDash\": [2,2], \"size\": 2 }, \"encoding\": { \"y\": { \"datum\": 1 } } }], \"data\": { \"values\": [ { \"diff\": 1 }, { \"diff\": 2 }, { \"diff\": 3 } ] }}"
+      }
+    },
+    "question_id": "59741643"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create a scatterplot using a web service API endpoint provided by their university and the Vega-Lite visualization library. The scatterplot should display the hour of the day on the x-axis and the count of instances on the y-axis.",
+      "visualization_requirements": [
+        "X-axis must represent the hour of the day, ranging from 0 to 23.",
+        "Y-axis must represent the count of instances for each hour."
+      ]
+    },
+    "solution": {
+      "approach": "The solution involves using the 'fold' transform in Vega-Lite to reformat the provided JSON data into a structure suitable for scatterplot visualization. This transform will convert the data from a single JSON object with hours as keys and counts as values into an array of objects, each with 'hour' and 'count' fields.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Fold Transform",
+            "relevance": "This section is relevant because it explains how to transform the key-value pairs in the user's data into a format that Vega-Lite can use for visualization, specifically transforming a single object into a format where each key-value pair becomes a separate data object suitable for plotting.",
+            "key_information": "The 'fold' transform collapses multiple fields into two properties: a 'key' property (containing the original data field name) and a 'value' property (containing the data value)."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the JSON input to include a 'fold' transform that will prepare the data for plotting. Define the fields to fold and how to name the resulting 'key' and 'value' properties.",
+          "code_snippet": "\"transform\": [{\"fold\": [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"], \"as\": [\"hour\", \"count\"]}]"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\":\"https://vega.github.io/schema/vega-lite/v4.json\",\"description\":\"A scatterplot showing hour of the day and count of instances.\",\"data\":{\"values\":{\"0\":429,\"1\":231,\"2\":130,\"3\":85,\"4\":42,\"5\":1,\"6\":1,\"7\":17,\"8\":16,\"9\":795,\"10\":425,\"11\":921,\"12\":846,\"13\":1795,\"14\":1789,\"15\":2119,\"16\":1630,\"17\":1942,\"18\":1637,\"19\":1636,\"20\":1054,\"21\":843,\"22\":710,\"23\":710}},\"transform\":[{\"fold\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\"],\"as\":[\"hour\",\"count\"]}],\"mark\":\"point\",\"encoding\":{\"x\":{\"field\":\"hour\",\"type\":\"quantitative\"},\"y\":{\"field\":\"count\",\"type\":\"quantitative\"}}}"
+      }
+    },
+    "question_id": "59112609"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user needs to generate a bar chart from a dataset sorted by height in descending order, showing only the top three tallest individuals.",
+      "visualization_requirements": [
+        "Select the first n (top three) rows from a sorted dataset.",
+        "Visualize this data using a bar chart with person names on the x-axis and height values on the y-axis."
+      ]
+    },
+    "solution": {
+      "approach": "Vega-Lite doesn't directly support a 'head' transform to select the first n rows. Instead, one can use the 'window' transform to rank entries and then apply a 'filter' transform to keep only the top entries.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Filter Transform",
+            "relevance": "Explains how to filter data streams based on specific conditions, which is necessary to select the top n rows after ranking them.",
+            "key_information": "The 'filter' transform uses predicates to include or exclude data items. We can use a simple expression like 'datum.rank <= 3' to filter for the top three rows."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Use a 'window' transform to rank the data based on height.",
+          "code_snippet": "\"transform\": [{ \"window\": [{ \"op\": \"rank\", \"as\": \"rank\" }], \"sort\": [{ \"field\": \"Height\", \"order\": \"descending\" }] }]"
+        },
+        {
+          "step_number": 2,
+          "action": "Filter the data to keep only the top three rows using the rank.",
+          "code_snippet": "\"transform\": [{ \"filter\": \"datum.rank <= 3\" }]"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": { \"url\": \"heights.csv\" }, \"transform\": [ { \"window\": [{ \"op\": \"rank\", \"as\": \"rank\" }], \"sort\": [{ \"field\": \"Height\", \"order\": \"descending\" }] }, { \"filter\": \"datum.rank <= 3\" } ], \"mark\": \"bar\", \"encoding\": { \"x\": { \"field\": \"Person\", \"type\": \"nominal\" }, \"y\": { \"field\": \"Height\", \"type\": \"quantitative\" } } }"
+      }
+    },
+    "question_id": "69713124"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a Vega-Lite visualization that displays data from a CSV file containing thousands of rows. Specifically, they wish to visualize only the top 10 objects based on the mean of 'Female_maturity_(days)' in a descending order, while ensuring all values for 'Female_maturity_(days)' are greater than zero.",
+      "visualization_requirements": [
+        "Filter the dataset to include only entries where 'Female_maturity_(days)' is greater than zero.",
+        "Sort the entries by the mean of 'Female_maturity_(days)' in descending order and select only the top 10 for visualization."
+      ]
+    },
+    "solution": {
+      "approach": "To solve this problem, we will utilize the 'transform' and 'limit' properties in Vega-Lite. The 'transform' property will include a 'filter' to ensure all visualized data meets the condition 'Female_maturity_(days) > 0'. The sorting will also be configured in the 'y' encoding. Finally, a 'window' transformation will be used to rank the data and a 'filter' will limit the data to the top 10 entries.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Filter and Window Transformations",
+            "relevance": "These sections are crucial for filtering out entries based on specific conditions and for selecting a subset of data (top N records) after sorting.",
+            "key_information": "The 'filter' transformation allows conditional data inclusion, and the 'window' transformation is used for ranking or cumulative operations."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a 'window' transform to rank entries and a subsequent 'filter' to select the top 10.",
+          "code_snippet": "{ \"transform\": [{ \"window\": [{ \"op\": \"rank\", \"as\": \"rank\" }], \"sort\": [{ \"field\": \"Female_maturity_(days)\", \"order\": \"descending\" }] }, { \"filter\": { \"field\": \"rank\", \"lte\": 10 } }] }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v4.json\", \"data\": { \"url\": \"https://raw.githubusercontent.com/DanStein91/Info-vis/master/anage.csv\", \"format\": { \"type\": \"csv\" } }, \"transform\": [ { \"filter\": { \"field\": \"Female_maturity_(days)\", \"gt\": 0 } }, { \"window\": [{ \"op\": \"rank\", \"as\": \"rank\" }], \"sort\": [{ \"field\": \"Female_maturity_(days)\", \"order\": \"descending\" }] }, { \"filter\": { \"field\": \"rank\", \"lte\": 10 } } ], \"mark\": \"bar\", \"encoding\": { \"y\": { \"field\": \"Common_name\", \"type\": \"nominal\", \"sort\": { \"op\": \"mean\", \"field\": \"Female_maturity_(days)\", \"order\": \"descending\" } }, \"x\": { \"field\": \"Female_maturity_(days)\", \"type\": \"quantitative\" } }, \"title\": { \"text\": \"Top 10 Animals by Female Maturity\", \"anchor\": \"middle\" }, \"config\": {} }"
+      }
+    },
+    "question_id": "60673598"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create a multi-line plot using Vega-Lite, representing different data columns ('foo', 'bar', 'goo') as separate lines with corresponding legends to distinguish between them.",
+      "visualization_requirements": [
+        "Plot multiple data columns as distinct lines on a timeline.",
+        "Include a legend that clearly identifies each line with its associated data column."
+      ]
+    },
+    "solution": {
+      "approach": "To address the user's needs, we'll employ a folding transformation to collapse the data columns into a standardized format that can be easily mapped onto the plot with corresponding legends. This transformation will create a more dynamic and flexible data structure, which allows Vega-Lite to manage multiple series in a single visualization more effectively.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Fold Transform",
+            "relevance": "This section of the documentation is directly applicable as it describes how to transform multiple data fields into a standardized format suitable for creating legends in plots. The fold transform is essential for converting the dataset into a form where 'key' represents the column names and 'value' the respective values.",
+            "key_information": "The fold transform collapses specified fields into two properties, a 'key' and a 'value', which can be used for encoding the visualization and enabling legends effectively."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the data section to include a fold transform, collapsing the 'foo', 'bar', and 'goo' fields.",
+          "code_snippet": "\"transform\": [{ \"fold\": [\"foo\", \"bar\", \"goo\"], \"as\": [\"Measure\", \"Value\"] }]"
+        },
+        {
+          "step_number": 2,
+          "action": "Adjust the encoding to use the transformed 'Measure' and 'Value' fields, and set the color encoding to use the 'Measure' field to generate the legend.",
+          "code_snippet": "\"encoding\": { \"x\": {\"field\": \"date\", \"type\": \"temporal\"}, \"y\": {\"field\": \"Value\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"Measure\", \"type\": \"nominal\"} }"
+        },
+        {
+          "step_number": 3,
+          "action": "Set the mark type to 'line' to plot the data as lines.",
+          "code_snippet": "\"mark\": \"line\""
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v3.json\", \"title\": \"Insights stats\", \"description\": \"Overview of insights stats\", \"width\": 1000, \"height\": 450, \"data\": {\"values\": [{\"date\": \"2019-01-01\", \"foo\": 10000, \"bar\": 10, \"goo\": 30}, {\"date\": \"2019-01-02\", \"foo\": 30000, \"bar\": 20, \"goo\": 20}, {\"date\": \"2019-01-03\", \"foo\": 40000, \"bar\": 20, \"goo\": 10}, {\"date\": \"2019-01-04\", \"foo\": 1000, \"bar\": 60, \"goo\": 20}]}, \"transform\": [{\"fold\": [\"foo\", \"bar\", \"goo\"], \"as\": [\"Measure\", \"Value\"]}], \"mark\": \"line\", \"encoding\": {\"x\": {\"field\": \"date\", \"type\": \"temporal\"}, \"y\": {\"field\": \"Value\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"Measure\", \"type\": \"nominal\"}}, \"resolve\": {\"scale\": {\"y\": \"independent\"}}}"
+      }
+    },
+    "question_id": "56425430"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to create a normalized stacked bar chart similar to the Vega Lite example, with percentages displayed on the bar segments to reflect the proportion of each category within the whole. They have tried using a transform field for calculation but have been unable to correctly display these percentages.",
+      "visualization_requirements": [
+        "A normalized stacked bar chart to represent proportions of categories visually.",
+        "Overlay text on each segment of the bar chart showing the percentage value of each segment."
+      ]
+    },
+    "solution": {
+      "approach": "To display percentages on the normalized stacked bar chart, we need to use the 'joinaggregate' transform to compute the total per group and then use 'calculate' to determine the percentage each bar segment represents of its group total. Following this, we will utilize the 'text' mark to overlay these calculated percentages on the corresponding bars.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Join Aggregate",
+            "relevance": "This section is crucial as it describes how to perform aggregation operations that are attached to the original dataset, allowing for the calculation of percentages.",
+            "key_information": "The 'joinaggregate' transform extends data objects with aggregate values, which is essential for calculating the percentage each category contributes to the total in a group."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a joinaggregate transform to calculate the total population for each age group.",
+          "code_snippet": "{\"transform\": [{\"joinaggregate\": [{\"op\": \"sum\", \"field\": \"people\", \"as\": \"totalPeople\"}], \"groupby\": [\"age\"]}]}"
+        },
+        {
+          "step_number": 2,
+          "action": "Use the calculate transform to compute the percentage of each category.",
+          "code_snippet": "{\"transform\": [{\"calculate\": \"datum.people / datum.totalPeople * 100\", \"as\": \"percentage\"}]}"
+        },
+        {
+          "step_number": 3,
+          "action": "Add a text mark to display the percentage on the chart.",
+          "code_snippet": "{\"mark\": \"text\", \"encoding\": {\"text\": {\"field\": \"percentage\", \"type\": \"quantitative\", \"format\": \".1f\"}, \"color\": {\"value\": \"black\"}}}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"description\": \"A bar chart showing the US population distribution of age groups and gender in 2000.\", \"data\": {\"url\": \"data/population.json\"}, \"transform\": [{\"filter\": \"datum.year == 2000\"}, {\"calculate\": \"datum.sex == 2 ? 'Female' : 'Male'\", \"as\": \"gender\"}, {\"joinaggregate\": [{\"op\": \"sum\", \"field\": \"people\", \"as\": \"totalPeople\"}], \"groupby\": [\"age\"]}, {\"calculate\": \"datum.people / datum.totalPeople * 100\", \"as\": \"percentage\"}], \"encoding\": {\"x\": {\"field\": \"age\", \"type\": \"ordinal\"}, \"y\": {\"field\": \"people\", \"type\": \"quantitative\", \"stack\": \"normalize\"}, \"color\": {\"field\": \"gender\", \"type\": \"nominal\", \"scale\": {\"range\": [\"#675193\", \"#ca8861\"]}}, \"layer\": [{\"mark\": \"bar\"}, {\"mark\": \"text\", \"encoding\": {\"x\": {\"field\": \"percentage\", \"type\": \"quantitative\", \"axis\": {\"title\": \"Percentage\"}}, \"y\": {\"field\": \"age\", \"type\": \"ordinal\"}, \"text\": {\"field\": \"percentage\", \"type\": \"quantitative\", \"format\": \".1%\"}, \"color\": {\"value\": \"white\"}}}]}"
+      }
+    },
+    "question_id": "66636702"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to visualize data using arrays rather than traditional tabular data in Vega-Lite. They aim to plot stock prices over time for different symbols, which are stored in separate arrays for dates and prices.",
+      "visualization_requirements": [
+        "Using non-tabular data format (arrays) for input data",
+        "Representing multiple series in a single visualization with different symbols differentiated by color"
+      ]
+    },
+    "solution": {
+      "approach": "To address the user's needs, the solution involves using the Vega-Lite 'transform' features, specifically the 'fold' and 'flatten' transforms. The 'fold' transform will help convert the separate arrays into a unified format that Vega-Lite can utilize to plot, while the 'flatten' transform is suitable for breaking down array values into multiple records if needed.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Flatten Transform",
+            "relevance": "The flatten transform is crucial when we need to transform array values into individual data objects. This will not be directly used in this scenario but is good to know for managing arrays in data.",
+            "key_information": "Flatten maps array-valued fields to individual objects. It's mainly used when there are parallel structures in data arrays."
+          },
+          {
+            "section": "Fold Transform",
+            "relevance": "The fold transform will be the main focus as it allows conversion of multiple data fields into a standardized 'key' and 'value' format, which is perfect for converting separate arrays (dates, prices1, prices2) into a format usable for visualization.",
+            "key_information": "Fold collapses fields into two properties: a key property (containing the field name) and a value property (containing the data)."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Create arrays and apply the 'fold' transform to convert these arrays into a suitable format for Vega-Lite to visualize.",
+          "code_snippet": "{ \"data\": { \"values\": { \"dates\": [1, 2, 3], \"prices1\": [1, 2, 1], \"prices2\": [1.5, 1, 2] }, \"transform\": [ { \"fold\": [\"prices1\", \"prices2\"], \"as\": [\"symbol\", \"price\"] } ] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"description\": \"Visualization of stock prices using array data\", \"data\": { \"values\": { \"dates\": [1, 2, 3], \"prices1\": [1, 2, 1], \"prices2\": [1.5, 1, 2] }, \"transform\": [ { \"fold\": [\"prices1\", \"prices2\"], \"as\": [\"symbol\", \"price\"] }, { \"calculate\": \"datum.symbol == 'prices1' ? 1 : 2\", \"as\": \"symbol\" } ] }, \"mark\": \"line\", \"encoding\": { \"x\": { \"field\": \"dates\", \"type\": \"ordinal\" }, \"y\": { \"field\": \"price\", \"type\": \"quantitative\" }, \"color\": { \"field\": \"symbol\", \"type\": \"nominal\", \"scale\": { \"domain\": [1, 2], \"range\": [\"steelblue\", \"red\"] } } } }"
+      }
+    },
+    "question_id": "59467415"
+  },
+  {
+    "question_id": "72754378",
+    "problem_analysis": {
+      "user_needs": "The user wants to create a Vega-Lite pie chart where each pie slice is colored based on an explicit RGB color value provided in the data. The user has attempted to specify a field in the color channel but it did not render correctly as expected.",
+      "visualization_requirements": [
+        "The pie chart should use the 'value' field for the size of each slice.",
+        "The 'color' field in the dataset, which contains RGB color values, should directly dictate the color of each slice without applying a color scale."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Disabling Scale",
+            "relevance": "This section explains how to use raw data values, such as specific RGB color values, directly in the color encoding.",
+            "key_information": "By setting the 'scale' property to 'null', the encoding channel will interpret the color field values directly rather than applying a scale or palette."
+          }
+        ]
+      },
+      "approach": "The solution involves disabling the color scale in the Vega-Lite specification by setting 'scale' to 'null' in the color encoding. This allows the chart to use the exact RGB values specified in the 'color' field of the data.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the Vega-Lite specification to include a 'color' field in the data encoding with 'scale': null to directly use the RGB values.",
+          "code_snippet": {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "A pie chart using explicit RGB values for slice colors.",
+            "data": {
+              "values": [
+                {
+                  "category": "a",
+                  "value": 4,
+                  "color": "rgb(121, 199, 227)"
+                },
+                {
+                  "category": "b",
+                  "value": 6,
+                  "color": "rgb(140, 129, 22)"
+                },
+                {
+                  "category": "c",
+                  "value": 10,
+                  "color": "rgb(96, 43, 199)"
+                },
+                {
+                  "category": "d",
+                  "value": 3,
+                  "color": "rgb(196, 143, 99)"
+                },
+                {
+                  "category": "e",
+                  "value": 7,
+                  "color": "rgb(12, 103, 19)"
+                },
+                {
+                  "category": "f",
+                  "value": 8,
+                  "color": "rgb(196, 243, 129)"
+                }
+              ]
+            },
+            "encoding": {
+              "theta": {
+                "field": "value",
+                "type": "quantitative",
+                "stack": true
+              },
+              "color": {
+                "field": "color",
+                "type": "nominal",
+                "scale": null,
+                "legend": null
+              }
+            },
+            "layer": [
+              {
+                "mark": {
+                  "type": "arc",
+                  "outerRadius": 80
+                }
+              },
+              {
+                "mark": {
+                  "type": "text",
+                  "radius": 90
+                },
+                "encoding": {
+                  "text": {
+                    "field": "category",
+                    "type": "nominal"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "A pie chart using explicit RGB values for slice colors.",
+          "data": {
+            "values": [
+              {
+                "category": "a",
+                "value": 4,
+                "color": "rgb(121, 199, 227)"
+              },
+              {
+                "category": "b",
+                "value": 6,
+                "color": "rgb(140, 129, 22)"
+              },
+              {
+                "category": "c",
+                "value": 10,
+                "color": "rgb(96, 43, 199)"
+              },
+              {
+                "category": "d",
+                "value": 3,
+                "color": "rgb(196, 143, 99)"
+              },
+              {
+                "category": "e",
+                "value": 7,
+                "color": "rgb(12, 103, 19)"
+              },
+              {
+                "category": "f",
+                "value": 8,
+                "color": "rgb(196, 243, 129)"
+              }
+            ]
+          },
+          "encoding": {
+            "theta": {
+              "field": "value",
+              "type": "quantitative",
+              "stack": true
+            },
+            "color": {
+              "field": "color",
+              "type": "nominal",
+              "scale": null,
+              "legend": null
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "arc",
+                "outerRadius": 80
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radius": 90
+              },
+              "encoding": {
+                "text": {
+                  "field": "category",
+                  "type": "nominal"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a bar chart using Vega-Lite where the color of each bar is based on a specific color value provided in the data. Additionally, the user wants a legend that accurately reflects these custom colors instead of showing generic RGB values or default color schemes.",
+      "visualization_requirements": [
+        "Custom colors for each bar based on the 'color' field in the data.",
+        "A legend that displays these custom colors correctly, along with their associated labels."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Color Schemes and Custom Color Scales",
+            "relevance": "This section describes how to set custom color schemes and use the 'range' property to define colors manually. It also explains how the 'scale' property can be set to null to disable automatic color scaling.",
+            "key_information": "The 'scale' property can be customized using a specific array of colors. By specifying the 'range' property with an array of valid CSS color strings, users can manually set the color scale."
+          },
+          {
+            "section": "Custom Legends in Vega-Lite",
+            "relevance": "The legend configuration allows users to modify how legends are displayed, including controlling their labels and ensuring they match the provided color data.",
+            "key_information": "The 'legend' property allows customization, ensuring labels are correctly linked to the provided color data. However, directly using a color field requires additional steps to map labels properly."
+          }
+        ]
+      },
+      "approach": "The chosen approach is to map the custom colors from the data to each bar while using the 'range' property to set the colors explicitly. By using the 'type' field to provide labels in the legend and manually setting the colors in the scale's range, we ensure both the colors and the legend are correctly represented.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the data as provided, including fields 'color', 'b', and 'type'.",
+          "code_snippet": "data: { \"values\": [ { \"color\": \"rgb(0, 0, 0)\", \"b\": 28, \"type\": \"outside\" }, { \"color\": \"rgb(255, 0, 0)\", \"b\": 55, \"type\": \"inside\" }, { \"color\": \"rgb(0, 255, 0)\", \"b\": 43, \"type\": \"dew\" } ] }"
+        },
+        {
+          "step_number": 2,
+          "action": "Set up the basic structure for a bar chart, specifying the 'x' and 'y' encodings to map 'type' to the x-axis and 'b' to the y-axis.",
+          "code_snippet": "\"encoding\": { \"x\": { \"field\": \"type\", \"type\": \"nominal\" }, \"y\": { \"field\": \"b\", \"type\": \"quantitative\" } }"
+        },
+        {
+          "step_number": 3,
+          "action": "Use the 'color' encoding to map the 'type' field to custom colors. Define the 'scale' property with a 'range' array containing the colors in the order they appear in the data.",
+          "code_snippet": "\"color\": { \"field\": \"type\", \"type\": \"nominal\", \"scale\": { \"domain\": [\"outside\", \"inside\", \"dew\"], \"range\": [\"rgb(0, 0, 0)\", \"rgb(255, 0, 0)\", \"rgb(0, 255, 0)\"] }, \"legend\": { \"title\": \"Color Legend\" } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+          "description": "A bar chart that uses custom colors with a proper legend.",
+          "data": {
+            "values": [
+              {
+                "color": "rgb(0, 0, 0)",
+                "b": 28,
+                "type": "outside"
+              },
+              {
+                "color": "rgb(255, 0, 0)",
+                "b": 55,
+                "type": "inside"
+              },
+              {
+                "color": "rgb(0, 255, 0)",
+                "b": 43,
+                "type": "dew"
+              }
+            ]
+          },
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "type",
+              "type": "nominal"
+            },
+            "y": {
+              "field": "b",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "type",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "outside",
+                  "inside",
+                  "dew"
+                ],
+                "range": [
+                  "rgb(0, 0, 0)",
+                  "rgb(255, 0, 0)",
+                  "rgb(0, 255, 0)"
+                ]
+              },
+              "legend": {
+                "title": "Color Legend"
+              }
+            }
+          }
+        }
+      }
+    },
+    "question_id": "58933759"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a doughnut chart where each segment is accompanied by an image mark positioned appropriately over the respective arc. However, when the values of the segments are highly disparate (e.g., one value exceeds 100), the image marks become misaligned.",
+      "visualization_requirements": [
+        "Display a doughnut chart where the size of each arc corresponds to the 'mentions' field.",
+        "Overlay an image mark on each arc, ensuring proper alignment regardless of the magnitude of the data values."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Image Mark Properties",
+            "relevance": "Defines how to include external images in visualizations and adjust their properties such as position and size.",
+            "key_information": "The 'mark' type 'image' allows external images to be included. Positional alignment can be controlled via encoding channels (e.g., x and y)."
+          },
+          {
+            "section": "Transform Calculations",
+            "relevance": "Explains how to use transform calculations to compute derived values for positioning image marks.",
+            "key_information": "Trigonometric functions such as `cos` and `sin` can position image marks at specific angles relative to the total data."
+          }
+        ]
+      },
+      "approach": "To fix the alignment issue, adjust the calculations used to position the image marks. Specifically, scale the x and y domains dynamically based on the data to ensure consistency regardless of value disparity. Additionally, ensure that the 'radius' calculation correctly aligns images with their respective arcs in the doughnut chart.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a transform to normalize the values of the 'mentions' field relative to the total.",
+          "code_snippet": "\"transform\": [\n  {\"joinaggregate\": [{\"op\": \"sum\", \"field\": \"mentions\", \"as\": \"total\"}]},\n  {\"calculate\": \"datum.mentions / datum.total\", \"as\": \"normalized_mentions\"}\n]"
+        },
+        {
+          "step_number": 2,
+          "action": "Update the calculations for x and y to scale the image positions dynamically based on the normalized mentions.",
+          "code_snippet": "\"calculate\": \"cos(2 * PI * (datum.cum - datum.mentions / 2) / datum.total) * (datum.normalized_mentions + 1.5)\",\n\"as\": \"x_scaled\""
+        },
+        {
+          "step_number": 3,
+          "action": "Adjust the scales for x and y in the image mark encoding to accommodate the scaled positioning.",
+          "code_snippet": "\"x\": {\n  \"field\": \"x_scaled\",\n  \"type\": \"quantitative\",\n  \"scale\": {\"domain\": [-2, 2]},\n  \"axis\": null\n},\n\"y\": {\n  \"field\": \"y_scaled\",\n  \"type\": \"quantitative\",\n  \"scale\": {\"domain\": [-2, 2]},\n  \"axis\": null\n}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "A doughnut chart with aligned image marks.",
+          "data": {
+            "values": [
+              {
+                "brand": "Hair",
+                "mentions": 6,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              },
+              {
+                "brand": "Makeup",
+                "mentions": 4,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              },
+              {
+                "brand": "Fragrance",
+                "mentions": 9,
+                "image": "https://pbs.twimg.com/profile_images/3670997159/0a2f857c0af2ba01ebbc6cfa313b15c1_400x400.png"
+              }
+            ]
+          },
+          "encoding": {
+            "theta": {
+              "field": "mentions",
+              "type": "quantitative",
+              "stack": true
+            },
+            "color": {
+              "field": "brand",
+              "type": "nominal",
+              "legend": null
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "arc",
+                "outerRadius": 80
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radius": 90
+              },
+              "encoding": {
+                "text": {
+                  "field": "brand",
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "transform": [
+                {
+                  "joinaggregate": [
+                    {
+                      "op": "sum",
+                      "field": "mentions",
+                      "as": "total"
+                    }
+                  ]
+                },
+                {
+                  "window": [
+                    {
+                      "op": "sum",
+                      "field": "mentions",
+                      "as": "cum"
+                    }
+                  ],
+                  "frame": [
+                    null,
+                    0
+                  ]
+                },
+                {
+                  "calculate": "datum.mentions / datum.total",
+                  "as": "normalized_mentions"
+                },
+                {
+                  "calculate": "cos(2 * PI * (datum.cum - datum.mentions / 2) / datum.total) * (datum.normalized_mentions + 1.5)",
+                  "as": "x_scaled"
+                },
+                {
+                  "calculate": "sin(2 * PI * (datum.cum - datum.mentions / 2) / datum.total) * (datum.normalized_mentions + 1.5)",
+                  "as": "y_scaled"
+                }
+              ],
+              "mark": {
+                "type": "image",
+                "width": 20,
+                "height": 20
+              },
+              "encoding": {
+                "url": {
+                  "field": "image"
+                },
+                "x": {
+                  "field": "x_scaled",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      -2,
+                      2
+                    ]
+                  },
+                  "axis": null
+                },
+                "y": {
+                  "field": "y_scaled",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      -2,
+                      2
+                    ]
+                  },
+                  "axis": null
+                }
+              }
+            }
+          ],
+          "view": {
+            "stroke": null
+          }
+        }
+      }
+    },
+    "question_id": "68346456"
+  },
+  {
+    "solution": {
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "description": "Concatenated plot showing sum of amounts by quarter and individual values over time",
+          "data": {
+            "values": [
+              {
+                "date": "2024-02-15",
+                "amount": 20,
+                "value": 100
+              },
+              {
+                "date": "2024-05-15",
+                "amount": 40,
+                "value": 90
+              },
+              {
+                "date": "2024-06-15",
+                "amount": 5,
+                "value": 125
+              },
+              {
+                "date": "2024-08-15",
+                "amount": 10,
+                "value": 120
+              },
+              {
+                "date": "2024-11-15",
+                "amount": 15,
+                "value": 115
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "grid",
+              "select": "interval",
+              "bind": "scales"
+            }
+          ],
+          "vconcat": [
+            {
+              "mark": "bar",
+              "encoding": {
+                "x": {
+                  "field": "date",
+                  "type": "temporal",
+                  "timeUnit": "yearquarter"
+                },
+                "y": {
+                  "field": "amount",
+                  "type": "quantitative",
+                  "aggregate": "sum"
+                }
+              }
+            },
+            {
+              "mark": "point",
+              "encoding": {
+                "x": {
+                  "field": "date",
+                  "type": "temporal"
+                },
+                "y": {
+                  "field": "value",
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "resolve": {
+            "scale": {
+              "x": "shared"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "78518667"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to assign specific colors to lines representing gold and silver prices in a Vega-Lite line chart.",
+      "visualization_requirements": [
+        "Custom color for gold prices: #F1C40F",
+        "Custom color for silver prices: #95A5A6"
+      ]
+    },
+    "solution": {
+      "approach": "Set a custom color range for the 'color' encoding channel in Vega-Lite to explicitly assign the desired colors to the specified data fields.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Color Schemes in Vega-Lite Documentation",
+            "relevance": "This section explains how to customize color scales, which is essential for assigning specific colors to data fields.",
+            "key_information": "You can set the 'range' property to an array of valid CSS color strings to specify exact colors for nominal fields."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Modify the 'color' encoding to include a 'scale' property with a 'range' field containing the desired colors.",
+          "code_snippet": "\"color\": { \"field\": \"symbol\", \"type\": \"nominal\", \"scale\": { \"range\": [\"#F1C40F\", \"#95A5A6\"] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": " {\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v4.json\",\n  \"description\": \"Stock prices of 5 Tech Companies over Time.\",\n  \"data\": {\n    \"values\": [\n      {\n        \"dates\": [\"2000-01\", \"2000-02\", \"2000-03\"], \n        \"gold\": [1, 2, 1], \n        \"silver\": [1.5, 1, 2]\n      }\n    ]\n  },\n  \"transform\": [\n    {\"flatten\": [\"dates\", \"gold\", \"silver\"]},\n    {\"fold\": [\"gold\", \"silver\"], \"as\": [\"symbol\", \"price\"]},\n    {\"calculate\": \"datetime(datum.dates)\", \"as\": \"dates\"}\n  ],\n  \"mark\": {\"type\": \"line\", \"point\": {\"filled\": false, \"fill\": \"white\"}},\n  \"encoding\": {\n    \"x\": {\"field\": \"dates\", \"type\": \"temporal\", \"timeUnit\": \"yearmonth\"},\n    \"y\": {\"field\": \"price\", \"type\": \"quantitative\"},\n    \"color\": {\"field\": \"symbol\", \"type\": \"nominal\", \"scale\": {\"range\": [\"#F1C40F\", \"#95A5A6\"]} }\n  }\n}"
+      }
+    },
+    "question_id": "59477664"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a horizontal bar chart where the bars are sorted by percentage values and add interactive tooltips to display percentage values on hover.",
+      "visualization_requirements": [
+        "Sort the bars by their percentage values",
+        "Add tooltips to display values on mouse hover"
+      ]
+    },
+    "solution": {
+      "approach": "Modify the Vega-Lite specification to include sorting based on percentage values and add a tooltip encoding to make values visible on hover.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Sort by Another Encoding Channel",
+            "relevance": "Explains how to sort values by another encoding channel, which is necessary to sort the bars by percentage values.",
+            "key_information": "Use the 'sort' property in the encoding to specify the channel to sort by. Use '-x' for descending order by x values."
+          },
+          {
+            "section": "Tooltip",
+            "relevance": "Describes how to enable tooltips for showing additional information when hovering over chart elements.",
+            "key_information": "Tooltips can be added via the 'tooltip' property in the encoding to display specified fields on hover."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Sort the bars by the 'Percentage' field in descending order by adding a 'sort' property to the 'y' encoding.",
+          "code_snippet": "\"y\": {\"field\": \"Metrics\", \"type\": \"nominal\", \"sort\": \"-x\"}"
+        },
+        {
+          "step_number": 2,
+          "action": "Add a tooltip to display the 'Percentage' value on hover.",
+          "code_snippet": "\"tooltip\": {\"field\": \"Percentage\", \"type\": \"quantitative\"}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v2.4.json",
+          "description": "Bar chart with text labels. Apply scale padding to make the frame cover the labels.",
+          "data": {
+            "values": [
+              {
+                "Metrics": "A1",
+                "Percentage": 0.79
+              },
+              {
+                "Metrics": "A2",
+                "Percentage": 0.0399
+              },
+              {
+                "Metrics": "A3",
+                "Percentage": 0.9868
+              },
+              {
+                "Metrics": "A4",
+                "Percentage": 0.0536
+              },
+              {
+                "Metrics": "A5",
+                "Percentage": 0.9412
+              },
+              {
+                "Metrics": "A6",
+                "Percentage": 0.0536
+              }
+            ]
+          },
+          "encoding": {
+            "y": {
+              "field": "Metrics",
+              "type": "nominal",
+              "sort": "-x"
+            },
+            "x": {
+              "field": "Percentage",
+              "type": "quantitative",
+              "scale": {
+                "padding": 10
+              }
+            },
+            "tooltip": {
+              "field": "Percentage",
+              "type": "quantitative"
+            }
+          },
+          "layer": [
+            {
+              "mark": "bar"
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+              },
+              "encoding": {
+                "text": {
+                  "field": "Percentage",
+                  "type": "quantitative"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "63445974"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is attempting to format numerical values as currency within a Vega-Lite visualization, specifically on the Y axis, and is encountering an error related to the formatting string.",
+      "visualization_requirements": [
+        "Proper formatting of numerical data as currency on the Y axis.",
+        "Resolution of the 'value expected' error when using the format string."
+      ]
+    },
+    "solution": {
+      "approach": "The solution involves correcting the format string used in the Y-axis configuration to properly display numbers as currency and ensure the data type compatibility in the Vega-Lite specification.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "format",
+            "relevance": "The 'format' property is crucial as it controls how numerical values are displayed on the axis. The error encountered is likely due to an incorrect format string or a mismatch in expected data types.",
+            "key_information": "The format property accepts D3 format patterns for numerical fields. For currency, a common D3 format string is '$,.2f' which applies a dollar sign, uses commas as thousands separators, and rounds to two decimal places."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Adjust the 'format' string in the Y-axis configuration to correctly display currency.",
+          "code_snippet": "\"format\": \"$,.2f\""
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"description\": \"Protocol Chart\",\n  \"width\": 500,\n  \"height\": 225,\n  \"data\": {\n    \"values\": [\n      {\n        \"asset\": \"eth\",\n        \"time\": \"2021-06-15T00:00:00Z\",\n        \"ReferenceRateUSD\": 2577.04473863238\n      },\n      {\n        \"asset\": \"eth\",\n        \"time\": \"2021-06-16T00:00:00Z\",\n        \"ReferenceRateUSD\": 2552.74103641146\n      },\n      {\n        \"asset\": \"eth\",\n        \"time\": \"2021-06-17T00:00:00Z\",\n        \"ReferenceRateUSD\": 2360.99938690824\n      }\n    ]\n  },\n  \"config\": {\n    \"view\": {\n      \"stroke\": \"transparent\"\n    }\n  },\n  \"mark\": \"line\",\n  \"encoding\": {\n    \"x\": {\n      \"axis\": {\n        \"domainColor\": \"#DDD\",\n        \"grid\": false, \n        \"labelColor\": \"#AEAEAE\", \n        \"ticks\": false, \n        \"labelPadding\": 10\n      }, \n      \"field\": \"time\", \n      \"type\": \"temporal\", \n      \"title\": \"\"\n    },\n    \"y\": {\n      \"axis\": {\n        \"labelOffset\": 2,\n        \"domainColor\": \"white\",\n        \"labelColor\": \"#AEAEAE\", \n        \"ticks\": false, \n        \"labelPadding\": 10,\n        \"format\": \"$,.2f\"\n      }, \n      \"field\": \"ReferenceRateUSD\", \n      \"type\": \"quantitative\", \n      \"title\": \"\", \n      \"scale\": {\n        \"zero\": false\n      }\n    },\n    \"color\": {\n      \"field\": \"doesntmatter\", \n      \"type\": \"nominal\", \n      \"legend\": null,\n      \"scale\": {\n        \"range\": [\"#91DB97\"]\n      }\n    }\n  }\n}"
+      }
+    },
+    "question_id": "69634695"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to vertically center data labels within each segment of a stacked bar chart to improve readability and alignment. The labels should appear centered, avoiding overlap where possible.",
+      "visualization_requirements": [
+        "Display data labels centered vertically within each bar segment.",
+        "Ensure compatibility with the current Vega-Lite stacked bar chart structure.",
+        "Maintain existing chart attributes such as color encoding and axis configurations."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Calculate Transform",
+            "relevance": "This allows for custom calculations, which can determine the midpoint of each bar segment for proper label positioning.",
+            "key_information": "Using `calculate` with the `datum` variable, new fields can be created to store calculated values, such as the midpoint of stacked segments."
+          },
+          {
+            "section": "Stack Transform",
+            "relevance": "The stacking behavior defines the start and end positions of each bar segment, critical for calculating midpoints.",
+            "key_information": "The `stack` transform outputs fields that represent the start (`stack_start`) and end (`stack_end`) of each bar segment."
+          }
+        ]
+      },
+      "approach": "The solution involves calculating the vertical midpoint of each stacked bar segment using a `calculate` transform. This value is then used as the y-coordinate for the text labels, ensuring they are vertically centered.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Add a `calculate` transform to determine the vertical midpoint for each bar segment.",
+          "code_snippet": "\"transform\": [\n  {\n    \"calculate\": \"(datum.stack_start + datum.stack_end) / 2\",\n    \"as\": \"midpoint\"\n  }\n]"
+        },
+        {
+          "step_number": 2,
+          "action": "Modify the text layer to use the calculated `midpoint` field as the y-coordinate for the labels.",
+          "code_snippet": "\"encoding\": {\n  \"y\": {\"field\": \"midpoint\", \"type\": \"quantitative\"}\n}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+          "data": {
+            "values": [
+              {
+                "Value": 0.321,
+                "Date": "09/30/2021",
+                "Measure": "Measure 4"
+              },
+              {
+                "Value": 0.031,
+                "Date": "09/30/2021",
+                "Measure": "Measure 3"
+              },
+              {
+                "Value": 0.123,
+                "Date": "09/30/2021",
+                "Measure": "Measure 2"
+              },
+              {
+                "Value": 0.475,
+                "Date": "09/30/2021",
+                "Measure": "Measure 1"
+              }
+            ]
+          },
+          "width": 500,
+          "height": 250,
+          "resolve": {
+            "scale": {
+              "color": "independent"
+            }
+          },
+          "layer": [
+            {
+              "mark": "bar",
+              "encoding": {
+                "y": {
+                  "field": "Value",
+                  "type": "quantitative",
+                  "axis": {
+                    "format": ".1%"
+                  }
+                },
+                "x": {
+                  "field": "Date",
+                  "type": "nominal",
+                  "axis": {
+                    "labelAngle": -45
+                  }
+                },
+                "color": {
+                  "field": "Measure",
+                  "type": "nominal"
+                }
+              }
+            },
+            {
+              "transform": [
+                {
+                  "stack": "Value",
+                  "groupby": [
+                    "Date"
+                  ],
+                  "as": [
+                    "stack_start",
+                    "stack_end"
+                  ]
+                },
+                {
+                  "calculate": "(datum.stack_start + datum.stack_end) / 2",
+                  "as": "midpoint"
+                }
+              ],
+              "mark": {
+                "type": "text"
+              },
+              "encoding": {
+                "y": {
+                  "field": "midpoint",
+                  "type": "quantitative"
+                },
+                "x": {
+                  "field": "Date",
+                  "type": "nominal"
+                },
+                "color": {
+                  "field": "Measure",
+                  "type": "nominal",
+                  "scale": {
+                    "range": [
+                      "white"
+                    ]
+                  },
+                  "legend": null
+                },
+                "text": {
+                  "field": "Value",
+                  "type": "quantitative",
+                  "format": ".1%"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "question_id": "70980191"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to apply a color encoding to the visualization such that values ranking in the top 5 have distinct colors, and values ranking below 5 are all colored grey. This color scheme is desired to reflect not only in the bars themselves but also in the corresponding legend.",
+      "visualization_requirements": [
+        "Top 5 ranked values should be in distinct colors.",
+        "Values ranked 6th and below should appear grey in the bars and legend."
+      ]
+    },
+    "solution": {
+      "approach": "To achieve the desired legend behavior, a manual legend with custom color and value bindings needs to be created because Vega-Lite automatically generates legends based on the encoding scales and does not directly support conditional legend formats based on data ranking within the legend itself.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Legend Encoding and Conditional Formatting",
+            "relevance": "This section provides insights into manipulating legends by explicitly specifying legend properties which is crucial for achieving a conditional legend based on data ranks.",
+            "key_information": "Legends in Vega-Lite are tied to scale properties, and customization often involves overriding default behaviors by specifying properties directly or manipulating the domain and range of scales."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define a conditional color scale with explicit domain and range to use within the color encoding.",
+          "code_snippet": "\"color\": {\n  \"condition\": {\n    \"test\": \"datum._rank <= 5\",\n    \"scale\": { \"domain\": [1, 2, 3, 4, 5], \"range\": [\"red\", \"blue\", \"green\", \"orange\", \"purple\"] },\n    \"field\": \"_rank\"\n  },\n  \"value\": \"grey\"\n}"
+        },
+        {
+          "step_number": 2,
+          "action": "Modify the legend to reflect conditional formatting by manually constructing it using an explicit legend block.",
+          "code_snippet": "\"legend\": {\n  \"values\": [1, 2, 3, 4, 5],\n  \"title\": \"Top 5 Ranks\",\n  \"fillColor\": { \"condition\": { \"test\": \"datum.value <= 5\", \"value\": \"grey\" } }\n}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"description\": \"A bar chart that colors top 5 ranks differently and uses grey for others in both the chart and legend.\",\n  \"data\": { \"values\": data },\n  \"transform\": [\n    { \"window\": [{ \"op\": \"rank\", \"field\": \"Value\", \"as\": \"_rank\" }],\n      \"sort\": [{ \"field\": \"Value\", \"order\": \"descending\" }]\n    }\n  ],\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": { \"field\": \"Week\", \"type\": \"nominal\" },\n    \"y\": { \"field\": \"Value\", \"type\": \"quantitative\" },\n    \"color\": {\n      \"condition\": {\n        \"test\": \"datum._rank <= 5\",\n        \"scale\": { \"domain\": [1, 2, 3, 4, 5], \"range\": [\"red\", \"blue\", \"green\", \"orange\", \"purple\"] },\n        \"field\": \"_rank\"\n      },\n      \"value\": \"grey\"\n    }\n  },\n  \"config\": {\n    \"legend\": {\n      \"values\": [1, 2, 3, 4, 5],\n      \"title\": \"Top 5 Ranks\",\n      \"fillColor\": { \"condition\": { \"test\": \"datum.value <= 5\", \"value\": \"grey\" } }\n    }\n  }\n}"
+      }
+    },
+    "question_id": "68990344"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to adjust the position of the legend in a Vega-Lite chart to be at the bottom.",
+      "visualization_requirements": [
+        "Display a time/duration chart with different categories",
+        "Position the legend at the bottom of the chart"
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Legend Positioning",
+            "relevance": "The example focuses on positioning the chart legend, which is the user's main interest.",
+            "key_information": "Adjusting the 'legend' property in the encoding to set its 'orient' to 'bottom'."
+          }
+        ]
+      },
+      "approach": "To move the legend to the bottom, adjust the 'legend' property within the encoding for color or any other channel used for categorical differentiation. Set the 'orient' attribute to 'bottom'.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Move the legend to the bottom by setting the 'legend.orient' property.",
+          "code_snippet": "color: { legend: { orient: 'bottom' }}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"data\": {\n    \"values\": [\n      {\"category\": \"1x: B1\", \"start\": \"09:00:00\", \"end\": \"15:00:00\", \"label\": \"A1\"},\n      {\"category\": \"2x: B2\", \"start\": \"15:00:00\", \"end\": \"21:00:00\", \"label\": \"A1\"},\n      {\"category\": \"1x: B1\", \"start\": \"09:00:00\", \"end\": \"15:00:00\", \"label\": \"A2\"},\n      {\"category\": \"2x: B2\", \"start\": \"15:00:00\", \"end\": \"21:00:00\", \"label\": \"A2\"}\n    ]\n  },\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"y\": { \"field\": \"label\", \"type\": \"nominal\" },\n    \"x\": {\n      \"field\": \"start\",\n      \"type\": \"temporal\",\n      \"axis\": { \"title\": \"Time/Duration\" }\n    },\n    \"x2\": { \"field\": \"end\" },\n    \"color\": {\n      \"field\": \"category\",\n      \"type\": \"nominal\",\n      \"legend\": { \"orient\": \"bottom\" }\n    }\n  },\n  \"title\": \"newTime\"\n}"
+      }
+    },
+    "question_id": "77408117"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a multi-line chart using Vega-Lite with data structured in a table-based format where each row represents an observation with multiple measurements (values for 'A' and 'B').",
+      "visualization_requirements": [
+        "Ability to plot multiple lines in one chart, each representing a different series (e.g., 'A', 'B') from the data.",
+        "Distinct coloring and a legend for each line to differentiate between the series."
+      ]
+    },
+    "solution": {
+      "approach": "To address the need for converting the table-based format into a form suitable for multi-line charting with color differentiation, we can use the 'fold' transform in Vega-Lite. This transform will map the data from a wide format to a long format, where each series (e.g., 'A' and 'B') is folded into a pair of 'key' and 'value' fields. This approach allows easy mapping of x, y, and color encoding for the chart.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Fold Transform",
+            "relevance": "The 'fold' transform is specifically suited for converting data from wide to long format, which is crucial for encoding different variables as distinct lines in a multi-line chart.",
+            "key_information": "The 'fold' transform collapses specified fields into two properties: a 'key' property (holding the original data field name) and a 'value' property (holding the data values). This transform generates a new data stream where each object includes these new fields along with all original fields."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the initial data structure and apply the 'fold' transform to convert 'A' and 'B' into a long format.",
+          "code_snippet": "{\"data\": {\"values\": [{\"id\": 0, \"A\": 4, \"B\": 3}, {\"id\": 1, \"A\": 2, \"B\": 8}]}, \"transform\": [{\"fold\": [\"A\", \"B\"], \"as\": [\"symbol\", \"value\"]}]}"
+        },
+        {
+          "step_number": 2,
+          "action": "Set up the encoding for the x-axis, y-axis, and color, utilizing the newly transformed 'key' and 'value' fields.",
+          "code_snippet": "{\"mark\": \"line\", \"encoding\": {\"x\": {\"field\": \"id\", \"type\": \"quantitative\"}, \"y\": {\"field\": \"value\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"symbol\", \"type\": \"nominal\"}}}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": {\"values\": [{\"id\": 0, \"A\": 4, \"B\": 3}, {\"id\": 1, \"A\": 2, \"B\": 8}]}, \"transform\": [{\"fold\": [\"A\", \"B\"], \"as\": [\"symbol\", \"value\"]}], \"mark\": \"line\", \"encoding\": {\"x\": {\"field\": \"id\", \"type\": \"quantitative\"}, \"y\": {\"field\": \"value\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"symbol\", \"type\": \"nominal\"}}}"
+      }
+    },
+    "question_id": "54610955"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to enhance an existing Vega-Lite line chart by adding a dashed line across the chart at a specific y-value (100%). They seek to achieve this without adding this line to the legend or affecting other elements of the chart like the y-axis ticks and labels.",
+      "visualization_requirements": [
+        "Add a dashed line at y=100% across the entire plot",
+        "Line should not appear in the legend",
+        "Y-axis labels should only show '%' and not be affected by the addition of the new line",
+        "The dashed line should not impact the tooltip functionality of other data series"
+      ]
+    },
+    "solution": {
+      "approach": "The approach involves using a layer to add the dashed line, while configuring the axis, legend, and tooltip properties to meet the visualization requirements.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Disable tooltips",
+            "relevance": "This section is relevant for configuring the new line layer so that it does not display any tooltips, maintaining focus on the primary data series.",
+            "key_information": "Tooltips can be disabled by setting the 'tooltip' property of a mark or its encoding to null."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Create the main line chart with the existing three series.",
+          "code_snippet": "{ \"data\": { \"url\": \"data.csv\" }, \"mark\": \"line\", \"encoding\": { \"x\": {\"field\": \"X\", \"type\": \"ordinal\"}, \"y\": {\"field\": \"Y\", \"type\": \"quantitative\"}, \"color\": {\"field\": \"Category\", \"type\": \"nominal\"} } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Add a new layer for the dashed line using a rule mark at y=100%. Ensure this layer does not appear in the legend and has no tooltip.",
+          "code_snippet": "{ \"layer\": [ { \"mark\": \"rule\", \"encoding\": { \"y\": { \"datum\": 100 }, \"size\": { \"value\": 1 }, \"strokeDash\": { \"value\": [5, 5] } }, \"tooltip\": null } ] }"
+        },
+        {
+          "step_number": 3,
+          "action": "Combine the layers and configure the y-axis to display '%' only.",
+          "code_snippet": "{ \"resolve\": { \"scale\": { \"y\": \"independent\" } }, \"encoding\": { \"y\": { \"axis\": { \"title\": \"%\" } } } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"data\": { \"url\": \"data.csv\" }, \"layer\": [ { \"mark\": \"line\", \"encoding\": { \"x\": { \"field\": \"X\", \"type\": \"ordinal\" }, \"y\": { \"field\": \"Y\", \"type\": \"quantitative\" }, \"color\": { \"field\": \"Category\", \"type\": \"nominal\" } } }, { \"mark\": { \"type\": \"rule\", \"strokeDash\": [5, 5] }, \"encoding\": { \"y\": { \"datum\": 100 }, \"size\": { \"value\": 1 }, \"tooltip\": null } } ], \"resolve\": { \"scale\": { \"y\": \"independent\" } }, \"encoding\": { \"y\": { \"axis\": { \"title\": \"%\" } } } }"
+      }
+    },
+    "question_id": "59295466"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to control the stacking order of items in a Vega-Lite stacked bar chart, ensuring that specific categories appear in a custom-defined sequence. For example, 'fog' should appear at the bottom, followed by 'sun', and so on. This customization is necessary to prioritize the visualization of smaller categories by 'cutting off' most of the larger ones.",
+      "visualization_requirements": [
+        "A stacked bar chart where the order of stacked items can be customized.",
+        "Control over the stack order such that specific categories ('fog', 'sun', etc.) appear in a defined sequence."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Sorting Stack Order",
+            "relevance": "This section describes how to use the `order` channel to control the stack order in a Vega-Lite visualization.",
+            "key_information": "Users can define a custom order for stacking by creating a derived field using the `calculate` transform and specifying the `order` channel based on this field."
+          },
+          {
+            "section": "Calculate Transform",
+            "relevance": "This section explains how to use the `calculate` transform to add derived fields to the dataset, which can then be used for custom sorting.",
+            "key_information": "The `calculate` transform allows assigning a numerical or logical expression to a new field, which can help in defining a custom stacking order."
+          }
+        ]
+      },
+      "approach": "To achieve the desired order in the stacked bar chart, a new field representing the desired order will be added using the `calculate` transform. This field will assign numeric values to each category based on the required stacking order ('fog' = 0, 'sun' = 1, etc.). The `order` channel will then use this derived field to define the stacking sequence.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the dataset and structure the visualization as a stacked bar chart.",
+          "code_snippet": "{ \"data\": { \"url\": \"data/weather.json\" }, \"mark\": \"bar\", \"encoding\": { \"x\": { \"field\": \"date\", \"type\": \"ordinal\" }, \"y\": { \"aggregate\": \"sum\", \"field\": \"precipitation\", \"type\": \"quantitative\" }, \"color\": { \"field\": \"weather\", \"type\": \"nominal\" } } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Add a `calculate` transform to derive a new field for the custom stacking order.",
+          "code_snippet": "{ \"transform\": [ { \"calculate\": \"if(datum.weather === 'fog', 0, if(datum.weather === 'sun', 1, if(datum.weather === 'cloud', 2, 3)))\", \"as\": \"stackOrder\" } ] }"
+        },
+        {
+          "step_number": 3,
+          "action": "Use the `order` channel to sort the stack based on the new `stackOrder` field.",
+          "code_snippet": "{ \"encoding\": { \"order\": { \"field\": \"stackOrder\" } } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "https://vega.github.io/editor/data/weather.json"
+          },
+          "transform": [
+            {
+              "calculate": "if(datum.weather === 'fog', 0, if(datum.weather === 'sun', 1, if(datum.weather === 'cloud', 2, 3)))",
+              "as": "stackOrder"
+            }
+          ],
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "ordinal"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "precipitation",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "weather",
+              "type": "nominal"
+            },
+            "order": {
+              "field": "stackOrder"
+            }
+          }
+        }
+      }
+    },
+    "question_id": "61928545"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create an interactive Vega-Lite visualization that includes multiple layered graphs for different data variables and allows dynamic zooming using a brush linked to a speed plot.",
+      "visualization_requirements": [
+        "Efficient data layout to reduce memory usage in Vega-Lite.",
+        "Combining multiple graphs (x, y, z; roll, pitch, yaw) into unified plots with automatic legends.",
+        "Linking plots for interactive brushing and zooming."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Data layout and layer usage",
+            "relevance": "Current method of storing data as objects leads to memory inefficiency.",
+            "key_information": "The suggestion to transform and store data in column format instead of row format using Fold and Pivot."
+          },
+          {
+            "section": "Brush interaction for dynamic zooming",
+            "relevance": "User wants the feature to zoom into specific parts of the plots using a brush on the speed plot.",
+            "key_information": "Illustrates how to set up interactive linking (brushing) between charts in Vega-Lite."
+          }
+        ]
+      },
+      "approach": "Transform data storage from row-first to column-first using Vega-Lite's Fold and Pivot transforms to improve memory efficiency. Use layered plots and set color schemes. Add linking (brushing) to enable interactive zooming.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Transform the data using Fold to convert row-based data to column format.",
+          "code_snippet": "transform: [{ fold: ['x', 'y', 'z', 'roll', 'pitch', 'yaw'] }]"
+        },
+        {
+          "step_number": 2,
+          "action": "Create layered plots for movement and rotation with separate layers for each variable.",
+          "code_snippet": "layer: [{ mark: 'line', encoding: { color: { field: 'key', type: 'nominal' } } }]"
+        },
+        {
+          "step_number": 3,
+          "action": "Add legends by encoding color with the 'key' and use a color scheme.",
+          "code_snippet": "encoding: { color: { field: 'key', type: 'nominal', scale: { scheme: 'category10' } } }"
+        },
+        {
+          "step_number": 4,
+          "action": "Implement brush selection on the speed plot to link and zoom the main plots.",
+          "code_snippet": "selection: { brush: { type: 'interval', encodings: ['x'] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"data\": {\n    \"values\": [ /* your data here */ ]\n  },\n  \"vconcat\": [\n    {\n      \"layer\": [\n        {\n          \"mark\": \"line\",\n          \"encoding\": {\n            \"x\": { \"field\": \"time\", \"type\": \"quantitative\" },\n            \"y\": { \"field\": \"value\", \"type\": \"quantitative\" },\n            \"color\": { \"field\": \"key\", \"type\": \"nominal\", \"scale\": { \"scheme\": \"category10\" } }\n          }\n        }\n      ],\n      \"transform\": [\n        { \"fold\": [\"x\", \"y\", \"z\"] }\n      ],\n      \"title\": \"Movement in mm\"\n    },\n    {\n      \"layer\": [\n        {\n          \"mark\": \"line\",\n          \"encoding\": {\n            \"x\": { \"field\": \"time\", \"type\": \"quantitative\" },\n            \"y\": { \"field\": \"value\", \"type\": \"quantitative\" },\n            \"color\": { \"field\": \"key\", \"type\": \"nominal\", \"scale\": { \"scheme\": \"category10\" } }\n          }\n        }\n      ],\n      \"transform\": [\n        { \"fold\": [\"roll\", \"pitch\", \"yaw\"] }\n      ],\n      \"title\": \"Rotation in degree\"\n    },\n    {\n      \"mark\": \"line\",\n      \"selection\": {\n        \"brush\": { \"type\": \"interval\", \"encodings\": [\"x\"] }\n      },\n      \"encoding\": {\n        \"x\": { \"field\": \"time\", \"type\": \"quantitative\" },\n        \"y\": { \"field\": \"speed\", \"type\": \"quantitative\" }\n      },\n      \"title\": \"Absolute Speed of Movement\",\n      \"transform\": [\n        { \"filter\": { \"selection\": \"brush\" } }\n      ]\n    }\n  ]\n}"
+      }
+    },
+    "question_id": "64899750"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to hide the legend for circle sizes and ensure the sizes are proportional to the area instead of the diameter, with a maximum size of 10px and a minimum of 1px.",
+      "visualization_requirements": [
+        "Hide the legend for sizes.",
+        "Scale circle sizes by area, not diameter, with constraints."
+      ]
+    },
+    "solution": {
+      "approach": "Use Vega-Lite properties to remove the legend and adjust circle sizes using a square root scale to represent areas proportionally.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Legend",
+            "relevance": "Explains how to remove legends by setting 'legend' to null.",
+            "key_information": "To remove a legend, set the 'legend' property to null in the encoding channel."
+          },
+          {
+            "section": "Scale Ranges",
+            "relevance": "Discusses scaling properties and how to adjust their ranges.",
+            "key_information": "Use 'scale' with 'range' for sizes and adjust with 'sqrt' type scale for area."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Remove the legend for size by setting 'legend' to null.",
+          "code_snippet": "\"size\": { \"field\": \"fieldname\", \"type\": \"quantitative\", \"legend\": null }"
+        },
+        {
+          "step_number": 2,
+          "action": "Adjust the size scale to be proportional to the area. Use 'sqrt' and set 'range' with minimum and maximum sizes.",
+          "code_snippet": "\"size\": { \"scale\": { \"type\": \"sqrt\", \"range\": [1, 10] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n    \"data\": {\"values\": [{\"x\": 2, \"y\": \"C\", \"size\": 2}, {\"x\": 4, \"y\": \"D\", \"size\": 4}, {\"x\": 6, \"y\": \"E\", \"size\": 6}, {\"x\": 8, \"y\": \"E\", \"size\": 8}]},\n    \"mark\": \"point\",\n    \"encoding\": {\n        \"x\": {\"field\": \"x\", \"type\": \"quantitative\"},\n        \"y\": {\"field\": \"y\", \"type\": \"nominal\"},\n        \"size\": {\n            \"field\": \"size\",\n            \"type\": \"quantitative\",\n            \"scale\": { \"type\": \"sqrt\", \"range\": [1, 10] },\n            \"legend\": null\n        }\n    }\n}"
+      }
+    },
+    "question_id": "59360308"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a funnel chart using Vega-Lite with the data sorted such that the chart visually resembles a funnel.",
+      "visualization_requirements": [
+        "The chart should sort pipeline stages in descending order based on count values.",
+        "The sorted data should form a visually funnel-like appearance."
+      ]
+    },
+    "solution": {
+      "examples_analysis": {
+        "relevant_sections": [
+          {
+            "section": "data",
+            "relevance": "This section contains the data with mismatched order which needs sorting.",
+            "key_information": "Pipeline stages and their corresponding counts."
+          }
+        ]
+      },
+      "approach": "The solution involves sorting the pipeline stages by the 'Count' field in descending order using Vega-Lite's encoding properties.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the data and desired sorting order.",
+          "code_snippet": "\"transform\": [{ \"sort\": [{ \"field\": \"Count\", \"order\": \"descending\" }] }]"
+        },
+        {
+          "step_number": 2,
+          "action": "Specify the encoding for the Y-axis to sort by 'Count' value.",
+          "code_snippet": "\"y\": { \"field\": \"Pipeline\", \"type\": \"nominal\", \"sort\": \"-x\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n  \"description\": \"Draw funnel chart in Vega-Lite\",\n  \"data\": {\n    \"values\": [\n      {\"Pipeline\": \"Consultation\", \"Count\": 140000},\n      {\"Pipeline\": \"Qualified\", \"Count\": 70000},\n      {\"Pipeline\": \"Negotiation\", \"Count\": 50000},\n      {\"Pipeline\": \"Prototype\", \"Count\": 60000},\n      {\"Pipeline\": \"Closing\", \"Count\": 40000},\n      {\"Pipeline\": \"Won\", \"Count\": 30000},\n      {\"Pipeline\": \"Finalized\", \"Count\": 20000}\n    ]\n  },\n  \"transform\": [\n    { \"sort\": [{ \"field\": \"Count\", \"order\": \"descending\" }] }\n  ],\n  \"mark\": \"bar\",\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"Count\",\n      \"type\": \"quantitative\"\n    },\n    \"y\": {\n      \"field\": \"Pipeline\",\n      \"type\": \"nominal\",\n      \"sort\": \"-x\"\n    }\n  }\n}"
+      }
+    },
+    "question_id": "77716460"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user aims to create a multi-chart Vega-Lite visualization where each chart represents a time series plotted over a datetime x-axis, with an additional vertical line marker at a specific datetime that differs from the x-axis. This vertical marker is conditioned by the 'PLATFORM' field.",
+      "visualization_requirements": [
+        "Faceted charts with 'PLATFORM' defining each row chart",
+        "Time series plots using 'estimating-date-time' as the x-axis and 'eta-variance' as the y-axis",
+        "Addition of a vertical line at 'arrival-time' conditioned by 'PLATFORM'"
+      ]
+    },
+    "solution": {
+      "approach": "To achieve the desired visualization, I will utilize the layering capabilities of Vega-Lite. Each chart will be a layered composition of a line chart for the time series and a rule mark for the vertical line. Faceting will be employed to generate multiple charts distinguished by the 'PLATFORM' field.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Layering views",
+            "relevance": "This section describes how to superimpose one chart on top of another using an array under the 'layer' property. It's relevant as it directly addresses the user's need to combine a line chart with a vertical rule.",
+            "key_information": "Layering allows the composition of different views or marks, such as a line and a rule, which is crucial for adding vertical lines to each time series plot."
+          },
+          {
+            "section": "Facet Operator",
+            "relevance": "Faceting is necessary to split the visualization by the 'PLATFORM' field into multiple charts, one for each platform.",
+            "key_information": "The facet operator allows data to be partitioned and visualized in separate plots, which will enable the creation of one plot per 'PLATFORM' value."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the base specification for the time series line chart.",
+          "code_snippet": "{\"mark\": \"line\", \"encoding\": {\"x\": {\"field\": \"estimating-date-time\", \"type\": \"temporal\"}, \"y\": {\"field\": \"eta-variance\", \"type\": \"quantitative\"}}}"
+        },
+        {
+          "step_number": 2,
+          "action": "Add a rule mark for the vertical line using the 'arrival-time' field.",
+          "code_snippet": "{\"mark\": \"rule\", \"encoding\": {\"x\": {\"field\": \"arrival-time\", \"type\": \"temporal\"}}}"
+        },
+        {
+          "step_number": 3,
+          "action": "Combine the line and rule specifications into a layered view.",
+          "code_snippet": "{\"layer\": [ ...{line spec}..., ...{rule spec}... ]}"
+        },
+        {
+          "step_number": 4,
+          "action": "Apply faceting by the 'PLATFORM' field to create separate charts for each platform.",
+          "code_snippet": "{\"facet\": {\"row\": {\"field\": \"PLATFORM\", \"type\": \"nominal\"}}, \"spec\": { ...layered spec... }}"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\", \"data\": {\"url\": \"data.json\"}, \"facet\": {\"row\": {\"field\": \"PLATFORM\", \"type\": \"nominal\"}}, \"spec\": {\"layer\": [{\"mark\": \"line\", \"encoding\": {\"x\": {\"field\": \"estimating-date-time\", \"type\": \"temporal\"}, \"y\": {\"field\": \"eta-variance\", \"type\": \"quantitative\"}}}, {\"mark\": \"rule\", \"encoding\": {\"x\": {\"field\": \"arrival-time\", \"type\": \"temporal\"}}}]}}"
+      }
+    },
+    "question_id": "70398923"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user wants to create a Vega-Lite chart with two separate layers of data, each layer's data displayed in a single tooltip.",
+      "visualization_requirements": [
+        "Combine tooltip information from two distinct datasets within a single Vega-Lite visualization.",
+        "Ensure that tooltips are informative and display relevant data from both layers accurately."
+      ]
+    },
+    "solution": {
+      "approach": "To solve the tooltip issue with layered visualizations in Vega-Lite, we can utilize a shared encoding block for tooltips in the overarching specification rather than in individual layers. This ensures that tooltip data from all layers are displayed together. This method leverages the ability of Vega-Lite to apply encodings at the top-level specification that affects all underlying layers.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Tooltip Encoding",
+            "relevance": "This section is relevant because tooltips in Vega-Lite can be encoded similarly to other visual encoding channels such as 'x', 'y', 'color', etc., and can be set to show data from multiple layers.",
+            "key_information": "Encodings for tooltips can be applied to individual layers or to the whole visualization. When applied globally, it merges the tooltip data from all included layers."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define a Vega-Lite specification with a common tooltip encoding at the top level that combines fields from both datasets.",
+          "code_snippet": "{ \"layer\": [ { \"data\": { \"values\": [array of first dataset] }, \"mark\": \"line\", \"encoding\": { \"x\": {\"field\": \"a\", \"type\": \"quantitative\"}, \"y\": {\"field\": \"b\", \"type\": \"quantitative\"} } }, { \"data\": { \"values\": [array of second dataset] }, \"mark\": \"bar\" } ], \"encoding\": { \"tooltip\": [{ \"field\": \"a\", \"type\": \"quantitative\" }, { \"field\": \"b\", \"type\": \"quantitative\" }, { \"field\": \"c\", \"type\": \"quantitative\" }] } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{ \"layer\": [ { \"data\": { \"values\": [{\"a\": 1, \"b\": 2, \"c\": 3}], \"mark\": \"line\", \"encoding\": { \"x\": {\"field\": \"a\", \"type\": \"quantitative\"}, \"y\": {\"field\": \"b\", \"type\": \"quantitative\"} } }, { \"data\": { \"values\": [{\"a\": 4, \"b\": 5, \"c\": 6}], \"mark\": \"bar\" } } ], \"encoding\": { \"tooltip\": [{ \"field\": \"a\", \"type\": \"quantitative\" }, { \"field\": \"b\", \"type\": \"quantitative\" }, { \"field\": \"c\", \"type\": \"quantitative\" }] } }"
+      }
+    },
+    "question_id": "76416165"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is facing an issue with axis labels on a Vega-Lite visualization, specifically when rendering a graph based on timestamps. The user notices that the labels' clarity and format change undesirably with different graph widths, particularly between 521-594 pixels, showing only repeated times without dates. The goal is to achieve consistent and clear labeling that accurately reflects the data points over a span of days without changing the width or removing the scale type 'utc'.",
+      "visualization_requirements": [
+        "Consistent label formatting across various graph widths.",
+        "Clear differentiation of labels when dates span multiple days.",
+        "Retention of UTC format for timestamps without reverting to local time."
+      ]
+    },
+    "solution": {
+      "approach": "To address the issue, the solution focuses on modifying the axis configuration to better control the label formatting. Using properties such as `labelExpr` and `values` from the Vega-Lite documentation will allow more dynamic and clear label rendering. The goal is to ensure that labels are formatted correctly irrespective of the graph's width.",
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Axis Labels",
+            "relevance": "The 'labelExpr' property in the Axis documentation allows for custom expressions to format labels dynamically, which is crucial for addressing the issue of repeating and vague labels.",
+            "key_information": "The 'labelExpr' allows for complex conditions and dynamic label formatting, which could help in creating more specific and context-aware labels that do not repeat irrelevantly."
+          }
+        ]
+      },
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the Vega-Lite specification with a dynamic expression for the x-axis labels using the `labelExpr` to format date and time properly.",
+          "code_snippet": "{ \"axis\": { \"labelExpr\": \"datum.value % 86400000 === 0 ? timeFormat(datum.value, '%b %d') : timeFormat(datum.value, '%H:%M')\" } }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": "{\n    \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n    \"description\": \"A simple bar chart with embedded data.\",\n    \"data\": {\n        \"values\": [\n            { \"a\": \"C\", \"b\": 2 },\n            { \"a\": \"C\", \"b\": 7 },\n            { \"a\": \"C\", \"b\": 4 }\n        ]\n    },\n    \"mark\": \"bar\",\n    \"encoding\": {\n        \"x\": {\n            \"field\": \"a\",\n            \"type\": \"ordinal\"\n        },\n        \"y\": {\n            \"field\": \"b\",\n            \"type\": \"quantitative\"\n        }\n    }\n}"
+      }
+    },
+    "question_id": "60934166"
+  },
+  {
+    "problem_analysis": {
+      "user_needs": "The user is trying to customize the Y-axis label in a Vega-Lite chart to avoid displaying commas in the numerical values. For example, they want '15000' instead of '15,000' on the Y-axis.",
+      "visualization_requirements": [
+        "The Y-axis values must not include commas in their formatting.",
+        "The rest of the visualization structure should remain unaffected."
+      ]
+    },
+    "solution": {
+      "documentation_analysis": {
+        "relevant_sections": [
+          {
+            "section": "Customizing Axis Label Formatting",
+            "relevance": "The axis label formatting options allow users to customize how numerical values appear on chart axes.",
+            "key_information": "The `format` property in the axis encoding can be used to specify the desired number format. Setting it to 'd' removes commas from integers."
+          },
+          {
+            "section": "Configuring Global Formatting",
+            "relevance": "The `numberFormat` property in the `config` section can be used for global number formatting, including axes.",
+            "key_information": "By setting `numberFormat` globally, all numerical values in the chart can be formatted consistently, removing the need for individual field specification."
+          }
+        ]
+      },
+      "approach": "To remove commas from the Y-axis label in Vega-Lite, the `format` property of the Y-axis can be set to 'd', which specifies a decimal format without grouping separators. Additionally, if a global approach is preferred, the `numberFormat` property can be set in the `config` section.",
+      "implementation_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the data and basic chart structure, including X and Y encodings.",
+          "code_snippet": "{ \"data\": { \"url\": \"data/cars.json\" }, \"mark\": \"bar\", \"encoding\": { \"x\": { \"field\": \"Year\", \"type\": \"temporal\" }, \"y\": { \"field\": \"Miles_per_Gallon\", \"type\": \"quantitative\" } } }"
+        },
+        {
+          "step_number": 2,
+          "action": "Add an axis configuration for the Y-axis and set the `format` property to 'd'.",
+          "code_snippet": "\"encoding\": { \"y\": { \"axis\": { \"format\": \"d\" } } }"
+        },
+        {
+          "step_number": 3,
+          "action": "Optionally, add a global configuration in the `config` section to ensure all numbers follow the same formatting rule.",
+          "code_snippet": "\"config\": { \"numberFormat\": \"d\" }"
+        }
+      ],
+      "complete_code": {
+        "vega_lite_spec": {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": 400,
+          "height": 300,
+          "data": {
+            "url": "data/cars.json"
+          },
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "Miles_per_Gallon",
+              "type": "quantitative",
+              "axis": {
+                "format": "d"
+              }
+            }
+          },
+          "config": {
+            "numberFormat": "d"
+          }
+        }
+      }
+    },
+    "question_id": "78705532"
+  }
+]

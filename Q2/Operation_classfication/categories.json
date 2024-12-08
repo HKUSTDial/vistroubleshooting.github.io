@@ -1,0 +1,200 @@
+{
+    "Data Transformation and Processing": {
+            "Data": {
+                "Types of Data Sources": 0,
+                "Data Format": 0,
+                "Data Generators": 0,
+                "Datasets": 0
+            },
+            "Aggregate": {
+                "Aggregate in Encoding Field Definition": 0,
+                "Aggregate Transform": 0,
+                "Supported Aggregation Operations": 0,
+                "Argmin/Argmax": 0
+            },
+            "Bin": {
+                "Binning in Encoding Field Definition": 0,
+                "Bin Transform": 0,
+                "Bin Parameters": 0,
+                "Ordinal Bin": 0
+            },
+            "Join Aggregate": {
+                "Join Aggregate Field Definition": 0,
+                "Join Aggregate Transform Definition": 0
+            },
+            "Stack": {
+                "Stack in Encoding Field Definition": 0,
+                "Stack Transform": 0
+            },
+            "Window": {
+                "Window Field Definition": 0,
+                "Window Transform Definition": 0,
+                "Window Only Operation Reference": 0
+            },
+            "Other Transform": {
+                "Calculate": 0,
+                "Density": 0,
+                "Extent": 0,
+                "Filter": 0,
+                "Flatten": 0,
+                "Fold": 0,
+                "Impute": 0,
+                "Loess": 0,
+                "Lookup": 0,
+                "Pivot": 0,
+                "Quantile": 0,
+                "Regression": 0,
+                "Sample": 0
+            }
+
+    },
+    "View": {
+            "Schema": {
+                "$schema": 0
+            },
+            "Title": {
+                "Alignment": 0,
+                "Color": 0,
+                "Font size": 0
+            },
+            "Width/Height": {
+                "Specifying Fixed Width and Height": 0,
+                "Specifying Responsive Width and Height": 0,
+                "Specifying Width and Height per Discrete Step": 0,
+                "Step for Offset Channel": 0,
+                "Autosize": 0,
+                "Width and Height of Multi-View Displays": 0
+            },
+            "Mark Type": {
+                "Arc Properties/Config": 0,
+                "Area Properties/Config": 0,
+                "Bar Properties/Config": 0,
+                "Boxplot Properties/Config": 0,
+                "Circle Properties/Config": 0,
+                "Errorband Properties/Config": 0,
+                "Errorbar Properties/Config": 0,
+                "Geoshape Properties/Config": 0,
+                "Image Properties/Config": 0,
+                "Line Properties/Config": 0,
+                "Point Properties/Config": 0,
+                "Rect Properties/Config": 0,
+                "Rule Properties/Config": 0,
+                "Square Properties/Config": 0,
+                "Text Properties/Config": 0,
+                "Tick Properties/Config": 0,
+                "Trail Properties/Config": 0
+            },
+            "Encoding Channels": {
+                "Position Channels": 0,
+                "Position Offset Channels": 0,
+                "Polar Position Channels": 0,
+                "Geographic Position Channels": 0,
+                "Mark Property Channels": 0,
+                "Text and Tooltip Channels": 0,
+                "Hyperlink Channel": 0,
+                "Description Channel": 0,
+                "Level of Detail Channel": 0,
+                "Key Channel": 0,
+                "Order Channel": 0,
+                "Facet Channels": 0
+            },
+            "Time Unit": {
+                "Time Unit in Encoding Field Definition": 0,
+                "Time Unit Transform": 0,
+                "UTC Time": 0,
+                "Time Unit Parameters": 0
+            },
+            "Sort": {
+                "Sorting Continuous Fields": 0,
+                "Sorting Discrete Fields": 0
+            },
+            "Scale": {
+                "Scale Types": 0,
+                "Scale Domains": 0,
+                "Scale Ranges": 0,
+                "Continuous Scales": 0,
+                "Discrete Scales": 0,
+                "Discretizing Scales": 0,
+                "Disabling Scale": 0
+            },
+            "Legends": {
+                "Legend Types": 0,
+                "Combined Legend": 0,
+                "Legend Properties": 0,
+                "Gradient": 0,
+                "Labels": 0,
+                "Symbols": 0,
+                "Symbol Layout": 0,
+                "Title": 0
+            },
+            "Axis": {
+                "Using Axis minExtent": 0,
+                "Using Axis labelExpr": 0,
+                "Using Axis tickBand": 0,
+                "Customize Title": 0,
+                "Grid": 0,
+                "Conditional Axis Properties": 0
+            },
+            "Other Encoding Functions": {
+                "Band Position": 0,
+                "Condition": 0,
+                "Datum": 0,
+                "Field": 0,
+                "Format": 0,
+                "Header": 0,
+                "Impute": 0,
+                "Type": 0,
+                "Value": 0
+            }
+    },
+    "Selection and Interaction": {
+            "Bind": {
+                "Input Element Binding": 0,
+                "Legend Binding": 0,
+                "Scale Binding": 0
+            },
+            "Selection": {
+                "Selection Projection with Encodings and Fields": 0,
+                "Point Selection Properties": 0,
+                "Interval Selection Properties": 0
+            },
+            "Interaction": {
+                "Parameters in Expression Strings": 0,
+                "Parameters as Predicates": 0,
+                "Parameters Data Extents": 0
+            },
+            "Tooltip": {
+                "Tooltip Based on Encoding": 0,
+                "Tooltip Based on Data Point": 0,
+                "Tooltip Channel": 0,
+                "Tooltip Image": 0,
+                "Disable Tooltips": 0
+            }
+    },
+    "View Composition and Layout": {
+            "Facet": {
+                "Row-Facet": 0,
+                "Wrapped Facet": 0,
+                "Grid Facet": 0
+            },
+            "Concatenate": {
+                "Horizontal Concatenation": 0,
+                "Vertical Concatenation": 0,
+                "Wrappable Concatenation": 0
+            },
+            "Repeat": {
+                "Repeated Line Charts": 0,
+                "Multi-series Line Chart": 0,
+                "Repeated Histogram": 0,
+                "Scatterplot Matrix": 0
+            },
+            "Resolve": {
+                "Scale Resolution": 0,
+                "Axis Resolution": 0,
+                "Legend Resolution": 0
+            },
+            "Layer": {
+                "Layer": 0
+            }
+    }
+}

@@ -1,0 +1,2306 @@
+[
+    {
+        "Question ID": 62696168,
+        "Title": "timeUnit does not work after a flatten and flod transformation",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 74822569,
+        "Title": "Vega-lite line mark with aggregation – show tooltip at a distance",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 19,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    },
+    {
+        "Question ID": 78577991,
+        "Title": "Vega-lite assigning parameter to axis labels",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 62
+    },
+    {
+        "Question ID": 76317247,
+        "Title": "encoding based on condition, somehow like an else if",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 61470428,
+        "Title": "Vega Lite group by specific attributes based on another column",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 36,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 78605460,
+        "Title": "Vega lite tooltip when hovering stacked bar text marks",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 48,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 48
+    },
+    {
+        "Question ID": 76716569,
+        "Title": "X AXIS Date in Area Chart using Deneb visual in Power BI",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 78589676,
+        "Title": "vega lite colour text using a field",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 45,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 47
+    },
+    {
+        "Question ID": 78828484,
+        "Title": "creating a symmetry shading with vega-lite (vega) similar to the scatter chart of Power BI",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 73832299,
+        "Title": "Having black coloured labels for pie chart in vega lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 68714466,
+        "Title": "How can I filter values based on other columns?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 13
+    },
+    {
+        "Question ID": 66391372,
+        "Title": "Arcs ordered by size in vega-lite pie chart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 77289777,
+        "Title": "How to fix y-axis after plotting y-variable with a log scale in Vega-Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 46,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 37
+    },
+    {
+        "Question ID": 77356930,
+        "Title": "Vega Lite - Layered chart with only one X label instead of two",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 58,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 71
+    },
+    {
+        "Question ID": 78767130,
+        "Title": "conditionaly fill the color to Shape path co-ordinates in Vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 60,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 42
+    },
+    {
+        "Question ID": 70512651,
+        "Title": "Issue graphing tan(x) when limiting it by range",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 75789192,
+        "Title": "Dynamic Chart Title From Data Values",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 14
+    },
+    {
+        "Question ID": 78823912,
+        "Title": "Vega-lite - show marks in label area when having brushed domain",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 50,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 55
+    },
+    {
+        "Question ID": 75544206,
+        "Title": "Deneb - Insert vertical lines into gant chart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 76185612,
+        "Title": "can I bind a condition to a slider when the condition uses a datum?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 71,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 71
+    },
+    {
+        "Question ID": 73273332,
+        "Title": "Vega-lite: Legend label expression to include value of multiple fields",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 27,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 60837660,
+        "Title": "issues transforming string to date vega lite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 76745330,
+        "Title": "Add Arbitrary Legend to Vega-Lite Deneb",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 165,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 48
+    },
+    {
+        "Question ID": 76132171,
+        "Title": "Create repetitive line chart in vega-lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 42
+    },
+    {
+        "Question ID": 75103281,
+        "Title": "How to colour code a heatmap in Vega Lite?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 36
+    },
+    {
+        "Question ID": 67775292,
+        "Title": "Vega-lite data transformation to un-nest objects",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 78907223,
+        "Title": "i want to use repeat and provide different values to certain properties depending on the value of repeat",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 78166504,
+        "Title": "Possible to change radius of section in Vega Lite arc (pie chart) plot on click?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 39
+    },
+    {
+        "Question ID": 74848502,
+        "Title": "Vega-Lite - How to calculate the difference of values from different rows in my data?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 76146097,
+        "Title": "In a Deneb bar chart, how do I apply conditional formatting based on a DAX measure?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 75114788,
+        "Title": "Vega Lite Conditional Grid Format",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 54,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 76208988,
+        "Title": "Add rule mark on top of multiple layers",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 44,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 55
+    },
+    {
+        "Question ID": 69272207,
+        "Title": "Vega-Lite : Stacked Grouped Bar Chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 54,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 67170660,
+        "Title": "Vega-lite: How do you customize legend labels?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 28
+    },
+    {
+        "Question ID": 70192813,
+        "Title": "Vega-Lite: is it possible to plot a 3-layered graph with one Y-axis used only by 2 specific layers?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 39
+    },
+    {
+        "Question ID": 73273219,
+        "Title": "Vega lite: Line type mark discontinuous issue",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 27,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 69230751,
+        "Title": "How would I add a tooltip to a multi series line chart",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 30,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 78732697,
+        "Title": "Conditional X-axis short month labeling (Jan, Feb etc.)",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 68805413,
+        "Title": "How do I highlight specific bar/s using vega-lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 70557680,
+        "Title": "Slider for chloropeth map Vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 50,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 60982058,
+        "Title": "Vega-Lite: is it possible to define a selection based on date/time range?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 38,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 76863646,
+        "Title": "vega add custom bar plot below a chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 45,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 74890623,
+        "Title": "How to add text on bar chart in vega lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 63,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 75
+    },
+    {
+        "Question ID": 75880536,
+        "Title": "Conditional axis label weight in vega-lite (labelFontWeight)",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 110,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 111
+    },
+    {
+        "Question ID": 69297761,
+        "Title": "How to change the color of the text lables of a pie chart in vega-lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 24
+    },
+    {
+        "Question ID": 73747037,
+        "Title": "Deneb, how to create line chart with horizontal and vertical lines and labels",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 45,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 67
+    },
+    {
+        "Question ID": 56803720,
+        "Title": "Vega-lite Duplicate x-axis labels",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 29,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 60929534,
+        "Title": "Vega-lite Multiple aggregations in Transforms",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 63408653,
+        "Title": "Text overlay in heatmap",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 45
+    },
+    {
+        "Question ID": 62764869,
+        "Title": "multi-histogram plot with Vegalite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 76836047,
+        "Title": "Vega Lite - problem with value labels in Pie chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 54,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 74796097,
+        "Title": "Vega-lite line mark show tooltip at a distance",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 74729095,
+        "Title": "Referencing to an Array inside of Object",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 3,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 19
+    },
+    {
+        "Question ID": 77204891,
+        "Title": "How to use a rule mark on the quartiles of the x axis to display the corresponding y axis value",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 57,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 91
+    },
+    {
+        "Question ID": 70221517,
+        "Title": "Vega-Lite: Adding custom legends not based on the field value/auto color/auto shape",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 68904621,
+        "Title": "Dynamic text mark as title in vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 61,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 75853683,
+        "Title": "Possibility to re-order bars in a stacked bar chart based on click Vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 59,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 31
+    },
+    {
+        "Question ID": 70648161,
+        "Title": "Does anyone have an explanation as to why this graph is being made on vega?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 85,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 17
+    },
+    {
+        "Question ID": 69531375,
+        "Title": "Vegalite: pie chart not aggregating together",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 83,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 83
+    },
+    {
+        "Question ID": 75377950,
+        "Title": "How do you change the font formatting of a single axis label value",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 45,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 40
+    },
+    {
+        "Question ID": 78619248,
+        "Title": "Vega Lite Percent of a count for a rolling year,",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 54,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 63
+    },
+    {
+        "Question ID": 77875580,
+        "Title": "Legend Alignment in Vega Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 84,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 84
+    },
+    {
+        "Question ID": 75833067,
+        "Title": "Gantt chart example using vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 69,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 70
+    },
+    {
+        "Question ID": 78833106,
+        "Title": "Filter mark by brush parameter conditionally",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 60,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 60
+    },
+    {
+        "Question ID": 64554922,
+        "Title": "Boxplot cannot appropriate display",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 77619127,
+        "Title": "How can I create a search bar in a map chart using Vega-lite?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 97,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 102
+    },
+    {
+        "Question ID": 76237724,
+        "Title": "vega-lite change rank order with a parameter not working for some reason",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 118,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 91
+    },
+    {
+        "Question ID": 78859719,
+        "Title": "Setting minimum x axis unit to a day",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 42,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 52
+    },
+    {
+        "Question ID": 78843061,
+        "Title": "Fixed height line chart with intentional gaps",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 65686664,
+        "Title": "Vega-Lite: Map from Amsterdam not show",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 10
+    },
+    {
+        "Question ID": 68251462,
+        "Title": "How do I make the outer and inner donut charts a full circle if their value are not the same?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 76,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 79
+    },
+    {
+        "Question ID": 68812411,
+        "Title": "How do I add row(s) of text below a visual in vega-lite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 32
+    },
+    {
+        "Question ID": 76851763,
+        "Title": "Faceted Chart, separate into 2 colums, prevent label overlapping (horizontal/vertical)",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 101,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 133
+    },
+    {
+        "Question ID": 75804801,
+        "Title": "Calculate distribution plot with arbitrary quantiles",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 60,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 55
+    },
+    {
+        "Question ID": 51614391,
+        "Title": "How do I make vega-lite order days starting with monday?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 18
+    },
+    {
+        "Question ID": 52059328,
+        "Title": "How do I add secondary Y axis in vega-lite with 2 series having the same scale?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 51,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 52
+    },
+    {
+        "Question ID": 78847093,
+        "Title": "Joining consecutive values in rule mark",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 78310966,
+        "Title": "How to remove scale from vega-lite visualization?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 38,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 74998387,
+        "Title": "Vega-Lite chart from OECD API",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 57662025,
+        "Title": "Is there a way to pass the aggregated value to the tooltip encoding on a simple histogram in Vega Lite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 14
+    },
+    {
+        "Question ID": 76283165,
+        "Title": "How to assign y axes and scales to the layers in Dual-Axis multi-layer charts",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 49
+    },
+    {
+        "Question ID": 70231152,
+        "Title": "Displaying a horizontal rule at constant value in Vega-Lite, does not show up",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 74078412,
+        "Title": "Vega-Lite: Adding \"All\" option in select which doesn't filter the chart",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 38,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 35822062,
+        "Title": "how to define json for multi-line graph data",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 14
+    },
+    {
+        "Question ID": 76546600,
+        "Title": "Deneb Visual Area Chart Power BI",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 84,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 128
+    },
+    {
+        "Question ID": 77734534,
+        "Title": "Clarification on setting a dynamic domain in Vega-lite (Deneb)",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 46,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 46
+    },
+    {
+        "Question ID": 74919333,
+        "Title": "Unit Chart Progess Bar",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 61
+    },
+    {
+        "Question ID": 60683632,
+        "Title": "Vega lite calculate issues",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 17
+    },
+    {
+        "Question ID": 74497410,
+        "Title": "How to implement rules to color range in vega lite?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 37
+    },
+    {
+        "Question ID": 75370462,
+        "Title": "Faceting a Layered Plot Vega-Lite Deneb",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 36,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 76063631,
+        "Title": "How to get colours to appear on map in Vega-Lite?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 40
+    },
+    {
+        "Question ID": 76362013,
+        "Title": "Vega-lite / add dynamic layer based on range defined by joinaggregate columns",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 123,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 122
+    },
+    {
+        "Question ID": 68658805,
+        "Title": "Creating custom bar chart in Vega-Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 31
+    },
+    {
+        "Question ID": 77624306,
+        "Title": "Data label for aggregated data in Donut chart using Deneb Vega-lite - Power BI",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 69,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 90
+    },
+    {
+        "Question ID": 68800194,
+        "Title": "How do I select only unique values from a list for coloring?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 15,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 60151507,
+        "Title": "Filtering an aggregated chart with another aggregation field",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 49,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 60537034,
+        "Title": "Calculations in vega-lite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 24
+    },
+    {
+        "Question ID": 66988836,
+        "Title": "Visualisation with Vega Lite : \"emoji undefined\"",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 37
+    },
+    {
+        "Question ID": 75013049,
+        "Title": "my picked_store on Vega-lite is not functioning. I'm wanting to select filter datapoints by year",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 89,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 81
+    },
+    {
+        "Question ID": 76158135,
+        "Title": "How to specify the order of labels in the color legend of Vega?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 13
+    },
+    {
+        "Question ID": 78509844,
+        "Title": "Vega Lite - Create totals on grouped level",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 54,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 74
+    },
+    {
+        "Question ID": 66013685,
+        "Title": "Add additional tick to allow some space between the data points and the borders]",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 59402498,
+        "Title": "Is there a way to add a line break between the plot and X axis (vega-lite)",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 16,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 74331519,
+        "Title": "Show day and month from epoch timestamp with vega-lite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 10,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 76719458,
+        "Title": "Setting X-Axis format dynamically from columnvalue",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 69519873,
+        "Title": "Vega Lite - Bar Chart - Incorrectly Sorted",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 70184042,
+        "Title": "Sort bars of Stacked Bar Chart",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 18
+    },
+    {
+        "Question ID": 72650567,
+        "Title": "highlighting bars in Deneb (Power BI) - fillOpacity",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 51,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 65
+    },
+    {
+        "Question ID": 76829807,
+        "Title": "Vega Multi Series Line Chart - Use Dashed Line for One Series",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 34
+    },
+    {
+        "Question ID": 60759255,
+        "Title": "Vega lite highlighting data",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 50,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 36
+    },
+    {
+        "Question ID": 45160007,
+        "Title": "How to plot several variables on an axis with Vega-Lite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 13,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 68737548,
+        "Title": "How can I filter values with multiple conditions?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 13,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 75831225,
+        "Title": "Ribbon Chart example in Vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 139,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 319
+    },
+    {
+        "Question ID": 70521547,
+        "Title": "Plotting Away and Home Goal Difference for Crystal Palace 2020/21",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 38,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 65261101,
+        "Title": "Vega Lite / Kibana - Area Mark shows no values",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 61810723,
+        "Title": "Vega-lite chart fails when graphing on utcmonthdate",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 39
+    },
+    {
+        "Question ID": 78540043,
+        "Title": "Set the x axis limits (min and max) on categorical scale",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 74132831,
+        "Title": "Align area and line marks to same domain in Vega-Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 75793625,
+        "Title": "Hide a mark based on a condition",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 40
+    },
+    {
+        "Question ID": 71038147,
+        "Title": "Line Chart: Show all other countries as light grey",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 46,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 55
+    },
+    {
+        "Question ID": 75240154,
+        "Title": "Tooltips on points not working in vegalite v5 spec",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 41
+    },
+    {
+        "Question ID": 78903022,
+        "Title": "Facing issues in plotting stacked bar chart with binning applied in vega lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 32,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 37
+    },
+    {
+        "Question ID": 72794177,
+        "Title": "Multiple Datasets Within Vega Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 40,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 42
+    },
+    {
+        "Question ID": 76541792,
+        "Title": "How to show only ten results in vega-lite with this sorted chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 103,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 94
+    },
+    {
+        "Question ID": 59003674,
+        "Title": "Vega-Lite single line or trail mark with multiple colours",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 19,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 24
+    },
+    {
+        "Question ID": 75041793,
+        "Title": "Calculate time from given date and hour",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 64790338,
+        "Title": "Vega-lite: field appears in the wrong chart?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 26
+    },
+    {
+        "Question ID": 77923862,
+        "Title": "Vega chart count aggregation displays nothing if data values is empty array, how to fix this?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 10,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 26
+    },
+    {
+        "Question ID": 61654169,
+        "Title": "Sort the stack segments of barchart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 77948583,
+        "Title": "Vega Stacked waffle chart into vega lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 49,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 117
+    },
+    {
+        "Question ID": 77632237,
+        "Title": "Vega-Lite (Deneb): Struggling to apply Min & Max Value on Line Chart AND text label and point at end of Line",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 133,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 115
+    },
+    {
+        "Question ID": 65370100,
+        "Title": "Is it possible to write Latex on Vega-Lite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 13
+    },
+    {
+        "Question ID": 61738703,
+        "Title": "How to create scatter matrix in Vega-Lite where row/columns are identified by value (not column name)",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 72241952,
+        "Title": "vega lite chart axis labels issue",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 75656574,
+        "Title": "How to add different mark types in the legend",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 37
+    },
+    {
+        "Question ID": 65086173,
+        "Title": "Is it possible to have columns of donut chart with gray arc indicating the missing part?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 31
+    },
+    {
+        "Question ID": 73293042,
+        "Title": "How to draw areas on line chart in Vega-Lite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 41
+    },
+    {
+        "Question ID": 68213345,
+        "Title": "Vega-Lite : Cross lines when hovering a cell - Heatmap",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 39,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 97
+    },
+    {
+        "Question ID": 75098838,
+        "Title": "How can I add a year slider to this Ranged Dot Plot in Vega Lite?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 56,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 67
+    },
+    {
+        "Question ID": 75529551,
+        "Title": "How do I make a stacked bar graph in Vega-Lite where the bars are count but the data labels are percent?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 49,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 72543952,
+        "Title": "Vega Lite: How to show more charts below on clicking on a bar on the main bar chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 120,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 90
+    },
+    {
+        "Question ID": 69984165,
+        "Title": "How to lay a Density Distribution line over a Histogram (from binned Data) in vega-lite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 36
+    },
+    {
+        "Question ID": 76850090,
+        "Title": "Faceting chart by a column \"category\"",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 100,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 101
+    },
+    {
+        "Question ID": 76677061,
+        "Title": "Dynamically Set A Max Domain in Vega-Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 82,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 84
+    },
+    {
+        "Question ID": 75030940,
+        "Title": "Vega-lite interactive Bar Chart",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 32,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 39
+    },
+    {
+        "Question ID": 75658626,
+        "Title": "Deneb - Cut area with no data (move start of axe from 0 to specific number)",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 32
+    },
+    {
+        "Question ID": 64949904,
+        "Title": "Vega-lite: Cannot resolve dual y-axis on hconcat graph",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 98,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 35278975,
+        "Title": "How do I change color of a bar in Vega-lite Bar Chart?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 12
+    },
+    {
+        "Question ID": 74231700,
+        "Title": "Nested axis labels for grouped bar chart in Vega Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 58
+    },
+    {
+        "Question ID": 76679392,
+        "Title": "setting domainMax by determining the max of filtered datasets",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 78,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 89
+    },
+    {
+        "Question ID": 68808216,
+        "Title": "How to use conditional statements in Vega-lite transform",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 48
+    },
+    {
+        "Question ID": 74757594,
+        "Title": "Create array for x axis with known min, max and step",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 21,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 26
+    },
+    {
+        "Question ID": 59741643,
+        "Title": "How to specify Rule Line with a single value in VegaLite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 59112609,
+        "Title": "plotting multiple points on scatterplot using JSON and Vega-lite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 69713124,
+        "Title": "Vega transform to select the first n rows",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 73143610,
+        "Title": "Vega Lite - can I anchor a horizontal line with only values of 0 to the bottom of the chart instead of the middle?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 14
+    },
+    {
+        "Question ID": 78600113,
+        "Title": "Label wrapping with stacked bar charts",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 78892416,
+        "Title": "Deneb Vega-Lite : concatenated view dynamic height/width change",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 75758542,
+        "Title": "Vega-Lite - How to Combine Line and Symbol Legend",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 88,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 62
+    },
+    {
+        "Question ID": 73992347,
+        "Title": "How to position text at the top edge of a VegaLite chart?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 44,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 46
+    },
+    {
+        "Question ID": 60673598,
+        "Title": "Vega lite select N number of objects (count)",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 28
+    },
+    {
+        "Question ID": 76219422,
+        "Title": "vega-lite deneb grouped bar chart - Labels positioning",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 59,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 90
+    },
+    {
+        "Question ID": 56425430,
+        "Title": "Plot multiple \"columns\" with VEGA-LITE and include a legend",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 46,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 78748587,
+        "Title": "Strip plot chart using Vega-Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 40
+    },
+    {
+        "Question ID": 77547920,
+        "Title": "Is there a way to align multi-line y axis values in vega lite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 15,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 67144523,
+        "Title": "vega: filter nth of each group",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 68170594,
+        "Title": "How to position image on top left corner?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 42,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 54
+    },
+    {
+        "Question ID": 66636702,
+        "Title": "Vega Lite: Normalized Stacked Bar Chart + Overlay percentages as text",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 42,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 45
+    },
+    {
+        "Question ID": 59467415,
+        "Title": "Use data as arrays instead of table for Vega Lite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 19,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 77384613,
+        "Title": "Vega-Lite (Deneb/PowerBI): Is it possible to calculate a dividing \"symmetry\" line? (different to Regression Line)",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 71
+    },
+    {
+        "Question ID": 75998552,
+        "Title": "Text mark (data label) placement in a layered Vega-Lite chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 70,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 64
+    },
+    {
+        "Question ID": 76170255,
+        "Title": "Vega-Lite / Deneb grouped bar chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 47,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 59
+    },
+    {
+        "Question ID": 78566516,
+        "Title": "Conditional opacity for stacked bar chart text",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 55,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 70
+    },
+    {
+        "Question ID": 75247169,
+        "Title": "how to align rule on x axis with line chart data in vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 75,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 81
+    },
+    {
+        "Question ID": 68804178,
+        "Title": "Vega-lite to show text values in SI units",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 58600526,
+        "Title": "Vega-Lite Wilkinson Dot Plot, group by first digit",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 75697270,
+        "Title": "Removing an unnecessary legend from a visualisation in VegaLite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 214,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 214
+    },
+    {
+        "Question ID": 72754378,
+        "Title": "How to use field value as a color value in vega lite pie chart?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 56438561,
+        "Title": "Plot two \"columns\" of data having two different orders of magnitude using vega-lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 75794777,
+        "Title": "Hide a mark based on a condition - follow up",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 34
+    },
+    {
+        "Question ID": 78238989,
+        "Title": "VEGA LITE : stacked bar spacing between categories with fixed order",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 39,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    },
+    {
+        "Question ID": 76053942,
+        "Title": "Conditionally define color channel on multi-line graph",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 70498407,
+        "Title": "visualize the duration of events",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 76737535,
+        "Title": "Vega Lite - highlighting on hover and selection on click",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 168,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 31
+    },
+    {
+        "Question ID": 72172285,
+        "Title": "How to filter text mark with small values that are overlapping in stack bar chart on vega lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 56,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 58933759,
+        "Title": "Vega-lite set color from data whilst retaining a legend",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 76068598,
+        "Title": "Creating a Horizontal State/StatusBar in Vega-Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 77425464,
+        "Title": "Conditional gradient for bar graph in Vega Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 48,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 71
+    },
+    {
+        "Question ID": 68346456,
+        "Title": "Vega-Lite: How do I include image marks in a doughnut chart?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 59,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 59
+    },
+    {
+        "Question ID": 78518667,
+        "Title": "Share x axes in a vega-lite concatenated plot when one subplot is using timeunit and aggregation in the encoding",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 27,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 31
+    },
+    {
+        "Question ID": 61414911,
+        "Title": "Vega-lite chart fails when field linked in lookup used in legend",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 30,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 71708946,
+        "Title": "How can I remove Axis Lines from Vega Lite Chart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 56603546,
+        "Title": "Labeled bar chart with fill encoding does not respect sorting",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 72445264,
+        "Title": "Vega-lite: How to show multiple \"color\" legends for multi-layer scatter plot?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 36,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    },
+    {
+        "Question ID": 75689968,
+        "Title": "Vega-lite mark not showing colors as specified",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 39
+    },
+    {
+        "Question ID": 59477664,
+        "Title": "How to color lines with specific colors in Vega-Lite?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 66160171,
+        "Title": "How do you create a partial pie chart on vega-lite for single data point?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 13,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 63445974,
+        "Title": "How to sort the values and make interactive with mousehover?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 24,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 30
+    },
+    {
+        "Question ID": 69634695,
+        "Title": "How do I format currency in Vega-Lite?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 40
+    },
+    {
+        "Question ID": 62966416,
+        "Title": "Rescale Chart in Vega-Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 49,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 51
+    },
+    {
+        "Question ID": 63444817,
+        "Title": "How to draw a line in a line chart in vega-lite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 75441999,
+        "Title": "Show negative values in Deneb column chart in red",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 16,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 23
+    },
+    {
+        "Question ID": 63867216,
+        "Title": "colorize a candlestick chart using vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 61,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 60
+    },
+    {
+        "Question ID": 60268386,
+        "Title": "Why does vega-lite draw the legend for layers that have legend set to null?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 43,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 70980191,
+        "Title": "How to vertically align Vega-Lite stacked bar chart data labels",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 45,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 73413889,
+        "Title": "Vega-lite: Change order of stacks in a stacked bar chart and ignore negative value",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 48,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 52
+    },
+    {
+        "Question ID": 78861145,
+        "Title": "How dissappear Y axis label on condition in VegaLite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 32,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 76074066,
+        "Title": "Custom legend colors in Vega-Lite chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 109,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 118
+    },
+    {
+        "Question ID": 75189035,
+        "Title": "Vega lite plot state transition in a day",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 25
+    },
+    {
+        "Question ID": 78628805,
+        "Title": "How do I get complete interval tick grid for top most value in VegaLite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 16,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 24
+    },
+    {
+        "Question ID": 76281372,
+        "Title": "How To Set Dynamic Max Domain in VegaLite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 36,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    },
+    {
+        "Question ID": 77366367,
+        "Title": "Legend colors based on dynamic Lables",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 106,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 152
+    },
+    {
+        "Question ID": 78603805,
+        "Title": "First bar highlight by a specific color in VegaLite Bar chart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 17,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 24
+    },
+    {
+        "Question ID": 77576722,
+        "Title": "How to center react mark in stacked bar chart in vega lite?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 70,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 76
+    },
+    {
+        "Question ID": 75791788,
+        "Title": "Vega Lite (deneb) is showing a second x axis on my bar chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 55,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 65
+    },
+    {
+        "Question ID": 68990344,
+        "Title": "Is it possible to apply the same condition as color encoding for legend",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 44,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 77408117,
+        "Title": "Custom legend at the bottom in Vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 152,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 157
+    },
+    {
+        "Question ID": 78738246,
+        "Title": "How to add '%' sign in text label over bar In vegaLite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 27,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 60611471,
+        "Title": "Force order of painting, in non-stacked area chart",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 39,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 18
+    },
+    {
+        "Question ID": 78236418,
+        "Title": "Sort Order of Stacked Bars in VegaLite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 76525582,
+        "Title": "In Vega-Lite, 'config.legend.columns' doesn't appear to work when using 'resolve'. Is there another way of specifying the number of entries per line?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 122,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 117
+    },
+    {
+        "Question ID": 78202848,
+        "Title": "Why is the total field for this bar chart not encoded into the correct x axis position on this vega lite spec?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 65,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 75
+    },
+    {
+        "Question ID": 77576168,
+        "Title": "Sorting problem ( distortion ) of area chart in VegaLite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 48,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 78067164,
+        "Title": "How can i used different field for label(y.axis.label) on y axis and different field for encoding (y.field) in Vegalite",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 15,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 76338087,
+        "Title": "formatting text marks in a hconcat composition",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 103,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 125
+    },
+    {
+        "Question ID": 77872823,
+        "Title": "vertical line(boundary) issue in vegalite charts",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 77598521,
+        "Title": "Sorting issue in area chart of vegalite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 51,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 61
+    },
+    {
+        "Question ID": 73300704,
+        "Title": "Vega-lite: Line chart. start line mark from the y-axis domain line",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 31,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 75597984,
+        "Title": "Vega lite: Add Total Column to Table Visual",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 56
+    },
+    {
+        "Question ID": 75728653,
+        "Title": "How to combine vega-lite legends when including a rule mark in a separate layer?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 41,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 42
+    },
+    {
+        "Question ID": 78153732,
+        "Title": "Vega-Lite: text stroke on the outside",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 47
+    },
+    {
+        "Question ID": 73284431,
+        "Title": "Vega lite heatmap incorrect with multi line calculated field",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 18
+    },
+    {
+        "Question ID": 77565306,
+        "Title": "Specify the order of items in a vega-lite tooltip?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 80,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 86
+    },
+    {
+        "Question ID": 73042116,
+        "Title": "Legend Series Doubled in Line Chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 42,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 55
+    },
+    {
+        "Question ID": 75488910,
+        "Title": "Column facet: how to align header title to the bottom?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 59,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 51
+    },
+    {
+        "Question ID": 78123330,
+        "Title": "Vega-Lite Dynamic Label Width (Reactive Geometry)",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 48,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 52
+    },
+    {
+        "Question ID": 78225151,
+        "Title": "How i prevent dbclick event on vegalite chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 61,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 62
+    },
+    {
+        "Question ID": 73812115,
+        "Title": "Vega Lite - change title of legend",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 73122209,
+        "Title": "Vega lite: How to match speific y-axis field with x axis labels?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 19
+    },
+    {
+        "Question ID": 78913951,
+        "Title": "Target Line Y Axis Reference in VegaLite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 43,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 45
+    },
+    {
+        "Question ID": 75302754,
+        "Title": "Vega-lite timeseries chart that overlays current, last year and average in a cyclical way",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 22,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 54
+    },
+    {
+        "Question ID": 75532152,
+        "Title": "How to add a title to a concat in Vega-Lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 203,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 209
+    },
+    {
+        "Question ID": 76482610,
+        "Title": "Vega lite spec Displaying an empty graph inspite of being provided with data in the spec",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 78034089,
+        "Title": "X axis label overlapping in vega lite chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 43,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    },
+    {
+        "Question ID": 75260435,
+        "Title": "Facet graph : how to filter Y - array field",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 101,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 101
+    },
+    {
+        "Question ID": 75971467,
+        "Title": "Vega-lite Multiple Measures + Normalized Stacked Bar Chart + Overlay percentages as text",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 23,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 75536692,
+        "Title": "Vega-lite: How to split one column into multiple rows",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 90,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 80
+    },
+    {
+        "Question ID": 73602083,
+        "Title": "VegaLite Split Slices and aggregate by ranges",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 12,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 75386047,
+        "Title": "How can I unbind legend on a facetted layered graph (Vega-Lite) (Deneb)",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 112,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 112
+    },
+    {
+        "Question ID": 59757801,
+        "Title": "How to make a Tick the same width as a Bar",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 26,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 32
+    },
+    {
+        "Question ID": 65328635,
+        "Title": "Add day to a date in Vega-Lite",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 18
+    },
+    {
+        "Question ID": 67544399,
+        "Title": "How to manage layers and colums in vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 65,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 62
+    },
+    {
+        "Question ID": 70237360,
+        "Title": "Is there a way to create a half pie chart with Vega-Lite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 15,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 54610955,
+        "Title": "How to encode table based data in Vega-Lite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 15
+    },
+    {
+        "Question ID": 59295466,
+        "Title": "Add data with different styling to Vega Lite line chart",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 102,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 72
+    },
+    {
+        "Question ID": 61928545,
+        "Title": "how to control the order of groups in a vega-lite stacked bar chart",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 20,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 28
+    },
+    {
+        "Question ID": 71710123,
+        "Title": "theta and theta2 chanel encoding by field",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 27
+    },
+    {
+        "Question ID": 68440120,
+        "Title": "Vega-Lite gradient legend with box plots",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 32,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 33
+    },
+    {
+        "Question ID": 64899750,
+        "Title": "Data-layout, layers and legends in vega-lite",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 92,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 17
+    },
+    {
+        "Question ID": 59360308,
+        "Title": "How to hide legend for the size and normalise size by area in VegaLite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 18,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 77716460,
+        "Title": "data sorting issue in funnel chart in vegalite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 25,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 28
+    },
+    {
+        "Question ID": 68372852,
+        "Title": "Vega-Lite: Is it possible to have images as labels in a line chart?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 37,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 72586635,
+        "Title": "Float left/right a VegaLite text mark",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 36,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 35
+    },
+    {
+        "Question ID": 59349960,
+        "Title": "Line thickness in VegaLite for mark: rule",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 81,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 84
+    },
+    {
+        "Question ID": 69940945,
+        "Title": "plot small multiples in vega-lite with gray background",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 32,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 38
+    },
+    {
+        "Question ID": 70398923,
+        "Title": "How to draw vertical lines based on a different quantity than that for the x channel in charts by row channel?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 22
+    },
+    {
+        "Question ID": 60663992,
+        "Title": "Vega-lite default bar width strange",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 20
+    },
+    {
+        "Question ID": 78075601,
+        "Title": "How can you have multiple levels in an axis in vega-lite?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 19,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 138
+    },
+    {
+        "Question ID": 67485926,
+        "Title": "vega-lite: set circle size at start, when you have size change on mouse over",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 58,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 60
+    },
+    {
+        "Question ID": 67483898,
+        "Title": "vega-lite: how to add a column starting from a datetime column",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 50,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 53
+    },
+    {
+        "Question ID": 78028042,
+        "Title": "Setting X-Axis format dynamically for temporal type variable",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 16,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 16
+    },
+    {
+        "Question ID": 76416165,
+        "Title": "How to get 'tooltip' information from two separate layers in Vega-Lite charts",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 103,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 104
+    },
+    {
+        "Question ID": 67420024,
+        "Title": "Grouped bar chart: \"bottom\" group name position",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 52,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 54
+    },
+    {
+        "Question ID": 53840247,
+        "Title": "Disconnect points to plot overlay in Vega-lite / Vega",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 28,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 29
+    },
+    {
+        "Question ID": 60934166,
+        "Title": "Vega-lite: Why does graph width affect how the axis labels are formatted?",
+        "Question Code Type": "Medium",
+        "Question Code Keys Number": 19,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 75531415,
+        "Title": "Vega-lite: pie chart legend sorting seems not work",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 69,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 73
+    },
+    {
+        "Question ID": 75977755,
+        "Title": "altair heatmap: how to apply axis labels wrap, without losing meaning in values and cell values?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 35,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 79
+    },
+    {
+        "Question ID": 75558031,
+        "Title": "Columns bar chart: how to remove/hide a class if it's not assigned in a column?",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 33,
+        "Answer Code Type": "Complex",
+        "Answer Code Keys Number": 41
+    },
+    {
+        "Question ID": 76549370,
+        "Title": "Tooltip Issue: Tooltip displays the not selected data",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 43,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 43
+    },
+    {
+        "Question ID": 74705133,
+        "Title": "Is it possible to add quantitative values to color legend in Vegalite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 11,
+        "Answer Code Type": "Simple",
+        "Answer Code Keys Number": 12
+    },
+    {
+        "Question ID": 67484467,
+        "Title": "vega-lite: how to add timeFormatLocale to vega editor?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 53,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 64
+    },
+    {
+        "Question ID": 75152980,
+        "Title": "Set domainMax to max of brushed values",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 40,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 50
+    },
+    {
+        "Question ID": 78705532,
+        "Title": "How I avoid ',' in y axis label in VegaLite?",
+        "Question Code Type": "Simple",
+        "Question Code Keys Number": 14,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 17
+    },
+    {
+        "Question ID": 63776790,
+        "Title": "Add marks on click",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 29,
+        "Answer Code Type": "Medium",
+        "Answer Code Keys Number": 21
+    },
+    {
+        "Question ID": 63714751,
+        "Title": "An existing vega-lite map suddenly seems very zoomed-in - what is happening?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 49,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 49
+    },
+    {
+        "Question ID": 74049610,
+        "Title": "How to change color pallete of vega lite heatmap?",
+        "Question Code Type": "Extra Complex",
+        "Question Code Keys Number": 46,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 45
+    },
+    {
+        "Question ID": 70130912,
+        "Title": "How to group a dataset into top-K plus others in Vega-Lite",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 39,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 45
+    },
+    {
+        "Question ID": 75153031,
+        "Title": "Set default values of brushed data on x-axis with dates",
+        "Question Code Type": "Complex",
+        "Question Code Keys Number": 38,
+        "Answer Code Type": "Extra Complex",
+        "Answer Code Keys Number": 44
+    }
+]
