@@ -16,19 +16,19 @@ Our findings reveal that human-assisted troubleshooting provides context-sensiti
 
 We explore the role of human-assisted visualization troubleshooting by addressing two key research questions:
 
-• Q1: What questions do users commonly ask in the Q&A forum?
+• **Q1: What questions do users commonly ask in the Q&A forum?**
 Specifically, we aim to categorize the common challenges users face, such as syntax errors or design-related issues, to better understand the gaps between user-created defective visualizations and their desired outcomes.
 
-• Q2: How effectively do human responses in forums address users’ questions? 
+• **Q2: How effectively do human responses in forums address users’ questions?** 
 Specifically, we investigate the accuracy and practicality of human responses, evaluating whether the solutions adequately resolve users’ issues.
 
 
 To evaluate the potential and limitations of LLMs in this task, we ask the following questions:
 
-• Q3: To what extent can LLMs provide comparable or improved troubleshooting support for the same questions? 
+• **Q3: To what extent can LLMs provide comparable or improved troubleshooting support for the same questions?**
 We evaluate whether LLMs can match or surpass the quality of human responses in Q&A forums for visualization troubleshooting tasks.
 
-• Q4: How do supplementary resources, such as documentation and example galleries, impact the effectiveness of LLMs assistance? 
+• **Q4: How do supplementary resources, such as documentation and example galleries, impact the effectiveness of LLMs assistance?**
 We explore how the integration of external resources influences the quality of LLM-based solutions.
 
 
