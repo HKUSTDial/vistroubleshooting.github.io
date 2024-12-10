@@ -1,4 +1,4 @@
- <h1 align="center">Ask Humans or AI? Exploring Their Roles in Visualization Troubleshooting</h1>
+ <h1 align="center">Ask Humans or AI? <br>Exploring Their Roles in Visualization Troubleshooting</h1>
 
 <p align="center">
 <img width="800" src="./asserts/teaser.svg"/>
