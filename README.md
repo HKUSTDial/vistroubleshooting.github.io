@@ -135,14 +135,3 @@ python Q4/experiement/L2_experiement_document_example.py
 python execute_PNG_Code/direct_execute_Vega_PNG.py
 ```
 
-
-## 📚Citation
-```bibtex
-@article{VisTroubleshooting2024,
-    title={VisTroubleshooting: Ask Humans or AI? Exploring Their Roles in Visualization Troubleshooting},
-    author={Shuyu, Shen and Sirong, Lu and Leixian, Shen and Zhonghua, Sheng and Nan, Tang and Yuyu, Luo},
-    journal={},
-    year={2024},
-}
-```
-
