@@ -14,6 +14,7 @@ Through analyzing 889 Vega-Lite cases from Stack Overflow, we explore the effect
 
 Our findings reveal that human-assisted troubleshooting provides context-sensitive but variable-quality advice, while AI-assisted troubleshooting offers rapid feedback but often requires additional contextual resources for optimal results.
 
+### Key Research Questions
 We outline four questions ranging from understanding common troubleshooting issues faced by users to evaluating the effectiveness of LLMs in providing solutions.
 
 To explore the role of human-assisted visualization troubleshooting, we address two key research questions:
@@ -53,7 +54,7 @@ We collect and curate real-world datasets from Stack Overflow to investigate the
    - Validated and extracted 288 cases with valid answer codes (Q2, Q3)
    - Enhanced 47 cases with documentation and examples (Q4)
 
-## 📁dataset
+## 📁Dataset
 All datasets are available in the `dataset/` directory:
 - `1_All_cases/`: Original 889 Stack Overflow cases
 - `2_Troubleshooting_cases/`: 758 troubleshooting-related cases
