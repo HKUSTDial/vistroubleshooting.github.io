@@ -9,6 +9,7 @@
 Visualization authoring often requires troubleshooting support due to its complex parameter adjustments. This paper investigates two approaches for visualization troubleshooting:
 1. **Human-assisted** support via forums like Stack Overflow
 2. **AI-assisted** support using Large Language Models (LLMs)
+   
 Through analyzing 889 Vega-Lite cases from Stack Overflow, we explore the effectiveness of both approaches.
 
 Our findings reveal that human-assisted troubleshooting provides context-sensitive but variable-quality advice, while AI-assisted troubleshooting offers rapid feedback but often requires additional contextual resources for optimal results.
