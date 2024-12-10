@@ -16,7 +16,7 @@ Our findings reveal that human-assisted troubleshooting provides context-sensiti
 
 We outline four questions ranging from understanding common troubleshooting issues faced by users to evaluating the effectiveness of LLMs in providing solutions.
 
-We explore the role of human-assisted visualization troubleshooting by addressing two key research questions:
+To explore the role of human-assisted visualization troubleshooting, we address two key research questions:
 
 • **Q1: What questions do users commonly ask in the Q&A forum?**
 Specifically, we aim to categorize the common challenges users face, such as syntax errors or design-related issues, to better understand the gaps between user-created defective visualizations and their desired outcomes.
