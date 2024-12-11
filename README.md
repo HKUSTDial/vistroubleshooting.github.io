@@ -156,14 +156,14 @@ python Q4/experiement/L2_experiement_document_example.py
 ```python
 python execute_PNG_Code/direct_execute_Vega_PNG.py
 ```
-## 📌Citation
 
+## 📚Citation
+```bibtex 
 @misc{2412.07673,
 Author = {Shuyu Shen and Sirong Lu and Leixian Shen and Zhonghua Sheng and Nan Tang and Yuyu Luo},
 Title = {Ask Humans or AI? Exploring Their Roles in Visualization Troubleshooting},
 Year = {2024},
 Eprint = {arXiv:2412.07673},
 }
-
-
+```
 
